@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 
-from userdb.models import Password
+from userdb.models import User
 
 
 def login_form(request):
@@ -17,7 +17,7 @@ def login(request):
 
     if username and password:
         try:
-            if Password.objects.get(username=username).password == password:  # this should be database identifier in the future
+            if User.objects.get(username=username).password == password:  # this should be database identifier in the future
                 data = {
                     'code': 0,
                     'message': 'Success!'
