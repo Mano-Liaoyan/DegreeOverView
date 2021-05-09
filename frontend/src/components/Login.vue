@@ -17,10 +17,13 @@
         </a-button>
       </a-form-model-item>
     </a-form-model>
+    {{ return_info }}
   </div>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "Login",
   data() {
@@ -29,12 +32,20 @@ export default {
         user: '',
         password: '',
       },
+      return_info: null
     };
   },
   methods: {
     handleSubmit(e) {
       console.log(this.formInline);
-      console.log(e)
+      console.log(e);
+      axios.get('http://127.0.0.1:8000/api/student/2/').then((res) => {
+        console.log(res.data);
+        this.return_info = res.data;
+      }).catch((e) => {
+        console.log(e);
+      });
+
     },
   },
 }
