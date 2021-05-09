@@ -12,7 +12,7 @@
         </a-input>
       </a-form-model-item>
       <a-form-model-item>
-        <a-button type="primary" html-type="submit" :disabled="formInline.user === '' || formInline.password === ''">
+        <a-button type="primary" html-type="submit" :disabled="formInline.user === '' || formInline.password === ''" @click="goToHomePage">
           Log in
         </a-button>
       </a-form-model-item>
@@ -39,14 +39,17 @@ export default {
     handleSubmit(e) {
       console.log(this.formInline);
       console.log(e);
+      //异步访问api以获取数据
       axios.get('http://127.0.0.1:8000/api/student/2/').then((res) => {
         console.log(res.data);
         this.return_info = res.data;
       }).catch((e) => {
         console.log(e);
       });
-
     },
+    goToHomePage() {
+      this.$router.push('/');
+    }
   },
 }
 </script>
