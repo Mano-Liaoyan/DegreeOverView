@@ -1,11 +1,11 @@
 <template>
-  <div class="hello">
+  <div class="login">
     <div>
       <a-row type="flex" justify="space-around" align="top" />
       <a-row type="flex" justify="space-around" align="middle">
         <a-col :span="9" />
         <a-col :span="6">
-          <div class="login">
+          <div id="login">
             <h2>Log In</h2>
             <a-form :form="form" :label-col="{ span: 24 }" :wrapper-col="{ span: 24 }" @submit="handleSubmit">
               <a-form-item label="Username">
@@ -51,7 +51,7 @@
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: 'LogIn',
   data () {
     return {
       // msg: 'Welcome to Your Vue.js App'
@@ -76,13 +76,10 @@ li {
 a {
   color: #42b983;
 }
-.login {
+#login {
   border: dotted 1px;
   border-color: black;
-  margin-top: 20%;
+  margin-top: 30%;
   padding: 7%;
-}
-#login {
-  border-color: black;
 }
 </style>
