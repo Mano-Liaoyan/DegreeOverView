@@ -1,85 +1,51 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li>
-        <a
-          href="https://vuejs.org"
-          target="_blank"
-        >
-          Core Docs
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://forum.vuejs.org"
-          target="_blank"
-        >
-          Forum
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://chat.vuejs.org"
-          target="_blank"
-        >
-          Community Chat
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://twitter.com/vuejs"
-          target="_blank"
-        >
-          Twitter
-        </a>
-      </li>
-      <br>
-      <li>
-        <a
-          href="http://vuejs-templates.github.io/webpack/"
-          target="_blank"
-        >
-          Docs for This Template
-        </a>
-      </li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li>
-        <a
-          href="http://router.vuejs.org/"
-          target="_blank"
-        >
-          vue-router
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vuex.vuejs.org/"
-          target="_blank"
-        >
-          vuex
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vue-loader.vuejs.org/"
-          target="_blank"
-        >
-          vue-loader
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/awesome-vue"
-          target="_blank"
-        >
-          awesome-vue
-        </a>
-      </li>
-    </ul>
+    <div>
+      <a-row type="flex" justify="space-around" align="top" />
+      <a-row type="flex" justify="space-around" align="middle">
+        <a-col :span="9" />
+        <a-col :span="6">
+          <div class="login">
+            <h2>Log In</h2>
+            <a-form :form="form" :label-col="{ span: 24 }" :wrapper-col="{ span: 24 }" @submit="handleSubmit">
+              <a-form-item label="Username">
+                <a-input
+                  v-decorator="['Username', { rules: [{ required: true, message: 'Please input your username!' }] }]"
+                />
+              </a-form-item>
+              <a-form-item label="Password">
+                <a-input
+                  v-decorator="['Password', { rules: [{ required: true, message: 'Please input your Password!' }] }]"
+                />
+              </a-form-item>
+              <!-- <a-form-item label="Gender">
+                <a-select
+                  v-decorator="[
+                    'gender',
+                    { rules: [{ required: true, message: 'Please select your gender!' }] },
+                  ]"
+                  placeholder="Select a option and change input text above"
+                  @change="handleSelectChange"
+                >
+                  <a-select-option value="male">
+                    male
+                  </a-select-option>
+                  <a-select-option value="female">
+                    female
+                  </a-select-option>
+                </a-select>
+              </a-form-item> -->
+              <a-form-item :wrapper-col="{ span: 24, offset: 0 }">
+                <a-button type="primary" html-type="submit">
+                  Log In
+                </a-button>
+              </a-form-item>
+            </a-form>
+          </div>
+        </a-col>
+        <a-col :span="9" />
+      </a-row>
+    </div>
   </div>
 </template>
 
@@ -88,7 +54,7 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      // msg: 'Welcome to Your Vue.js App'
     }
   }
 }
@@ -109,5 +75,14 @@ li {
 }
 a {
   color: #42b983;
+}
+.login {
+  border: dotted 1px;
+  border-color: black;
+  margin-top: 20%;
+  padding: 7%;
+}
+#login {
+  border-color: black;
 }
 </style>
