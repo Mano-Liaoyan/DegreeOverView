@@ -1,4 +1,5 @@
-import Login from './components/Login.vue'
+import Login from '@/components/Login.vue'
+import StudentHome from "@/components/StudentHome";
 
 const routers = [
     {
@@ -9,6 +10,11 @@ const routers = [
     {
         path: '/',
         component: Login
+    },
+    {
+        path: '/student-home',
+        name: 'student-home',
+        component: StudentHome
     },
 ]
 export default routers
