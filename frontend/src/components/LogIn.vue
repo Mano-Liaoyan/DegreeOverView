@@ -1,9 +1,9 @@
 <template>
   <div class="login">
     <div>
-      <a-row type="flex" justify="space-around" align="top" />
+      <a-row type="flex" justify="space-around" align="top"/>
       <a-row type="flex" justify="space-around" align="middle">
-        <a-col :span="9" />
+        <a-col :span="9"/>
         <a-col :span="6">
           <div id="login">
             <h2>Log In</h2>
@@ -43,7 +43,7 @@
             </a-form>
           </div>
         </a-col>
-        <a-col :span="9" />
+        <a-col :span="9"/>
       </a-row>
     </div>
   </div>
@@ -52,7 +52,7 @@
 <script>
 export default {
   name: 'LogIn',
-  data () {
+  data() {
     return {
       // msg: 'Welcome to Your Vue.js App'
     }
@@ -65,20 +65,23 @@ export default {
 h1, h2 {
   font-weight: normal;
 }
+
 ul {
   list-style-type: none;
   padding: 0;
 }
+
 li {
   display: inline-block;
   margin: 0 10px;
 }
+
 a {
   color: #42b983;
 }
+
 #login {
-  border: dotted 1px;
-  border-color: black;
+  border: 1px dotted black;
   margin-top: 30%;
   padding: 7%;
 }
