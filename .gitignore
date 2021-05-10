@@ -24,4 +24,14 @@ pnpm-debug.log*
 
 # pycache
 
-*/__pycache__
+*/__pycache__/
+
+backend/api/__pycache__/
+
+backend/api/migrations/__pycache__/
+
+backend/DegreeOverView/__pycache__/
+
+backend/userdb/__pycache__/
+
+*.pyc
