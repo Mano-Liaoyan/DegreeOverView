@@ -1,81 +1,83 @@
 <template>
   <div class="login">
-    <div>
-      <a-row type="flex" justify="space-around" align="top"/>
-      <a-row type="flex" justify="space-around" align="middle">
-        <a-col :span="7"/>
-        <a-col :span="10">
-          <div id="login">
-            <h1>Log In</h1>
-            <a-form :form="form" :label-col="{ span: 24 }" :wrapper-col="{ span: 24 }" @submit="handleSubmit" @submit.native.prevent>
-              <a-form-item label="Username">
-                <a-input v-model="Username">
-                <a-icon slot="prefix" type="user" style="color:rgba(0,0,0,.25)"/></a-input>
-              </a-form-item>
-              <a-form-item label="Password">
-                <!--<a-input
-                  v-decorator="['Password', { rules: [{ required: true, message: 'Please input your Password!' }] }]"
-                />-->
-                <a-input v-model="Password" type="password" >
-                    <a-icon slot="prefix" type="lock" style="color:rgba(0,0,0,.25)"/>
-                </a-input>
-              </a-form-item>
-              <a-form-item label="Identity">
-                    <a-radio-group name="radioGroup" v-model ="checked" @change="onChange">
-                      <a-radio :value="1">
-                        Course Designer
-                      </a-radio>
-                      <a-radio :value="2">
-                        Lecturer
-                      </a-radio>
-                      <a-radio :value="3">
-                        Student
-                      </a-radio>
-                    </a-radio-group>
-              </a-form-item>
-              <a-form-item >
-                <!--<span>value: {{checked}}</span><br>
-                <span>name: {{Username}}</span><br>
-                <span>psw: {{Password}}</span><br>-->
-                <a-button type="primary" html-type="submit" :disabled="checked === '' || Username === '' || Password ===''">
-                  <router-link v-if="checked === 1" to="/designer">
-                    Log In
-                  </router-link>
-                  <router-link v-else-if="checked === 2" to="/lecturer">
-                    Log In
-                  </router-link>
-                  <router-link v-else-if="checked === 3" to="/student">
-                    Log In
-                  </router-link>
-                   <router-link v-else to="/">
-                    Log In
-                  </router-link>
-                </a-button> <br>
-                
-              </a-form-item>
-            </a-form>
-          </div>
-        </a-col>
-        <a-col :span="7"/>
-      </a-row>
-    </div>
+    <a-row type="flex" justify="space-around">
+      <a-col :span="24">
+        <div id="login">
+          <h1>Log In</h1>
+          <a-form :label-col="{ span: 24 }" :wrapper-col="{ span: 24 }" @submit.native.prevent>
+            <a-form-item label="username">
+              <a-input v-model="infos.username">
+                <a-icon slot="prefix" type="user" style="color:rgba(0,0,0,.25)"/>
+              </a-input>
+            </a-form-item>
+            <a-form-item label="password">
+              <!--<a-input
+                v-decorator="['Password', { rules: [{ required: true, message: 'Please input your Password!' }] }]"
+              />-->
+              <a-input v-model="infos.password" type="password">
+                <a-icon slot="prefix" type="lock" style="color:rgba(0,0,0,.25)"/>
+              </a-input>
+            </a-form-item>
+            <a-form-item label="Identity">
+              <a-radio-group name="radioGroup" v-model="infos.role">
+                <a-radio value="course-designer">
+                  Course Designer
+                </a-radio>
+                <a-radio value="lecturer">
+                  Lecturer
+                </a-radio>
+                <a-radio value="student">
+                  Student
+                </a-radio>
+              </a-radio-group>
+            </a-form-item>
+            <a-form-item>
+              <a-button type="primary" html-type="submit"
+                        :disabled="infos.role === '' || infos.username === '' || infos.password ===''"
+                        @click="SendInfo" :data-role="infos.role">
+                Log In
+              </a-button>
+              <br>
+            </a-form-item>
+          </a-form>
+        </div>
+      </a-col>
+    </a-row>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
-  el: '#login',
   name: 'LogIn',
   data() {
     return {
-        Username : '',
-        Password : '',
-        checked : '',
+      infos: {
+        username: '',
+        password: '',
+        role: '',
+      }
     };
   },
   methods: {
-    getRadioValue (event) {
-      checked = event.target.value;
+    SendInfo(e) {
+      let data = e.currentTarget.dataset
+      let role = data.role;
+      console.log(this.infos);
+      let url = "http://127.0.0.1:8000/api/" + role + "/login/";
+      //异步访问api以获取数据
+      axios.post(url, this.infos).then((res) => {
+        // console.log(res.data);
+        if (res.data.code === 0) { // If success then
+          console.log(res.data);
+        } else {// If not then
+          console.log(res.data);
+        }
+      }).catch((e) => {
+        // If some error occurs
+        console.log(e);
+      });
     }
   }
 }
@@ -103,7 +105,6 @@ a {
 
 #login {
   border: 1px dotted black;
-  margin-top: 30%;
-  padding: 7%;
+  padding: 5%;
 }
 </style>
