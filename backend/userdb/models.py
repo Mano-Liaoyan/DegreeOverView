@@ -21,3 +21,32 @@ class Lecturer(User):
 
 class CourseDesigner(User):
     pass
+
+
+class Course(models.Model):
+    course_id = models.IntegerField(primary_key=True)
+    course_name = models.CharField(max_length=40, unique=True)
+    course_code = models.CharField(max_length=10, unique=True)
+    academic_start_year = models.IntegerField()
+    program = models.CharField(max_length=10)
+    type = models.CharField(max_length=10)
+    cilos = models.ForeignKey("Cilo", on_delete=models.CASCADE)
+    assessment = models.CharField(max_length=1000)
+    pre_request_course_id = models.ForeignKey("self", on_delete=models.DO_NOTHING)
+    pass
+
+
+class Cilo(models.Model):
+    cilo_id = models.CharField(max_length=10, primary_key=True)
+    content = models.TextField()
+
+    def get_clio(self):
+        return self.content
+
+
+class Assessment(models.Model):
+    assessment_id = models.CharField(max_length=10, primary_key=True)
+    evaluation_method = models.TextField()
+    percentage = models.TextField()
+    cilos = models.ForeignKey("Cilo", on_delete=models.CASCADE)
+    pass
