@@ -2,8 +2,9 @@ from django.shortcuts import render
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from userdb.models import Student, Lecturer, CourseDesigner
+from userdb.models import Course
 from rest_framework import viewsets, permissions
-from .serializers import StudentSerializer, LecturerSerializer, CourseDesignerSerializer
+from .serializers import StudentSerializer, LecturerSerializer, CourseDesignerSerializer, CourseSerializer
 
 
 class StudentViewSet(viewsets.ModelViewSet):
@@ -51,3 +52,11 @@ class CourseDesignerViewSet(viewsets.ModelViewSet):
     """
     queryset = CourseDesigner.objects.all()
     serializer_class = CourseDesignerSerializer
+
+
+class CourseViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows Course to be viewed or edited.
+    """
+    queryset = Course.objects.all()
+    serializer_class = CourseSerializer
