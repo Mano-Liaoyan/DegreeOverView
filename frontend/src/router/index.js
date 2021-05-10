@@ -8,6 +8,7 @@ import Student from '@/components/Student'
 Vue.use(Router)
 
 export default new Router({
+  mode:"history",
   routes: [
     {
       path: '/',
