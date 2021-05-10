@@ -5,7 +5,7 @@ from userdb.models import CourseDesigner
 
 def index(request):
     # add_to_data_base()
-    return HttpResponseRedirect('login-form/')  # Jump to login page
+    return HttpResponseRedirect('api/')  # Jump to login page
 
 
 def add_to_data_base():

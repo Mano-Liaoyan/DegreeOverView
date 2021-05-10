@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
+from rest_framework.documentation import include_docs_urls
+
 from api import login, search, views, index
 
 router = routers.DefaultRouter()
@@ -28,10 +30,11 @@ urlpatterns = [
     path('login-form/', login.login_form),
     path('login/', login.login),
     path('search/', search.search),
-    path('/', index.index),
+    path('', index.index),
 ]
 
 urlpatterns += [
     path('api/', include(router.urls)),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('docs/', include_docs_urls(title='DegreeOverView API Document'))
 ]
