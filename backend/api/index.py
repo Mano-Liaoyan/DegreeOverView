@@ -1,6 +1,6 @@
 from faker import Faker
 from django.http import HttpResponseRedirect
-from userdb.models import CourseDesigner
+from userdb.models import CourseDesigner, Student
 
 
 def index(request):
@@ -15,5 +15,5 @@ def add_to_data_base():
         password = fake.password(length=16)
         fullname = fake.name()
 
-        CourseDesigner.objects.create(username=username, password=password, fullname=fullname)
+        Student.objects.create(username=username, password=password, fullname=fullname)
         pass
