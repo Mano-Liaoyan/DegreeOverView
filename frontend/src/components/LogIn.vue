@@ -3,47 +3,60 @@
     <div>
       <a-row type="flex" justify="space-around" align="top"/>
       <a-row type="flex" justify="space-around" align="middle">
-        <a-col :span="9"/>
-        <a-col :span="6">
+        <a-col :span="7"/>
+        <a-col :span="10">
           <div id="login">
-            <h2>Log In</h2>
-            <a-form :form="form" :label-col="{ span: 24 }" :wrapper-col="{ span: 24 }" @submit="handleSubmit">
+            <h1>Log In</h1>
+            <a-form :form="form" :label-col="{ span: 24 }" :wrapper-col="{ span: 24 }" @submit="handleSubmit" @submit.native.prevent>
               <a-form-item label="Username">
-                <a-input
-                  v-decorator="['Username', { rules: [{ required: true, message: 'Please input your username!' }] }]"
-                />
+                <a-input v-model="Username">
+                <a-icon slot="prefix" type="user" style="color:rgba(0,0,0,.25)"/></a-input>
               </a-form-item>
               <a-form-item label="Password">
-                <a-input
+                <!--<a-input
                   v-decorator="['Password', { rules: [{ required: true, message: 'Please input your Password!' }] }]"
-                />
+                />-->
+                <a-input v-model="Password" type="password" >
+                    <a-icon slot="prefix" type="lock" style="color:rgba(0,0,0,.25)"/>
+                </a-input>
               </a-form-item>
-              <!-- <a-form-item label="Gender">
-                <a-select
-                  v-decorator="[
-                    'gender',
-                    { rules: [{ required: true, message: 'Please select your gender!' }] },
-                  ]"
-                  placeholder="Select a option and change input text above"
-                  @change="handleSelectChange"
-                >
-                  <a-select-option value="male">
-                    male
-                  </a-select-option>
-                  <a-select-option value="female">
-                    female
-                  </a-select-option>
-                </a-select>
-              </a-form-item> -->
-              <a-form-item :wrapper-col="{ span: 24, offset: 0 }">
-                <a-button type="primary" html-type="submit">
-                  Log In
-                </a-button>
+              <a-form-item label="Identity">
+                    <a-radio-group name="radioGroup" v-model ="checked" @change="onChange">
+                      <a-radio :value="1">
+                        Course Designer
+                      </a-radio>
+                      <a-radio :value="2">
+                        Lecturer
+                      </a-radio>
+                      <a-radio :value="3">
+                        Student
+                      </a-radio>
+                    </a-radio-group>
+              </a-form-item>
+              <a-form-item >
+                <!--<span>value: {{checked}}</span><br>
+                <span>name: {{Username}}</span><br>
+                <span>psw: {{Password}}</span><br>-->
+                <a-button type="primary" html-type="submit" :disabled="checked === '' || Username === '' || Password ===''">
+                  <router-link v-if="checked === 1" to="/designer">
+                    Log In
+                  </router-link>
+                  <router-link v-else-if="checked === 2" to="/lecturer">
+                    Log In
+                  </router-link>
+                  <router-link v-else-if="checked === 3" to="/student">
+                    Log In
+                  </router-link>
+                   <router-link v-else to="/">
+                    Log In
+                  </router-link>
+                </a-button> <br>
+                
               </a-form-item>
             </a-form>
           </div>
         </a-col>
-        <a-col :span="9"/>
+        <a-col :span="7"/>
       </a-row>
     </div>
   </div>
@@ -51,10 +64,18 @@
 
 <script>
 export default {
+  el: '#login',
   name: 'LogIn',
   data() {
     return {
-      // msg: 'Welcome to Your Vue.js App'
+        Username : '',
+        Password : '',
+        checked : '',
+    };
+  },
+  methods: {
+    getRadioValue (event) {
+      checked = event.target.value;
     }
   }
 }
