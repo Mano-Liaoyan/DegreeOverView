@@ -1,4 +1,5 @@
 from userdb.models import Student, Lecturer, CourseDesigner
+from userdb.models import Course, Cilo
 from rest_framework import serializers
 
 
@@ -17,4 +18,16 @@ class LecturerSerializer(serializers.ModelSerializer):
 class CourseDesignerSerializer(serializers.ModelSerializer):
     class Meta:
         model = CourseDesigner
+        fields = '__all__'
+
+
+class CourseSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Course
+        fields = '__all__'
+
+
+class CiloSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Cilo
         fields = '__all__'
