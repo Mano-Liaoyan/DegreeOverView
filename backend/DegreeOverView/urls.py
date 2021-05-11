@@ -25,6 +25,8 @@ router.register(r'student', views.StudentViewSet)
 router.register(r'lecturer', views.LecturerViewSet)
 router.register(r'course-designer', views.CourseDesignerViewSet)
 router.register(r'course', views.CourseViewSet)
+router.register(r'cilo', views.CiloViewSet)
+router.register(r'assessment', views.AssessmentViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),

@@ -1,5 +1,5 @@
 from userdb.models import Student, Lecturer, CourseDesigner
-from userdb.models import Course, Cilo
+from userdb.models import Course, Cilo, Assessment
 from rest_framework import serializers
 
 
@@ -30,4 +30,10 @@ class CourseSerializer(serializers.ModelSerializer):
 class CiloSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cilo
+        fields = '__all__'
+
+
+class AssessmentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Assessment
         fields = '__all__'
