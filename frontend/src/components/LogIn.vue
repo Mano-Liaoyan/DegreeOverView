@@ -70,7 +70,18 @@ export default {
       axios.post(url, this.infos).then((res) => {
         // console.log(res.data);
         if (res.data.code === 0) { // If success then
-          console.log(res.data);
+          switch (role){
+            case "student":
+              this.$router.push('/Student');
+              break;
+            case "course-designer":
+              this.$router.push('/Designer');
+              break;
+            case "lecturer":
+              this.$router.push('/Lecturer');
+              break;
+          }        
+          // console.log(res.data);
         } else {// If not then
           console.log(res.data);
         }
