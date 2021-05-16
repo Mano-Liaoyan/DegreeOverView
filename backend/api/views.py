@@ -45,6 +45,29 @@ class LecturerViewSet(viewsets.ModelViewSet):
     queryset = Lecturer.objects.all()
     serializer_class = LecturerSerializer
 
+    # permission_classes = [permissions.IsAuthenticated]
+    @action(methods=['POST'], detail=False)
+    def login(self, request):
+        s = request.data
+        lecturer = Lecturer.objects.filter(username=s['username'])
+        if lecturer:
+            if s['password'] == lecturer[0].password:
+                res_json = {
+                    'code': 0,
+                    'message': 'Success!'
+                }
+            else:
+                res_json = {
+                    'code': 1002,
+                    'message': 'Not correct username or password!'
+                }
+        else:
+            res_json = {
+                'code': 1002,
+                'message': 'Not correct username or password!'
+            }
+        return Response(res_json)
+
 
 class CourseDesignerViewSet(viewsets.ModelViewSet):
     """
@@ -52,6 +75,29 @@ class CourseDesignerViewSet(viewsets.ModelViewSet):
     """
     queryset = CourseDesigner.objects.all()
     serializer_class = CourseDesignerSerializer
+
+    # permission_classes = [permissions.IsAuthenticated]
+    @action(methods=['POST'], detail=False)
+    def login(self, request):
+        s = request.data
+        designer = CourseDesigner.objects.filter(username=s['username'])
+        if designer:
+            if s['password'] == designer[0].password:
+                res_json = {
+                    'code': 0,
+                    'message': 'Success!'
+                }
+            else:
+                res_json = {
+                    'code': 1002,
+                    'message': 'Not correct username or password!'
+                }
+        else:
+            res_json = {
+                'code': 1002,
+                'message': 'Not correct username or password!'
+            }
+        return Response(res_json)
 
 
 class CourseViewSet(viewsets.ModelViewSet):
