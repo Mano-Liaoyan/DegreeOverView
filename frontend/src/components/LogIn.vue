@@ -5,15 +5,12 @@
         <div id="login">
           <h1>Log In</h1>
           <a-form :label-col="{ span: 24 }" :wrapper-col="{ span: 24 }" @submit.native.prevent>
-            <a-form-item label="username">
+            <a-form-item label="Username">
               <a-input v-model="infos.username">
                 <a-icon slot="prefix" type="user" style="color:rgba(0,0,0,.25)"/>
               </a-input>
             </a-form-item>
-            <a-form-item label="password">
-              <!--<a-input
-                v-decorator="['Password', { rules: [{ required: true, message: 'Please input your Password!' }] }]"
-              />-->
+            <a-form-item label="Password">
               <a-input v-model="infos.password" type="password">
                 <a-icon slot="prefix" type="lock" style="color:rgba(0,0,0,.25)"/>
               </a-input>
@@ -117,5 +114,7 @@ a {
 #login {
   border: 1px dotted black;
   padding: 5%;
+  margin: auto;
+  text-align: center;
 }
 </style>
