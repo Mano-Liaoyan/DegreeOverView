@@ -34,8 +34,8 @@ class Course(models.Model):
     program = models.CharField(max_length=10)
     type = models.CharField(max_length=10)
     cilos = models.ForeignKey("Cilo", on_delete=models.CASCADE)
-    assessment = models.OneToOneField("Assessment", on_delete=models.SET_NULL, null=True)
-    pre_request_course_id = models.ForeignKey("self", on_delete=models.DO_NOTHING, null=True)
+    assessment = models.CharField(max_length=1000)
+    pre_request_course_id = models.ForeignKey("self", on_delete=models.DO_NOTHING)
 
 
 class Cilo(models.Model):
@@ -50,4 +50,4 @@ class Assessment(models.Model):
     assessment_id = models.IntegerField(primary_key=True, auto_created=True)
     evaluation_method = models.TextField()
     percentage = models.TextField()
-    cilos = models.ManyToManyField("Cilo")
+    cilos = models.ForeignKey("Cilo", on_delete=models.CASCADE)
