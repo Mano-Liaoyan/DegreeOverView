@@ -22,15 +22,20 @@
       <a-layout>
         <a-layout-header style="background: #fff; padding: 0">
           <a-row type="flex" justify="space-between" align="middle">
+            <!--     Right Notify Button       -->
             <a-col>
               <a-icon class="trigger" :type="collapsed ? 'menu-unfold' : 'menu-fold'" @click="() => (this.collapsed = !collapsed)"/>
+            </a-col>
+            <!--     Center Search function       -->
+            <a-col>
+              <Search></Search>
             </a-col>
             <!--Left top bar-->
             <a-col>
               <a-row>
                 <a-col>
                   Welcome xxx!
-                  <a-icon class="top-left-buttons" type="logout" style="color: #BB4444"/>
+                  <a-icon class="top-left-buttons" type="logout"/>
                 </a-col>
               </a-row>
             </a-col>
@@ -44,8 +49,13 @@
   </div>
 </template>
 <script>
+import Search from "./Search";
 
 export default {
+  name: 'Designer',
+  components: {
+    Search
+  },
   data() {
     return {
       collapsed: false,
@@ -68,6 +78,10 @@ export default {
   padding: 0 24px 0 6px;
   cursor: pointer;
   transition: color 0.3s;
+}
+
+.top-left-buttons:hover {
+  color: #BB4444;
 }
 
 #components-layout-demo-custom-trigger .trigger:hover {
