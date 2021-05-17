@@ -25,13 +25,12 @@ router.register(r'student', views.StudentViewSet)
 router.register(r'lecturer', views.LecturerViewSet)
 router.register(r'course-designer', views.CourseDesignerViewSet)
 router.register(r'course', views.CourseViewSet)
-router.register(r'search', views.SearchViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login-form/', login.login_form),
     path('login/', login.login),
-    # path('search/', search.search),
+    path('search/', search.search),
     path('', index.index),
 ]
 
