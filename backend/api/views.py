@@ -1,11 +1,12 @@
-from django.db.models import Q
-from django.shortcuts import render
+from django.db.models import Q, Count
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from userdb.models import Student, Lecturer, CourseDesigner, Cilo
-from userdb.models import Course
-from rest_framework import viewsets, permissions
+from userdb.models import Student, Lecturer, CourseDesigner, Cilo, Course
+from rest_framework import viewsets
 from .serializers import StudentSerializer, LecturerSerializer, CourseDesignerSerializer, CourseSerializer, SearchSerializer, CiloSerializer
+from rest_framework.pagination import PageNumberPagination
+from rest_framework.generics import ListAPIView
+from rest_framework.filters import SearchFilter, OrderingFilter
 
 
 class StudentViewSet(viewsets.ModelViewSet):
@@ -109,23 +110,50 @@ class CourseViewSet(viewsets.ModelViewSet):
     serializer_class = CourseSerializer
 
 
-class SearchViewSet(viewsets.ViewSet):
+class CourseSearchViewSet(ListAPIView):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
+    pagination_class = PageNumberPagination
+    filter_backends = (SearchFilter, OrderingFilter,)
+    search_fields = ('course_name', 'course_code', 'academic_start_year', 'program',
+                     'type', 'cilos_id__content', 'pre_request_course_id_id__course_name')
+    pass
 
-    # permission_classes = [permissions.IsAuthenticated]
-    @action(methods=['GET'], detail=False)
-    def course(self, request):
-        s = request.data
-        res = Course.objects.filter(Q(course_name__contains=s['keywords']) | Q(course_code__contains=s['keywords']))
-        s_serializer = CourseSerializer(instance=res, many=True)
-        # print(s_serializer.data)
-        return Response(s_serializer.data)
 
-    @action(methods=['GET'], detail=False)
-    def cilo(self, request):
-        s = request.data
-        res = Cilo.objects.filter(Q(cilo_id__contains=s['keywords']) | Q(content__contains=s['keywords']))
-        s_serializer = CiloSerializer(instance=res, many=True)
-        # print(s_serializer.data)
-        return Response(s_serializer.data)
+class CiloSearchViewSet(ListAPIView):
+    queryset = Cilo.objects.all()
+    serializer_class = CiloSerializer
+    pagination_class = PageNumberPagination
+    filter_backends = (SearchFilter, OrderingFilter,)
+    search_fields = ('cilo_id', 'content')
+    pass
+
+# class SearchViewSet(viewsets.ViewSet):
+#     queryset = Course.objects.all()
+#     serializer_class = CourseSerializer
+# 
+#     # permission_classes = [permissions.IsAuthenticated]
+#     @action(methods=['GET'], detail=False)
+#     def course(self, request):
+#         s = SearchSerializer(data=request.data)
+#         if s.is_valid():
+#             keywords = s['keywords'].value
+#             res = Course.objects.filter(Q(course_name__contains=keywords) | Q(course_code__contains=keywords))
+#             s_serializer = CourseSerializer(instance=res, many=True)
+#             final_res = {'results': s_serializer.data, 'count': res.count()}
+#             return Response(final_res)
+#         else:
+#             return Response(s.errors)
+# 
+#     @action(methods=['GET'], detail=True)
+#     def cilo(self, request, *args, **kwargs):
+#         s = SearchSerializer(data=request.data)
+#         print('args: ', args)
+#         if s.is_valid():
+#             keywords = s['keywords'].value
+#             res = Cilo.objects.filter(Q(cilo_id__contains=keywords) | Q(content__contains=keywords))
+#             s_serializer = CiloSerializer(instance=res, many=True)
+#             final_res = {'results': s_serializer.data, 'count': res.count()}
+#             return Response(final_res)
+#         else:
+#             return Response(s.errors)
