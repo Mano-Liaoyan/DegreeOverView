@@ -1,159 +1,39 @@
-<!--<template>
-  <div id="designer">
-      <div class="top">
-        <a-row type="flex" justify="space-between">
-          <a-col :span="12">
-            <h2>Designer homepage</h2>
-          </a-col>
-          <a-col :span="12" justify="end"> 
-            <p>welcome xxx!</p>
-            <p>Log out</p>
-          </a-col>
-        </a-row>
-      </div>
-      <div class="middle">
-        <a-row type="flex" justify="flex-start">
-              <a-form :label-col="{ span: 24 }" :wrapper-col="{ span: 24 }" @submit.native.prevent>
-                <a-form-item>
-                  <a-input
-                    v-model="infos.keyword" placeholder="Search Keywords">
-                   <a-icon slot="prefix" type="search" style="color:rgba(0,0,0,.25)" />
-                 </a-input>
-                  <a-select default-value="Choose Search Function..." style="width: 30px" @change="handleChange">
-                    <a-select-option value="course">
-                     Search by Course
-                    </a-select-option>
-                    <a-select-option value="cilo">
-                      Search by CILOs
-                    </a-select-option>
-                    <a-select-option value="keyword">
-                     Search by Keywords
-                   </a-select-option>
-                  </a-select>
-                </a-form-item>
-                <a-form-item>
-                <!-- <a-button type="primary" html-type="submit" :disabled="hasErrors(form.getFieldsError())"> 
-                <a-button type="primary" html-type="submit">
-                  Search
-                </a-button>
-              </a-form-item>
-            </a-form>
-            </a-row>
-            
-            <a-button>View Dependencies</a-button>
-            <a-button>View Analysis Result</a-button>
-          
-        </div>
-
-          </div>
-    
-</template>
-
-<script>
-export default {
-  name: 'Designer',
-  data() {
-    return {
-      infos: {
-        keyword: '',
-      }
-    }
-  }
-}
-</script>-->
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<!--
-<style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
-}
-#designer {
-  display: flex;
-  height: 600px;
-  width: 1000px;
-  padding: 0 20px;
-  background-color: #cccccc;
-  justify-content: "center";
-  flex-wrap: wrap;
-}
-.top {
-  display: flex;
-  height: 100px;
-  width: 1000px;
-}
-
-</style>-->
-
 <template>
-  <a-layout id="components-layout-demo-top-side-2">
-    <a-layout-header class="header">
-      <div class="logo" />
-      <a-menu
-        theme="dark"
-        mode="horizontal"
-        :default-selected-keys="['2']"
-        :style="{ lineHeight: '64px' }"
-      >
-        <a-menu-item key="1">
-          nav 1
-        </a-menu-item>
-        <a-menu-item key="2">
-          nav 2
-        </a-menu-item>
-        <a-menu-item key="3">
-          nav 3
-        </a-menu-item>
-      </a-menu>
-    </a-layout-header>
-    <a-layout>
-      <a-layout-sider width="200" style="background: #fff">
-        <a-menu
-          mode="inline"
-          :default-selected-keys="['1']"
-          :default-open-keys="['sub1']"
-          :style="{ height: '100%', borderRight: 0 }"
-        >
-          <a-menu-item key="sub1">
-            <a-icon type="user" />
-             <span>Option 1</span>
+  <div id="designer">
+    <a-layout id="components-layout-demo-custom-trigger">
+      <a-layout-sider v-model="collapsed" :trigger="null" collapsible>
+        <div class="logo"/>
+        <a-menu theme="dark" mode="inline" :default-selected-keys="['1']">
+          <a-menu-item key="1">
+            <a-icon type="user"/>
+            <span>nav 1</span>
           </a-menu-item>
-          <a-sub-menu key="sub2">
-            <span slot="title"><a-icon type="laptop" />subnav 2</span>
-          </a-sub-menu>
-          <a-sub-menu key="sub3">
-            <span slot="title"><a-icon type="notification" />subnav 3</span>
-          </a-sub-menu>
+          <a-menu-item key="2">
+            <a-icon type="video-camera"/>
+            <span>nav 2</span>
+          </a-menu-item>
+          <a-menu-item key="3">
+            <a-icon type="upload"/>
+            <span>nav 3</span>
+          </a-menu-item>
         </a-menu>
       </a-layout-sider>
-      <a-layout style="padding: 0 24px 24px">
-        <a-breadcrumb style="margin: 16px 0">
-          <a-breadcrumb-item>Home</a-breadcrumb-item>
-          <a-breadcrumb-item>List</a-breadcrumb-item>
-          <a-breadcrumb-item>App</a-breadcrumb-item>
-        </a-breadcrumb>
+      <a-layout>
+        <a-layout-header style="background: #fff; padding: 0">
+          <a-icon
+            class="trigger"
+            :type="collapsed ? 'menu-unfold' : 'menu-fold'"
+            @click="() => (collapsed = !collapsed)"
+          />
+        </a-layout-header>
         <a-layout-content
-          :style="{ background: '#fff', padding: '24px', margin: 0 }"
+          :style="{ margin: '24px 16px', padding: '24px', background: '#fff', minHeight: '280px' }"
         >
           Content
         </a-layout-content>
       </a-layout>
     </a-layout>
-  </a-layout>
+  </div>
 </template>
 <script>
 export default {
@@ -164,14 +44,26 @@ export default {
   },
 };
 </script>
-
 <style>
-
-#components-layout-demo-top-side-2 .logo {
-  width: 120px;
-  height: 31px;
+#components-layout-demo-custom-trigger .trigger {
+  font-size: 18px;
+  line-height: 64px;
+  padding: 0 24px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+#components-layout-demo-custom-trigger .trigger:hover {
+  color: #1890ff;
+}
+#components-layout-demo-custom-trigger .logo {
+  height: 32px;
   background: rgba(255, 255, 255, 0.2);
-  margin: 16px 28px 16px 0;
-  float: left;
+  margin: 16px;
+}
+#components-layout-demo-custom-trigger {
+  height: 100%;
+}
+#designer {
+  height: 100%;
 }
 </style>
