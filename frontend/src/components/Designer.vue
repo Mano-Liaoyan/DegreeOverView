@@ -21,7 +21,6 @@
       </a-layout-sider>
       <a-layout>
         <a-layout-header style="background: #fff; padding: 0"> 
-
           <h2 style="margin-left: 30px; font-weight :bold;"> DegreeOverview </h2>
           <a-icon
             class="trigger"
