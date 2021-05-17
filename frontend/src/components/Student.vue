@@ -6,7 +6,7 @@
         <a-col :span="6"/>
         <a-col :span="12">
           <div id="student">
-              <h2>student</h2>
+            <h2>student</h2>
             <a-form layout="inline" :form="form" @submit="handleSubmit">
               <a-form-item>
                 <a-input

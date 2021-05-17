@@ -1,46 +1,31 @@
 <template>
-  <div class="designer">
+  <div class="addcourse">
     <div>
       <a-row type="flex" justify="space-around" align="top"/>
       <a-row type="flex" justify="space-around" align="middle">
         <a-col :span="6"/>
         <a-col :span="12">
-          <div id="designer">
-            <h2>designer</h2>
+          <div id="addcourse">
+            <h2>Add Course</h2>
             <a-form layout="inline" :form="form" @submit="handleSubmit">
               <a-form-item>
                 <a-input
                   v-decorator="[
-                    'keyword',
-                    { rules: [{ required: true, message: 'Please input search keywords!' }] },
+                    'coursename',
+                    { rules: [{ required: true, message: 'Please input course name!' }] },
                   ]"
-                  placeholder="Search Keywords"
+                  placeholder="input course name here"
                 >
-                  <a-icon slot="prefix" type="search" style="color:rgba(0,0,0,.25)" />
                 </a-input>
-              </a-form-item>
-              <a-form-item>
-                <a-select default-value="Choose Search Function..." style="width: 30px" @change="handleChange">
-                  <a-select-option value="course">
-                    Search by Course
-                  </a-select-option>
-                  <a-select-option value="cilo">
-                    Search by CILOs
-                  </a-select-option>
-                  <a-select-option value="keyword">
-                    Search by Keywords
-                  </a-select-option>
-                </a-select>
               </a-form-item>
               <a-form-item>
                 <!-- <a-button type="primary" html-type="submit" :disabled="hasErrors(form.getFieldsError())"> -->
                 <a-button type="primary" html-type="submit">
-                  Search
+                  Confirm
                 </a-button>
               </a-form-item>
             </a-form>
-            <a-button>View Dependencies</a-button>
-            <a-button>View Analysis Result</a-button>
+            <a-button>Cancel</a-button>
           </div>
         </a-col>
         <a-col :span="6"/>
@@ -51,7 +36,7 @@
 
 <script>
 export default {
-  name: 'Designer',
+  name: 'AddCourse',
   data() {
     return {
       // msg: 'Welcome to Your Vue.js App'
