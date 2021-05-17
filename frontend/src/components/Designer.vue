@@ -52,18 +52,35 @@ export default {
   cursor: pointer;
   transition: color 0.3s;
 }
+<<<<<<< HEAD
 #components-layout-demo-custom-trigger .trigger:hover {
   color: #1890ff;
 }
+=======
+
+#components-layout-demo-custom-trigger .trigger:hover {
+  color: #1890ff;
+}
+
+>>>>>>> d68225cebc9bb0f5cdaa2175f114bac367093610
 #components-layout-demo-custom-trigger .logo {
   height: 32px;
   background: rgba(255, 255, 255, 0.2);
   margin: 16px;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> d68225cebc9bb0f5cdaa2175f114bac367093610
 #components-layout-demo-custom-trigger {
   height: 100%;
 }
+
 #designer {
   height: 100%;
 }
+<<<<<<< HEAD
 </style>
+=======
+</style>
+>>>>>>> d68225cebc9bb0f5cdaa2175f114bac367093610
