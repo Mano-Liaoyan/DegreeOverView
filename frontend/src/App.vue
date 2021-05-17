@@ -17,6 +17,7 @@ export default {
   /*display: flex;*/
   color: #2c3e50;
   /*margin: auto;*/
-
+  width: 100%;
+  height: 100%;
 }
 </style>

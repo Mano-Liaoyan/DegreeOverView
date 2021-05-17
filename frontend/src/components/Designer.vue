@@ -1,8 +1,9 @@
 <template>
   <div id="designer">
     <a-layout id="components-layout-demo-custom-trigger">
-      <a-layout-sider v-model="collapsed" :trigger="null" collapsible>
-        <div class="logo"/>
+      
+        <a-layout-sider v-model="collapsed" :trigger="null" collapsible>
+          <div class="logo"/>
         <a-menu theme="dark" mode="inline" :default-selected-keys="['1']">
           <a-menu-item key="1">
             <a-icon type="user"/>
@@ -19,12 +20,15 @@
         </a-menu>
       </a-layout-sider>
       <a-layout>
-        <a-layout-header style="background: #fff; padding: 0">
+        <a-layout-header style="background: #fff; padding: 0"> 
+
+          <h2 style="margin-left: 30px; font-weight :bold;"> DegreeOverview </h2>
           <a-icon
             class="trigger"
             :type="collapsed ? 'menu-unfold' : 'menu-fold'"
             @click="() => (collapsed = !collapsed)"
           />
+         
         </a-layout-header>
         <a-layout-content
           :style="{ margin: '24px 16px', padding: '24px', background: '#fff', minHeight: '280px' }"
@@ -52,35 +56,18 @@ export default {
   cursor: pointer;
   transition: color 0.3s;
 }
-<<<<<<< HEAD
 #components-layout-demo-custom-trigger .trigger:hover {
   color: #1890ff;
 }
-=======
-
-#components-layout-demo-custom-trigger .trigger:hover {
-  color: #1890ff;
-}
-
->>>>>>> d68225cebc9bb0f5cdaa2175f114bac367093610
 #components-layout-demo-custom-trigger .logo {
   height: 32px;
   background: rgba(255, 255, 255, 0.2);
   margin: 16px;
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> d68225cebc9bb0f5cdaa2175f114bac367093610
 #components-layout-demo-custom-trigger {
   height: 100%;
 }
-
 #designer {
   height: 100%;
 }
-<<<<<<< HEAD
 </style>
-=======
-</style>
->>>>>>> d68225cebc9bb0f5cdaa2175f114bac367093610
