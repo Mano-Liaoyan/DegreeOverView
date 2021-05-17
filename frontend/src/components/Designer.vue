@@ -3,8 +3,12 @@
     <a-layout id="components-layout-demo-custom-trigger">
       <a-layout-sider v-model="collapsed" :trigger="null" collapsible>
         <div v-if="collapsed" id="logo-collapsed"></div>
-        <div v-else id="logo">DegreeOverView</div>
-        <a-menu theme="dark" mode="inline" :default-selected-keys="['1']">
+        <div v-else id="logo">DegreeOverview</div>
+        <a-menu theme="dark" mode="inline" :default-selected-keys="['0']">
+          <a-menu-item key="0">
+            <a-icon type="home"/>
+            <span>Home</span>
+          </a-menu-item>
           <a-menu-item key="1">
             <a-icon type="plus"/>
             <span>Create a new course</span>
@@ -52,7 +56,7 @@
           </a-row>
         </a-layout-header>
         <a-layout-content :style="{ margin: '24px 16px', padding: '24px', background: '#fff', minHeight: '280px' }">
-          Content
+          <ModifyCourse></ModifyCourse>
         </a-layout-content>
       </a-layout>
     </a-layout>
@@ -60,11 +64,15 @@
 </template>
 <script>
 import Search from "./Search";
+import AddCourse from "./AddCourse";
+import ModifyCourse from "./ModifyCourse";
 
 export default {
   name: 'Designer',
   components: {
-    Search
+    Search,
+    AddCourse,
+    ModifyCourse
   },
   data() {
     return {
