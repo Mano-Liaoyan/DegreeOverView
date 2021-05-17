@@ -1,3 +1,5 @@
+from abc import ABC
+
 from userdb.models import Student, Lecturer, CourseDesigner
 from userdb.models import Course, Cilo
 from rest_framework import serializers
@@ -31,3 +33,7 @@ class CiloSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cilo
         fields = '__all__'
+
+
+class SearchSerializer(serializers.Serializer):
+    keywords = serializers.CharField(max_length=60, allow_blank=False)
