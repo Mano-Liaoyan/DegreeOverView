@@ -1,52 +1,52 @@
 <template>
-  <div class="designer">
-    <div>
-      <a-row type="flex" justify="space-around" align="top"/>
-      <a-row type="flex" justify="space-around" align="middle">
-        <a-col :span="6"/>
-        <a-col :span="12">
-          <div id="designer">
-            <h2>designer</h2>
-            <a-form layout="inline" :form="form" @submit="handleSubmit">
-              <a-form-item>
-                <a-input
-                  v-decorator="[
-                    'keyword',
-                    { rules: [{ required: true, message: 'Please input search keywords!' }] },
-                  ]"
-                  placeholder="Search Keywords"
-                >
-                  <a-icon slot="prefix" type="search" style="color:rgba(0,0,0,.25)" />
-                </a-input>
-              </a-form-item>
-              <a-form-item>
-                <a-select default-value="Choose Search Function..." style="width: 30px" @change="handleChange">
-                  <a-select-option value="course">
-                    Search by Course
-                  </a-select-option>
-                  <a-select-option value="cilo">
-                    Search by CILOs
-                  </a-select-option>
-                  <a-select-option value="keyword">
-                    Search by Keywords
-                  </a-select-option>
-                </a-select>
-              </a-form-item>
-              <a-form-item>
+  <div id="designer">
+      <div class="top">
+        <a-row type="flex" justify="space-between">
+          <a-col :span="12">
+            <h2>Designer homepage</h2>
+          </a-col>
+          <a-col :span="12" justify="end"> 
+            <p>welcome xxx!</p>
+            <p>Log out</p>
+          </a-col>
+        </a-row>
+      </div>
+      <div class="middle">
+        <a-row type="flex" justify="flex-start">
+              <a-form :label-col="{ span: 24 }" :wrapper-col="{ span: 24 }" @submit.native.prevent>
+                <a-form-item>
+                  <a-input
+                    v-model="infos.keyword" placeholder="Search Keywords">
+                   <a-icon slot="prefix" type="search" style="color:rgba(0,0,0,.25)" />
+                 </a-input>
+                  <a-select default-value="Choose Search Function..." style="width: 30px" @change="handleChange">
+                    <a-select-option value="course">
+                     Search by Course
+                    </a-select-option>
+                    <a-select-option value="cilo">
+                      Search by CILOs
+                    </a-select-option>
+                    <a-select-option value="keyword">
+                     Search by Keywords
+                   </a-select-option>
+                  </a-select>
+                </a-form-item>
+                <a-form-item>
                 <!-- <a-button type="primary" html-type="submit" :disabled="hasErrors(form.getFieldsError())"> -->
                 <a-button type="primary" html-type="submit">
                   Search
                 </a-button>
               </a-form-item>
             </a-form>
+            </a-row>
+            
             <a-button>View Dependencies</a-button>
             <a-button>View Analysis Result</a-button>
+          
+        </div>
+
           </div>
-        </a-col>
-        <a-col :span="6"/>
-      </a-row>
-    </div>
-  </div>
+    
 </template>
 
 <script>
@@ -54,7 +54,9 @@ export default {
   name: 'Designer',
   data() {
     return {
-      // msg: 'Welcome to Your Vue.js App'
+      infos: {
+        keyword: '',
+      }
     }
   }
 }
@@ -78,6 +80,20 @@ li {
 
 a {
   color: #42b983;
+}
+#designer {
+  display: flex;
+  height: 600px;
+  width: 1000px;
+  padding: 0 20px;
+  background-color: #cccccc;
+  justify-content: "center";
+  flex-wrap: wrap;
+}
+.top {
+  display: flex;
+  height: 100px;
+  width: 1000px;
 }
 
 </style>
