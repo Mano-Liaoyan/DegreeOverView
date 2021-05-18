@@ -3,7 +3,7 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from userdb.models import Student, Lecturer, CourseDesigner, Cilo, Course
 from rest_framework import viewsets
-from .serializers import StudentSerializer, LecturerSerializer, CourseDesignerSerializer, CourseSerializer, SearchSerializer, CiloSerializer
+from .serializers import StudentSerializer, LecturerSerializer, CourseDesignerSerializer, CourseSerializer, CiloSerializer
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.generics import ListAPIView
 from rest_framework.filters import SearchFilter, OrderingFilter
