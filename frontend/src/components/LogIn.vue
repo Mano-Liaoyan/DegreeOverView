@@ -1,7 +1,7 @@
 <template>
-  <div id="login-framework">
-    <a-row type="flex" justify="space-around" style="margin: auto">
-      <a-col :span="8">
+  <div class="login">
+    <a-row type="flex" justify="space-around">
+      <a-col :span="24">
         <div id="login">
           <h1>Log In</h1>
           <a-form :label-col="{ span: 24 }" :wrapper-col="{ span: 24 }" @submit.native.prevent>
@@ -67,7 +67,7 @@ export default {
       axios.post(url, this.infos).then((res) => {
         // console.log(res.data);
         if (res.data.code === 0) { // If success then
-          switch (role) {
+          switch (role){
             case "student":
               this.$router.push('/Student');
               break;
@@ -77,7 +77,7 @@ export default {
             case "lecturer":
               this.$router.push('/Lecturer');
               break;
-          }
+          }        
           // console.log(res.data);
         } else {// If not then
           console.log(res.data);
@@ -114,13 +114,6 @@ a {
 #login {
   border: 1px dotted black;
   padding: 5%;
-  margin: auto;
-  text-align: center;
-}
-
-#login-framework {
-  padding: 5%;
-  width: auto;
   margin: auto;
   text-align: center;
 }

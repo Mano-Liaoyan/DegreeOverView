@@ -3,19 +3,31 @@
     <a-layout id="components-layout-demo-custom-trigger">
       <a-layout-sider v-model="collapsed" :trigger="null" collapsible>
         <div v-if="collapsed" id="logo-collapsed"></div>
-        <div v-else id="logo">DegreeOverView</div>
-        <a-menu theme="dark" mode="inline" :default-selected-keys="['1']">
+        <div v-else id="logo">DegreeOverview</div>
+        <a-menu theme="dark" mode="inline" :default-selected-keys="['0']">
+          <a-menu-item key="0">
+            <a-icon type="home"/>
+            <span>Home</span>
+          </a-menu-item>
           <a-menu-item key="1">
-            <a-icon type="user"/>
-            <span>nav 1</span>
+            <a-icon type="plus"/>
+            <span>Create a new course</span>
           </a-menu-item>
           <a-menu-item key="2">
-            <a-icon type="video-camera"/>
-            <span>nav 2</span>
+            <a-icon type="edit"/>
+            <span>Modify a course</span>
           </a-menu-item>
           <a-menu-item key="3">
-            <a-icon type="upload"/>
-            <span>nav 3</span>
+            <a-icon type="tool"/>
+            <span>Define dependencies</span>
+          </a-menu-item>
+          <a-menu-item key="4">
+            <a-icon type="eye"/>
+            <span>View dependencies</span>
+          </a-menu-item>
+          <a-menu-item key="5">
+            <a-icon type="link"/>
+            <span>Define relationships</span>
           </a-menu-item>
         </a-menu>
       </a-layout-sider>
@@ -24,25 +36,27 @@
           <a-row type="flex" justify="space-between" align="middle">
             <!--     Right Notify Button       -->
             <a-col>
-              <a-icon class="trigger" :type="collapsed ? 'menu-unfold' : 'menu-fold'" @click="() => (this.collapsed = !collapsed)"/>
+
             </a-col>
             <!--     Center Search function       -->
             <a-col>
               <Search></Search>
             </a-col>
-            <!--Left top bar-->
+            <!--Right top bar-->
             <a-col>
               <a-row>
                 <a-col>
-                  Welcome xxx!
-                  <a-icon class="top-left-buttons" type="logout"/>
+                  <a-icon type="smile"></a-icon>
+                  Welcome xxx!   
+                  <a style="margin-left: 20px;">     Log out   </a>
+                  <a-icon class="top-left-buttons" type="logout" style="color: #BB4444"/>
                 </a-col>
               </a-row>
             </a-col>
           </a-row>
         </a-layout-header>
         <a-layout-content :style="{ margin: '24px 16px', padding: '24px', background: '#fff', minHeight: '280px' }">
-          Content
+          <ModifyCourse></ModifyCourse>
         </a-layout-content>
       </a-layout>
     </a-layout>
@@ -50,11 +64,15 @@
 </template>
 <script>
 import Search from "./Search";
+import AddCourse from "./AddCourse";
+import ModifyCourse from "./ModifyCourse";
 
 export default {
   name: 'Designer',
   components: {
-    Search
+    Search,
+    AddCourse,
+    ModifyCourse
   },
   data() {
     return {
