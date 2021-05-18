@@ -5,28 +5,28 @@
         <div v-if="collapsed" id="logo-collapsed"></div>
         <div v-else id="logo">DegreeOverview</div>
         <a-menu theme="dark" mode="inline" :default-selected-keys="['0']">
-          <a-menu-item key="0">
-            <a-icon type="home"/>
+          <a-menu-item key="0" @click="changeMenu('/designer')">
+            <a-icon type="home" />
             <span>Home</span>
           </a-menu-item>
-          <a-menu-item key="1">
-            <a-icon type="plus"/>
+          <a-menu-item key="1" @click="changeMenu('addcourse')">
+            <a-icon type="plus" />
             <span>Create a new course</span>
           </a-menu-item>
-          <a-menu-item key="2">
-            <a-icon type="edit"/>
+          <a-menu-item key="2" @click="changeMenu('modify')">
+            <a-icon type="edit" />
             <span>Modify a course</span>
           </a-menu-item>
-          <a-menu-item key="3">
-            <a-icon type="tool"/>
+          <a-menu-item key="3" v-model="selection">
+            <a-icon type="tool" />
             <span>Define dependencies</span>
           </a-menu-item>
-          <a-menu-item key="4">
-            <a-icon type="eye"/>
+          <a-menu-item key="4" v-model="selection">
+            <a-icon type="eye" />
             <span>View dependencies</span>
           </a-menu-item>
-          <a-menu-item key="5">
-            <a-icon type="link"/>
+          <a-menu-item key="5" v-model="selection">
+            <a-icon type="link" />
             <span>Define relationships</span>
           </a-menu-item>
         </a-menu>
@@ -35,9 +35,7 @@
         <a-layout-header style="background: #fff; padding: 0">
           <a-row type="flex" justify="space-between" align="middle">
             <!--     Right Notify Button       -->
-            <a-col>
-
-            </a-col>
+            <a-col> </a-col>
             <!--     Center Search function       -->
             <a-col>
               <Search></Search>
@@ -47,16 +45,27 @@
               <a-row>
                 <a-col>
                   <a-icon type="smile"></a-icon>
-                  Welcome xxx!   
-                  <a style="margin-left: 20px;">     Log out   </a>
-                  <a-icon class="top-left-buttons" type="logout" style="color: #BB4444"/>
+                  Welcome xxx!
+                  <a style="margin-left: 20px"> Log out </a>
+                  <a-icon
+                    class="top-left-buttons"
+                    type="logout"
+                    style="color: #bb4444"
+                  />
                 </a-col>
               </a-row>
             </a-col>
           </a-row>
         </a-layout-header>
-        <a-layout-content :style="{ margin: '24px 16px', padding: '24px', background: '#fff', minHeight: '280px' }">
-          <DefineDependency></DefineDependency>
+        <a-layout-content
+          :style="{
+            margin: '24px 16px',
+            padding: '24px',
+            background: '#fff',
+            minHeight: '280px',
+          }"
+        >
+          <router-view />
         </a-layout-content>
       </a-layout>
     </a-layout>
@@ -64,22 +73,26 @@
 </template>
 <script>
 import Search from "./Search";
-import AddCourse from "./AddCourse";
-import ModifyCourse from "./ModifyCourse";
-import DefineDependency from "./DefineDependency"
 
 export default {
-  name: 'Designer',
+  name: "Designer",
   components: {
     Search,
-    AddCourse,
-    ModifyCourse,
-    DefineDependency
   },
   data() {
     return {
       collapsed: false,
+      selection: 0,
     };
+  },
+  methods: {
+    //路由内容切换
+    changeMenu(route) {
+      if (this.$route.path !== route) {
+        console.log(route);
+        this.$router.push(route);
+      }
+    },
   },
 };
 </script>
@@ -101,7 +114,7 @@ export default {
 }
 
 .top-left-buttons:hover {
-  color: #BB4444;
+  color: #bb4444;
 }
 
 #components-layout-demo-custom-trigger .trigger:hover {
@@ -112,7 +125,7 @@ export default {
   height: 48px;
   width: 48px;
   margin: 16px auto;
-  background-image: url('../../static/images/timg.jpg');
+  background-image: url("../../static/images/timg.jpg");
   -moz-background-size: 100% 100%;
   background-size: 100% 100%;
 }

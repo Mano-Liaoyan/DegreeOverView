@@ -13,7 +13,7 @@
               'coursename',
               {
                 rules: [
-                  { required: true, message: 'Please input the course name!' },
+                  { required: true, message: 'Please input the course name!', trigger: 'blur' },
                 ],
               },
             ]"
@@ -24,7 +24,7 @@
             v-decorator="[
               'cilos',
               {
-                rules: [{ required: true, message: 'Please input the cilos!' }],
+                rules: [{ required: true, message: 'Please input the cilos!', trigger: 'blur' }],
               },
             ]"
           />
@@ -35,7 +35,7 @@
               'assessments',
               {
                 rules: [
-                  { required: true, message: 'Please input the assessments!' },
+                  { required: true, message: 'Please input the assessments!', trigger: 'blur' },
                 ],
               },
             ]"
@@ -47,7 +47,7 @@
               'relationship',
               {
                 rules: [
-                  { required: true, message: 'Please input the relationship!' },
+                  { required: true, message: 'Please input the relationship!', trigger: 'blur' },
                 ],
               },
             ]"
@@ -62,6 +62,7 @@
                   {
                     required: true,
                     message: 'Please input the prerequisites!',
+                    trigger: 'blur' 
                   },
                 ],
               },
@@ -74,7 +75,7 @@
               'programme',
               {
                 rules: [
-                  { required: true, message: 'Please input the programme!' },
+                  { required: true, message: 'Please input the programme!', trigger: 'blur'  },
                 ],
               },
             ]"
@@ -85,7 +86,7 @@
             v-decorator="[
               'type',
               {
-                rules: [{ required: true, message: 'Please input the type!' }],
+                rules: [{ required: true, message: 'Please input the type!', trigger: 'blur'  }],
               },
             ]"
           />
@@ -99,6 +100,7 @@
                   {
                     required: true,
                     message: 'Please input the start academic year!',
+                     trigger: 'blur'
                   },
                 ],
               },
@@ -121,9 +123,11 @@ export default {
   name: "ModifyCourse",
   data() {
     return {
-      // msg: 'Welcome to Your Vue.js App'
+      form: this.$form.createForm(this),
     };
   },
+  methods: {
+  }
 };
 </script>
 
