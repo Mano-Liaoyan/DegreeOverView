@@ -56,7 +56,7 @@
           </a-row>
         </a-layout-header>
         <a-layout-content :style="{ margin: '24px 16px', padding: '24px', background: '#fff', minHeight: '280px' }">
-          <ModifyCourse></ModifyCourse>
+          <DefineDependency></DefineDependency>
         </a-layout-content>
       </a-layout>
     </a-layout>
@@ -66,13 +66,15 @@
 import Search from "./Search";
 import AddCourse from "./AddCourse";
 import ModifyCourse from "./ModifyCourse";
+import DefineDependency from "./DefineDependency"
 
 export default {
   name: 'Designer',
   components: {
     Search,
     AddCourse,
-    ModifyCourse
+    ModifyCourse,
+    DefineDependency
   },
   data() {
     return {
