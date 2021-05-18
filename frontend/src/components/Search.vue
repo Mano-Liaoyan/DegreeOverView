@@ -1,42 +1,17 @@
 <template>
   <div class="global-search-wrapper" style="width: 450px">
-    <a-auto-complete
-      class="global-search"
-      :size="size"
-      style="width: 100%"
-      placeholder="input here"
-      option-label-prop="title"
-      @select="onSelect"
-      @search="handleSearch"
-    >
+    <a-auto-complete class="global-search" :size="size" style="width: 100%"
+                     placeholder="input here" option-label-prop="title" @select="onSelect" @search="handleSearch">
       <template slot="dataSource">
         <a-select-option v-if="item.count!==0" v-for="item in dataSource" :key="item.category" :title="item.category">
           Found {{ item.query }} on {{ item.category }}
-          <span className="global-search-item-count"
-            >{{ item.count }} results</span
-          >
+          <span className="global-search-item-count">{{ item.count }} results</span>
         </a-select-option>
       </template>
       <a-input>
-        <a-button
-          slot="suffix"
-          style="margin-right: -12px"
-          class="search-btn"
-          :size="size"
-          type="primary"
-        >
-          <a-icon type="search" />
+        <a-button slot="suffix" style="margin-right: -12px" class="search-btn" :size="size" type="primary">
+          <a-icon type="search"/>
         </a-button>
-      </a-input>
-      <a-input>
-        <template>
-          <a-radio-group name="radioGroup" :default-value="1">
-            <a-radio :value="1"> A </a-radio>
-            <a-radio :value="2"> B </a-radio>
-            <a-radio :value="3"> C </a-radio>
-            <a-radio :value="4"> D </a-radio>
-          </a-radio-group>
-        </template>
       </a-input>
     </a-auto-complete>
   </div>
@@ -143,15 +118,15 @@ export default {
 }
 
 .global-search.ant-select-auto-complete
-  .ant-input-affix-wrapper
-  .ant-input:not(:last-child) {
+.ant-input-affix-wrapper
+.ant-input:not(:last-child) {
   padding-right: 62px;
 }
 
 .global-search.ant-select-auto-complete
-  .ant-input-affix-wrapper
-  .ant-input-suffix
-  button {
+.ant-input-affix-wrapper
+.ant-input-suffix
+button {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
