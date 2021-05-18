@@ -4,28 +4,28 @@
       <a-layout-sider v-model="collapsed" :trigger="null" collapsible>
         <div v-if="collapsed" id="logo-collapsed"></div>
         <div v-else id="logo">DegreeOverview</div>
-        <a-menu theme="dark" mode="inline" :default-selected-keys="['0']">
-          <a-menu-item key="0">
+        <a-menu theme="dark" mode="inline" :default-selected-keys="['0']" >
+          <a-menu-item key="0"  @click="changeMenu('/designer')">  
             <a-icon type="home"/>
             <span>Home</span>
           </a-menu-item>
-          <a-menu-item key="1">
+          <a-menu-item key="1" @click="changeMenu('addcourse')">
             <a-icon type="plus"/>
             <span>Create a new course</span>
           </a-menu-item>
-          <a-menu-item key="2">
+          <a-menu-item key="2" @click="changeMenu('modify')">
             <a-icon type="edit"/>
             <span>Modify a course</span>
           </a-menu-item>
-          <a-menu-item key="3">
+          <a-menu-item key="3" v-model="selection">
             <a-icon type="tool"/>
             <span>Define dependencies</span>
           </a-menu-item>
-          <a-menu-item key="4">
+          <a-menu-item key="4" v-model="selection">
             <a-icon type="eye"/>
             <span>View dependencies</span>
           </a-menu-item>
-          <a-menu-item key="5">
+          <a-menu-item key="5" v-model="selection">
             <a-icon type="link"/>
             <span>Define relationships</span>
           </a-menu-item>
@@ -56,7 +56,7 @@
           </a-row>
         </a-layout-header>
         <a-layout-content :style="{ margin: '24px 16px', padding: '24px', background: '#fff', minHeight: '280px' }">
-          <ModifyCourse></ModifyCourse>
+          <router-view/>
         </a-layout-content>
       </a-layout>
     </a-layout>
@@ -64,21 +64,28 @@
 </template>
 <script>
 import Search from "./Search";
-import AddCourse from "./AddCourse";
-import ModifyCourse from "./ModifyCourse";
+
 
 export default {
   name: 'Designer',
   components: {
     Search,
-    AddCourse,
-    ModifyCourse
   },
   data() {
     return {
       collapsed: false,
+      selection: 0,
     };
   },
+  methods: {
+           //路由内容切换
+      changeMenu(route){
+        if(this.$route.path !== route){
+          console.log(route)
+          this.$router.push(route)
+        }
+      }
+  }
 };
 </script>
 <style>

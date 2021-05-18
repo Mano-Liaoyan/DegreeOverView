@@ -1,322 +1,127 @@
 <template>
-  <div class="student">
-    <div>
-      <a-row type="flex" justify="space-around" align="top" />
-      <a-row type="flex" justify="space-around" align="middle">
-        <a-col :span="6" />
-        <a-col :span="12">
-          <div id="student">
-            <h2>student</h2>
-            <div>
-              <a-form layout="inline" :form="form" @submit="handleSubmit">
-                <a-form-item>
-                  <a-input
-                    v-decorator="[
-                      'keyword',
-                      {
-                        rules: [
-                          {
-                            required: true,
-                            message: 'Please input search keywords!',
-                          },
-                        ],
-                      },
-                    ]"
-                    placeholder="Search Keywords"
-                  >
-                    <a-icon
-                      slot="prefix"
-                      type="search"
-                      style="color: rgba(0, 0, 0, 0.25)"
-                    />
-                  </a-input>
-                </a-form-item>
-                <a-form-item>
-                  <a-select
-                    default-value="Choose Search Function..."
-                    style="width: 30px"
-                    @change="handleChange"
-                  >
-                    <a-select-option value="course">
-                      Search by Course
-                    </a-select-option>
-                    <a-select-option value="cilo">
-                      Search by CILOs
-                    </a-select-option>
-                    <a-select-option value="keyword">
-                      Search by Keywords
-                    </a-select-option>
-                  </a-select>
-                </a-form-item>
-                <a-form-item>
-                  <!-- <a-button type="primary" html-type="submit" :disabled="hasErrors(form.getFieldsError())"> -->
-                  <a-button type="primary" html-type="submit">
-                    Search
-                  </a-button>
-                </a-form-item>
-              </a-form>
-            </div>
-            <div>
-              <a-tabs default-active-key="0" :tab-position="left">
-                <a-tab-pane key="0" tab="Home">
-                  <div>Hello World!</div>
-                </a-tab-pane>
-                <a-tab-pane key="1" tab="Create a new course">
-                  <div>
-                    <a-form layout="inline" :form="form" @submit="handleSubmit">
-                      <a-form-item>
-                        <a-input
-                          v-decorator="[
-                            'coursename',
-                            {
-                              rules: [
-                                {
-                                  required: true,
-                                  message: 'Please input course name!',
-                                },
-                              ],
-                            },
-                          ]"
-                          placeholder="input course name here"
-                        >
-                        </a-input>
-                      </a-form-item>
-                      <a-form-item>
-                        <!-- <a-button type="primary" html-type="submit" :disabled="hasErrors(form.getFieldsError())"> -->
-                        <a-button type="primary" html-type="submit">
-                          Confirm
-                        </a-button>
-                      </a-form-item>
-                    </a-form>
-                    <a-button>Cancel</a-button>
-                  </div>
-                </a-tab-pane>
-                <a-tab-pane key="2" tab="Modify a course">
-                  <div>
-                    <a-form :form="form">
-                      <a-form-item
-                        :label-col="formItemLayout.labelCol"
-                        :wrapper-col="formItemLayout.wrapperCol"
-                        label="CourseName"
-                      >
-                        <a-input
-                          v-decorator="[
-                            'coursename',
-                            {
-                              rules: [
-                                {
-                                  required: true,
-                                  message: 'Please input course name',
-                                },
-                              ],
-                            },
-                          ]"
-                          placeholder="Please input your name"
-                        />
-                      </a-form-item>
-                      <a-form-item
-                        :label-col="formItemLayout.labelCol"
-                        :wrapper-col="formItemLayout.wrapperCol"
-                        label="CILOs"
-                      >
-                        <a-input
-                          v-decorator="[
-                            'cilos',
-                            {
-                              rules: [
-                                {
-                                  required: true,
-                                  message: 'Please input cilos',
-                                },
-                              ],
-                            },
-                          ]"
-                          placeholder="Please input your name"
-                        />
-                        <a-button> Add CILOs </a-button>
-                      </a-form-item>
-                      <a-form-item
-                        :label-col="formItemLayout.labelCol"
-                        :wrapper-col="formItemLayout.wrapperCol"
-                        label="Assessments"
-                      >
-                        <a-input
-                          v-decorator="[
-                            'assessments',
-                            {
-                              rules: [
-                                {
-                                  required: true,
-                                  message: 'Please input assessments',
-                                },
-                              ],
-                            },
-                          ]"
-                          placeholder="Please input your name"
-                        />
-                        <a-button> Add Assessments </a-button>
-                      </a-form-item>
-                      <a-form-item
-                        :label-col="formItemLayout.labelCol"
-                        :wrapper-col="formItemLayout.wrapperCol"
-                        label="Relationships"
-                      >
-                        <a-input
-                          v-decorator="[
-                            'relationships',
-                            {
-                              rules: [
-                                {
-                                  required: true,
-                                  message: 'Please input relationships',
-                                },
-                              ],
-                            },
-                          ]"
-                          placeholder="Please input your name"
-                        />
-                      </a-form-item>
-                      <a-form-item
-                        :label-col="formItemLayout.labelCol"
-                        :wrapper-col="formItemLayout.wrapperCol"
-                        label="Prerequisites"
-                      >
-                        <a-input
-                          v-decorator="[
-                            'prerequisites',
-                            {
-                              rules: [
-                                {
-                                  required: true,
-                                  message: 'Please input prerequisites',
-                                },
-                              ],
-                            },
-                          ]"
-                          placeholder="Please input your name"
-                        />
-                      </a-form-item>
-                      <a-form-item
-                        :label-col="formItemLayout.labelCol"
-                        :wrapper-col="formItemLayout.wrapperCol"
-                        label="Programme"
-                      >
-                        <a-input
-                          v-decorator="[
-                            'programme',
-                            {
-                              rules: [
-                                {
-                                  required: true,
-                                  message: 'Please input programme',
-                                },
-                              ],
-                            },
-                          ]"
-                          placeholder="Please input your name"
-                        />
-                      </a-form-item>
-                      <a-form-item
-                        :label-col="formItemLayout.labelCol"
-                        :wrapper-col="formItemLayout.wrapperCol"
-                        label="Type"
-                      >
-                        <a-input
-                          v-decorator="[
-                            'type',
-                            {
-                              rules: [
-                                {
-                                  required: true,
-                                  message: 'Please input type',
-                                },
-                              ],
-                            },
-                          ]"
-                          placeholder="Please input your name"
-                        />
-                      </a-form-item>
-                      <a-form-item
-                        :label-col="formItemLayout.labelCol"
-                        :wrapper-col="formItemLayout.wrapperCol"
-                        label="StartAcademicYear"
-                      >
-                        <a-input
-                          v-decorator="[
-                            'startacademicyear',
-                            {
-                              rules: [
-                                {
-                                  required: true,
-                                  message: 'Please input start academic year',
-                                },
-                              ],
-                            },
-                          ]"
-                          placeholder="Please input your name"
-                        />
-                      </a-form-item>
-                      <a-form-item
-                        :label-col="formTailLayout.labelCol"
-                        :wrapper-col="formTailLayout.wrapperCol"
-                      >
-                        <a-button> Save </a-button>
-                        <a-button> Back </a-button>
-                      </a-form-item>
-                    </a-form>
-                  </div>
-                </a-tab-pane>
-                <a-tab-pane key="3" tab="Define dependencies">
-                  <div></div>
-                </a-tab-pane>
-                <a-tab-pane key="4" tab="View dependencies">
-                  <div></div>
-                </a-tab-pane>
-                <a-tab-pane key="5" tab="Define relationships">
-                  <div></div>
-                </a-tab-pane>
-              </a-tabs>
-            </div>
+  <div id="student">
+    <a-layout id="components-layout-demo-custom-trigger">
+      <a-layout-sider v-model="collapsed" :trigger="null" collapsible>
+        <div v-if="collapsed" id="logo-collapsed"></div>
+        <div v-else id="logo">DegreeOverview</div>
+        <a-menu theme="dark" mode="inline" :default-selected-keys="['0']" >
+          <a-menu-item key="0"> 
+            <a-icon type="home"/>
+            <span>Home</span>
+          </a-menu-item>
+          <a-menu-item key="4" v-model="selection">
+            <a-icon type="eye"/>
+            <span>View dependencies</span>
+          </a-menu-item>
+          <a-menu-item key="5" v-model="selection">
+            <a-icon type="link"/>
+            <span>View Performance</span>
+          </a-menu-item>
+        </a-menu>
+      </a-layout-sider>
+      <a-layout>
+        <a-layout-header style="background: #fff; padding: 0">
+          <a-row type="flex" justify="space-between" align="middle">
+            <!--     Right Notify Button       -->
+            <a-col>
 
-            <a-button>View Dependencies</a-button>
-            <a-button>View Analysis Result</a-button>
-          </div>
-        </a-col>
-        <a-col :span="6" />
-      </a-row>
-    </div>
+            </a-col>
+            <!--     Center Search function       -->
+            <a-col>
+              <Search></Search>
+            </a-col>
+            <!--Right top bar-->
+            <a-col>
+              <a-row>
+                <a-col>
+                  <a-icon type="smile"></a-icon>
+                  Welcome xxx!   
+                  <a style="margin-left: 20px;">     Log out   </a>
+                  <a-icon class="top-left-buttons" type="logout" style="color: #BB4444"/>
+                </a-col>
+              </a-row>
+            </a-col>
+          </a-row>
+        </a-layout-header>
+        <a-layout-content :style="{ margin: '24px 16px', padding: '24px', background: '#fff', minHeight: '280px' }">
+          Content
+        </a-layout-content>
+      </a-layout>
+    </a-layout>
   </div>
 </template>
-
 <script>
+import Search from "./Search";
+import AddCourse from "./AddCourse";
+import ModifyCourse from "./ModifyCourse";
+
 export default {
-  name: "Student",
+  name: 'Designer',
+  components: {
+    Search,
+    AddCourse,
+    ModifyCourse
+  },
   data() {
     return {
-      // msg: 'Welcome to Your Vue.js App'
+      collapsed: false,
+      selection: 0,
     };
   },
 };
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h1,
-h2 {
-  font-weight: normal;
+<style>
+#components-layout-demo-custom-trigger .trigger {
+  font-size: 18px;
+  line-height: 64px;
+  padding: 0 24px;
+  cursor: pointer;
+  transition: color 0.3s;
 }
 
-ul {
-  list-style-type: none;
-  padding: 0;
+.top-left-buttons {
+  font-size: 18px;
+  line-height: 64px;
+  padding: 0 24px 0 6px;
+  cursor: pointer;
+  transition: color 0.3s;
 }
 
-li {
-  display: inline-block;
-  margin: 0 10px;
+.top-left-buttons:hover {
+  color: #BB4444;
 }
 
-a {
-  color: #42b983;
+#components-layout-demo-custom-trigger .trigger:hover {
+  color: #1890ff;
+}
+
+#components-layout-demo-custom-trigger #logo-collapsed {
+  height: 48px;
+  width: 48px;
+  margin: 16px auto;
+  background-image: url('../../static/images/timg.jpg');
+  -moz-background-size: 100% 100%;
+  background-size: 100% 100%;
+}
+
+#components-layout-demo-custom-trigger #logo {
+  height: 48px;
+  margin: 16px;
+  font-size: 20px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /*background-color: rgba(185, 104, 66, 0.26);*/
+  -moz-background-size: 100%;
+  background-size: 100%;
+}
+
+#components-layout-demo-custom-trigger {
+  height: 100%;
+}
+
+#student {
+  height: 100%;
 }
 </style>

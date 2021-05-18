@@ -4,8 +4,11 @@ import LogIn from '@/components/LogIn'
 import Lecturer from '@/components/Lecturer'
 import Designer from '@/components/Designer'
 import Student from '@/components/Student'
+import CourseMain from '@/components/CourseMain'
 
 Vue.use(Router)
+
+
 
 export default new Router({
   mode:"history",
@@ -23,12 +26,29 @@ export default new Router({
     {
       path: '/designer',
       name: 'designer',
-      component: Designer
+      component: Designer,
+      children:[
+        {
+          path: '/modify',
+          name: 'modifycourse',
+          component: () => import('../components/ModifyCourse.vue'),
+        },
+        {
+          path: '/addcourse',
+          name: 'addcourse',
+          component: () => import('../components/AddCourse.vue'),
+        },
+        {
+          path: '/coursemain',
+          name: 'coursemain',
+          component: CourseMain
+        },
+      ]
     },
     {
       path: '/student',
       name: 'student',
       component: Student
-    }
+    },
   ]
 })

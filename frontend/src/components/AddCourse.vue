@@ -12,6 +12,7 @@
                   {
                     required: true,
                     message: 'Please input course name!',
+                    trigger: 'blur',
                   },
                 ],
               },
@@ -23,7 +24,10 @@
         <a-form-item layout="inline">
           <a-space :size="large">
             <!-- <a-button type="primary" html-type="submit" :disabled="hasErrors(form.getFieldsError())"> -->
-            <a-button type="primary" html-type="submit"> Confirm </a-button>
+            <a-button type="primary" html-type="submit"> 
+              
+              <router-link to="coursemain">Confirm </router-link>
+              </a-button>
             <a-button> Cancel </a-button>
           </a-space>
         </a-form-item>

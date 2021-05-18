@@ -1,83 +1,127 @@
 <template>
-  <div class="lecturer">
-    <div>
-      <a-row type="flex" justify="space-around" align="top"/>
-      <a-row type="flex" justify="space-around" align="middle">
-        <a-col :span="6"/>
-        <a-col :span="12">
-          <div id="lecturer">
-            <h2>lecturer</h2>
-            <a-form layout="inline" :form="form" @submit="handleSubmit">
-              <a-form-item>
-                <a-input
-                  v-decorator="[
-                    'keyword',
-                    { rules: [{ required: true, message: 'Please input search keywords!' }] },
-                  ]"
-                  placeholder="Search Keywords"
-                >
-                  <a-icon slot="prefix" type="search" style="color:rgba(0,0,0,.25)" />
-                </a-input>
-              </a-form-item>
-              <a-form-item>
-                <a-select default-value="Choose Search Function..." style="width: 30px" @change="handleChange">
-                  <a-select-option value="course">
-                    Search by Course
-                  </a-select-option>
-                  <a-select-option value="cilo">
-                    Search by CILOs
-                  </a-select-option>
-                  <a-select-option value="keyword">
-                    Search by Keywords
-                  </a-select-option>
-                </a-select>
-              </a-form-item>
-              <a-form-item>
-                <!-- <a-button type="primary" html-type="submit" :disabled="hasErrors(form.getFieldsError())"> -->
-                <a-button type="primary" html-type="submit">
-                  Search
-                </a-button>
-              </a-form-item>
-            </a-form>
-            <a-button>View Dependencies</a-button>
-            <a-button>View Analysis Result</a-button>
-          </div>
-        </a-col>
-        <a-col :span="6"/>
-      </a-row>
-    </div>
+  <div id="lecturer">
+    <a-layout id="components-layout-demo-custom-trigger">
+      <a-layout-sider v-model="collapsed" :trigger="null" collapsible>
+        <div v-if="collapsed" id="logo-collapsed"></div>
+        <div v-else id="logo">DegreeOverview</div>
+        <a-menu theme="dark" mode="inline" :default-selected-keys="['0']" >
+          <a-menu-item key="0"> 
+            <a-icon type="home"/>
+            <span>Home</span>
+          </a-menu-item>
+          <a-menu-item key="4" v-model="selection">
+            <a-icon type="eye"/>
+            <span>View dependencies</span>
+          </a-menu-item>
+          <a-menu-item key="5" v-model="selection">
+            <a-icon type="link"/>
+            <span>View Analysis Result</span>
+          </a-menu-item>
+        </a-menu>
+      </a-layout-sider>
+      <a-layout>
+        <a-layout-header style="background: #fff; padding: 0">
+          <a-row type="flex" justify="space-between" align="middle">
+            <!--     Right Notify Button       -->
+            <a-col>
+
+            </a-col>
+            <!--     Center Search function       -->
+            <a-col>
+              <Search></Search>
+            </a-col>
+            <!--Right top bar-->
+            <a-col>
+              <a-row>
+                <a-col>
+                  <a-icon type="smile"></a-icon>
+                  Welcome xxx!   
+                  <a style="margin-left: 20px;">     Log out   </a>
+                  <a-icon class="top-left-buttons" type="logout" style="color: #BB4444"/>
+                </a-col>
+              </a-row>
+            </a-col>
+          </a-row>
+        </a-layout-header>
+        <a-layout-content :style="{ margin: '24px 16px', padding: '24px', background: '#fff', minHeight: '280px' }">
+          Content
+        </a-layout-content>
+      </a-layout>
+    </a-layout>
   </div>
 </template>
-
 <script>
+import Search from "./Search";
+import AddCourse from "./AddCourse";
+import ModifyCourse from "./ModifyCourse";
+
 export default {
-  name: 'Lecturer',
+  name: 'Designer',
+  components: {
+    Search,
+    AddCourse,
+    ModifyCourse
+  },
   data() {
     return {
-      // msg: 'Welcome to Your Vue.js App'
-    }
-  }
-}
+      collapsed: false,
+      selection: 0,
+    };
+  },
+};
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h1, h2 {
-  font-weight: normal;
+<style>
+#components-layout-demo-custom-trigger .trigger {
+  font-size: 18px;
+  line-height: 64px;
+  padding: 0 24px;
+  cursor: pointer;
+  transition: color 0.3s;
 }
 
-ul {
-  list-style-type: none;
-  padding: 0;
+.top-left-buttons {
+  font-size: 18px;
+  line-height: 64px;
+  padding: 0 24px 0 6px;
+  cursor: pointer;
+  transition: color 0.3s;
 }
 
-li {
-  display: inline-block;
-  margin: 0 10px;
+.top-left-buttons:hover {
+  color: #BB4444;
 }
 
-a {
-  color: #42b983;
+#components-layout-demo-custom-trigger .trigger:hover {
+  color: #1890ff;
 }
 
+#components-layout-demo-custom-trigger #logo-collapsed {
+  height: 48px;
+  width: 48px;
+  margin: 16px auto;
+  background-image: url('../../static/images/timg.jpg');
+  -moz-background-size: 100% 100%;
+  background-size: 100% 100%;
+}
+
+#components-layout-demo-custom-trigger #logo {
+  height: 48px;
+  margin: 16px;
+  font-size: 20px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /*background-color: rgba(185, 104, 66, 0.26);*/
+  -moz-background-size: 100%;
+  background-size: 100%;
+}
+
+#components-layout-demo-custom-trigger {
+  height: 100%;
+}
+
+#lecturer {
+  height: 100%;
+}
 </style>
