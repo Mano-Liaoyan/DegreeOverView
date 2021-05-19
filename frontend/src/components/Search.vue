@@ -4,7 +4,7 @@
                      placeholder="input here" option-label-prop="title" @select="onSelect" @search="handleSearch">
       <template slot="dataSource">
         <a-select-option v-if="item.count!==0" v-for="item in dataSource" :key="item.category" :title="item.category">
-          Found {{ item.query }} on {{ item.category }}
+          Found <span style="color: red">{{ item.query }}</span> on {{ item.category }}
           <span className="global-search-item-count">{{ item.count }} results</span>
         </a-select-option>
       </template>
@@ -117,15 +117,15 @@ export default {
   margin-right: -46px;
 }
 
-.global-search.ant-select-auto-complete
-.ant-input-affix-wrapper
+.global-search.ant-select-auto-complete,
+.ant-input-affix-wrapper,
 .ant-input:not(:last-child) {
   padding-right: 62px;
 }
 
-.global-search.ant-select-auto-complete
-.ant-input-affix-wrapper
-.ant-input-suffix
+.global-search.ant-select-auto-complete,
+.ant-input-affix-wrapper,
+.ant-input-suffix,
 button {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;

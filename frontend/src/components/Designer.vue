@@ -6,27 +6,27 @@
         <div v-else id="logo">DegreeOverview</div>
         <a-menu theme="dark" mode="inline" :default-selected-keys="['0']">
           <a-menu-item key="0" @click="changeMenu('/designer')">
-            <a-icon type="home" />
+            <a-icon type="home"/>
             <span>Home</span>
           </a-menu-item>
           <a-menu-item key="1" @click="changeMenu('addcourse')">
-            <a-icon type="plus" />
+            <a-icon type="plus"/>
             <span>Create a new course</span>
           </a-menu-item>
           <a-menu-item key="2" @click="changeMenu('modify')">
-            <a-icon type="edit" />
+            <a-icon type="edit"/>
             <span>Modify a course</span>
           </a-menu-item>
-          <a-menu-item key="3" v-model="selection">
+          <a-menu-item key="3" @click="changeMenu('definedependency')">
             <a-icon type="tool" />
             <span>Define dependencies</span>
           </a-menu-item>
           <a-menu-item key="4" v-model="selection">
-            <a-icon type="eye" />
+            <a-icon type="eye"/>
             <span>View dependencies</span>
           </a-menu-item>
           <a-menu-item key="5" v-model="selection">
-            <a-icon type="link" />
+            <a-icon type="link"/>
             <span>Define relationships</span>
           </a-menu-item>
         </a-menu>
@@ -34,8 +34,13 @@
       <a-layout>
         <a-layout-header style="background: #fff; padding: 0">
           <a-row type="flex" justify="space-between" align="middle">
+            <a-icon
+              class="trigger"
+              :type="collapsed ? 'menu-unfold' : 'menu-fold'"
+              @click="() => (collapsed = !collapsed)"
+            />
             <!--     Right Notify Button       -->
-            <a-col> </a-col>
+            <a-col></a-col>
             <!--     Center Search function       -->
             <a-col>
               <Search></Search>
@@ -65,7 +70,7 @@
             minHeight: '280px',
           }"
         >
-          <router-view />
+          <router-view/>
         </a-layout-content>
       </a-layout>
     </a-layout>
