@@ -4,16 +4,18 @@ import Vue from 'vue'
 import Antd from 'ant-design-vue'
 import App from './App'
 import router from './router'
+import less from 'less'
 import 'ant-design-vue/dist/antd.css'
 
 Vue.config.productionTip = false
 
 Vue.use(Antd)
+Vue.use(less)
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
-  components: { App },
+  components: {App},
   template: '<App/>'
 })
