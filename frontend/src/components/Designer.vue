@@ -17,7 +17,7 @@
             <a-icon type="edit" />
             <span>Modify a course</span>
           </a-menu-item>
-          <a-menu-item key="3" v-model="selection">
+          <a-menu-item key="3" @click="changeMenu('definedependency')">
             <a-icon type="tool" />
             <span>Define dependencies</span>
           </a-menu-item>

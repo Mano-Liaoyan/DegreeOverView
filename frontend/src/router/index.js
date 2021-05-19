@@ -5,6 +5,7 @@ import Lecturer from '@/components/Lecturer'
 import Designer from '@/components/Designer'
 import Student from '@/components/Student'
 import CourseMain from '@/components/CourseMain'
+import DefineDependency from '@/components/DefineDependency'
 
 Vue.use(Router)
 
@@ -42,6 +43,11 @@ export default new Router({
           path: '/coursemain',
           name: 'coursemain',
           component: CourseMain
+        },
+        {
+          path: '/definedependency',
+          name: 'definedependency',
+          component: DefineDependency
         },
       ]
     },
