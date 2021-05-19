@@ -16,11 +16,14 @@
     "dependencies": {
         "ant-design-vue": "^1.7.5",
         "axios": "^0.21.1",
+        "echarts": "^5.1.1",
         "fix-package-lock": "^1.0.1",
         "vue": "^2.5.2",
+        "vue-echarts": "*",
         "vue-router": "^3.0.1"
     },
     "devDependencies": {
+        "@vue/composition-api": "*",
         "@vue/eslint-config-prettier": "^6.0.0",
         "autoprefixer": "^7.1.2",
         "babel-core": "^6.22.1",
