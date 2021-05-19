@@ -1,154 +1,89 @@
 <template>
-  <div class="modifycourse">
-    <template>
-      <a-form
-        :form="form"
-        :label-col="{ span: 5 }"
-        :wrapper-col="{ span: 12 }"
-        @submit="handleSubmit"
-      >
-        <a-form-item label="Course name">
-          <a-input
-            v-decorator="[
-              'coursename',
-              {
-                rules: [
-                  { required: true, message: 'Please input the course name!', trigger: 'blur' },
-                ],
-              },
-            ]"
-          />
-        </a-form-item>
-        <a-form-item label="CILOs">
-          <a-input
-            v-decorator="[
-              'cilos',
-              {
-                rules: [{ required: true, message: 'Please input the cilos!', trigger: 'blur' }],
-              },
-            ]"
-          />
-        </a-form-item>
-        <a-form-item label="Assessments">
-          <a-input
-            v-decorator="[
-              'assessments',
-              {
-                rules: [
-                  { required: true, message: 'Please input the assessments!', trigger: 'blur' },
-                ],
-              },
-            ]"
-          />
-        </a-form-item>
-        <a-form-item label="Relationship">
-          <a-input
-            v-decorator="[
-              'relationship',
-              {
-                rules: [
-                  { required: true, message: 'Please input the relationship!', trigger: 'blur' },
-                ],
-              },
-            ]"
-          />
-        </a-form-item>
-        <a-form-item label="Prerequisites">
-          <a-input
-            v-decorator="[
-              'prerequisites',
-              {
-                rules: [
-                  {
-                    required: true,
-                    message: 'Please input the prerequisites!',
-                    trigger: 'blur' 
-                  },
-                ],
-              },
-            ]"
-          />
-        </a-form-item>
-        <a-form-item label="Programme">
-          <a-input
-            v-decorator="[
-              'programme',
-              {
-                rules: [
-                  { required: true, message: 'Please input the programme!', trigger: 'blur'  },
-                ],
-              },
-            ]"
-          />
-        </a-form-item>
-        <a-form-item label="Type">
-          <a-input
-            v-decorator="[
-              'type',
-              {
-                rules: [{ required: true, message: 'Please input the type!', trigger: 'blur'  }],
-              },
-            ]"
-          />
-        </a-form-item>
-        <a-form-item label="Start Academic Year">
-          <a-input
-            v-decorator="[
-              'startacademicyear',
-              {
-                rules: [
-                  {
-                    required: true,
-                    message: 'Please input the start academic year!',
-                     trigger: 'blur'
-                  },
-                ],
-              },
-            ]"
-          />
-        </a-form-item>
-        <a-form-item :wrapper-col="{ span: 12, offset: 5 }">
-          <a-space :size="large">
-            <a-button type="primary" html-type="submit"> Save </a-button>
-            <a-button> Back </a-button>
-          </a-space>
-        </a-form-item>
-      </a-form>
-    </template>
-  </div>
+  <a-form-model ref="ruleForm" :model="form" :rules="rules" :label-col="labelCol" :wrapper-col="wrapperCol">
+    <a-form-model-item ref="name" label="Course Name" prop="cname" validate-status="success">
+      <a-input v-model="form.cname" @blur="() => {$refs.name.onFieldBlur();}"/>
+    </a-form-model-item>
+    <a-form-model-item ref="name" label="CILOs" prop="cilo">
+      <a-input v-model="form.cilo" @blur="() => {$refs.name.onFieldBlur();}"/>
+    </a-form-model-item>
+    <a-form-model-item label="Academic Start Year" prop="startDate">
+      <YearSelector v-model="form.startDate"></YearSelector>
+    </a-form-model-item>
+    <a-form-model-item label="Type" prop="type">
+      <a-checkbox-group v-model="form.type">
+        <a-checkbox value="1" name="type">
+          Online
+        </a-checkbox>
+        <a-checkbox value="2" name="type">
+          Promotion
+        </a-checkbox>
+        <a-checkbox value="3" name="type">
+          Offline
+        </a-checkbox>
+      </a-checkbox-group>
+    </a-form-model-item>
+    <a-form-model-item :wrapper-col="{ span: 14, offset: 4 }">
+      <a-button type="primary" @click="onSubmit">
+        Create
+      </a-button>
+      <a-button style="margin-left: 10px;" @click="resetForm">
+        Reset
+      </a-button>
+    </a-form-model-item>
+  </a-form-model>
 </template>
-
 <script>
+import YearSelector from "./YearSelector";
+
+
 export default {
   name: "ModifyCourse",
+  components: {
+    YearSelector
+  },
   data() {
     return {
-      form: this.$form.createForm(this),
+      labelCol: {span: 4},
+      wrapperCol: {span: 14},
+      form: {
+        cname: '',
+        cilo: '',
+        startDate: undefined,
+        delivery: false,
+        type: [],
+      },
+      rules: {
+        cname: [
+          {required: true, message: 'Please input the course name!', trigger: 'blur'},
+        ],
+        cilo: [
+          {required: true, message: 'Please input the cilo name!', trigger: 'blur'},
+        ],
+        type: [
+          {
+            type: 'array',
+            required: true,
+            message: 'Please select at least one activity type',
+            trigger: 'change',
+          },
+        ]
+      },
     };
   },
   methods: {
-  }
+    onSubmit() {
+      this.$refs.ruleForm.validate(valid => {
+        if (valid) {
+          alert('submit!');
+        } else {
+          console.log('error submit!!');
+          return false;
+        }
+      });
+    },
+    resetForm() {
+      this.$refs.ruleForm.resetFields();
+    },
+  },
 };
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h1,
-h2 {
-  font-weight: normal;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
-}
-</style>

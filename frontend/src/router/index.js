@@ -11,9 +11,8 @@ import Chart from '@/components/chart'
 Vue.use(Router)
 
 
-
 export default new Router({
-  mode:"history",
+  mode: "history",
   routes: [
     {
       path: '/',
@@ -27,32 +26,32 @@ export default new Router({
     },
     {
       path: '/designer',
-      name: 'designer',
+      name: 'Designer',
       component: Designer,
-      children:[
+      children: [
         {
-          path: '/modify',
-          name: 'modifycourse',
+          path: 'modify',
+          name: 'ModifyCourse',
           component: () => import('../components/ModifyCourse.vue'),
         },
         {
-          path: '/addcourse',
-          name: 'addcourse',
+          path: 'addcourse',
+          name: 'AddCourse',
           component: () => import('../components/AddCourse.vue'),
         },
         {
-          path: '/coursemain',
-          name: 'coursemain',
+          path: 'coursemain',
+          name: 'CourseMain',
           component: CourseMain
         },
         {
-          path: '/definedependency',
-          name: 'definedependency',
+          path: 'definedependency',
+          name: 'DefineDependency',
           component: DefineDependency
         },
         {
-          path: '/chart',
-          name: 'chart',
+          path: 'chart',
+          name: 'Chart',
           component: Chart
         }
       ]
@@ -62,6 +61,11 @@ export default new Router({
       name: 'student',
       component: Student
     },
-    
+
   ]
 })
+
+const VueRouterPush = Router.prototype.push
+Router.prototype.push = function push(to) {
+  return VueRouterPush.call(this, to).catch(err => err)
+}

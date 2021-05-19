@@ -5,23 +5,23 @@
         <div v-if="collapsed" id="logo-collapsed"></div>
         <div v-else id="logo">DegreeOverview</div>
         <a-menu theme="dark" mode="inline" :default-selected-keys="['0']">
-          <a-menu-item key="0" @click="changeMenu('/designer')">
+          <a-menu-item key="0" @click="changeMenu('Designer')">
             <a-icon type="home"/>
             <span>Home</span>
           </a-menu-item>
-          <a-menu-item key="1" @click="changeMenu('addcourse')">
+          <a-menu-item key="1" @click="changeMenu('AddCourse')">
             <a-icon type="plus"/>
             <span>Create a new course</span>
           </a-menu-item>
-          <a-menu-item key="2" @click="changeMenu('modify')">
+          <a-menu-item key="2" @click="changeMenu('ModifyCourse')">
             <a-icon type="edit"/>
             <span>Modify a course</span>
           </a-menu-item>
-          <a-menu-item key="3" @click="changeMenu('definedependency')">
+          <a-menu-item key="3" @click="changeMenu('DefineDependency')">
             <a-icon type="tool"/>
             <span>Define dependencies</span>
           </a-menu-item>
-          <a-menu-item key="4" @click="changeMenu('chart')">
+          <a-menu-item key="4" @click="changeMenu('Chart')">
             <a-icon type="eye"/>
             <span>View dependencies</span>
           </a-menu-item>
@@ -87,7 +87,7 @@ export default {
     changeMenu(route) {
       if (this.$route.path !== route) {
         console.log(route);
-        this.$router.push(route);
+        this.$router.push({name: route});
       }
     },
   },
