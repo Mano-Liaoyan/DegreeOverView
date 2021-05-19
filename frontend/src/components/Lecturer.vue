@@ -4,18 +4,18 @@
       <a-layout-sider v-model="collapsed" :trigger="null" collapsible>
         <div v-if="collapsed" id="logo-collapsed"></div>
         <div v-else id="logo">DegreeOverview</div>
-        <a-menu theme="dark" mode="inline" :default-selected-keys="['0']" >
-          <a-menu-item key="0"> 
-            <a-icon type="home"/>
+        <a-menu theme="dark" mode="inline" :default-selected-keys="['0']">
+          <a-menu-item key="0" @click="changeMenu('/lecturer')">
+            <a-icon type="home" />
             <span>Home</span>
           </a-menu-item>
-          <a-menu-item key="4" v-model="selection">
-            <a-icon type="eye"/>
+          <a-menu-item key="1" v-model="selection">
+            <a-icon type="eye" />
             <span>View dependencies</span>
           </a-menu-item>
-          <a-menu-item key="5" v-model="selection">
-            <a-icon type="link"/>
-            <span>View Analysis Result</span>
+          <a-menu-item key="2" v-model="selection">
+            <a-icon type="file" />
+            <span>View analysis result</span>
           </a-menu-item>
         </a-menu>
       </a-layout-sider>
@@ -23,9 +23,7 @@
         <a-layout-header style="background: #fff; padding: 0">
           <a-row type="flex" justify="space-between" align="middle">
             <!--     Right Notify Button       -->
-            <a-col>
-
-            </a-col>
+            <a-col> </a-col>
             <!--     Center Search function       -->
             <a-col>
               <Search></Search>
@@ -35,16 +33,27 @@
               <a-row>
                 <a-col>
                   <a-icon type="smile"></a-icon>
-                  Welcome xxx!   
-                  <a style="margin-left: 20px;">     Log out   </a>
-                  <a-icon class="top-left-buttons" type="logout" style="color: #BB4444"/>
+                  Welcome xxx!
+                  <a style="margin-left: 20px"> Log out </a>
+                  <a-icon
+                    class="top-left-buttons"
+                    type="logout"
+                    style="color: #bb4444"
+                  />
                 </a-col>
               </a-row>
             </a-col>
           </a-row>
         </a-layout-header>
-        <a-layout-content :style="{ margin: '24px 16px', padding: '24px', background: '#fff', minHeight: '280px' }">
-          Content
+        <a-layout-content
+          :style="{
+            margin: '24px 16px',
+            padding: '24px',
+            background: '#fff',
+            minHeight: '280px',
+          }"
+        >
+          <router-view />
         </a-layout-content>
       </a-layout>
     </a-layout>
@@ -52,21 +61,26 @@
 </template>
 <script>
 import Search from "./Search";
-import AddCourse from "./AddCourse";
-import ModifyCourse from "./ModifyCourse";
 
 export default {
-  name: 'Designer',
+  name: "Lecturer",
   components: {
     Search,
-    AddCourse,
-    ModifyCourse
   },
   data() {
     return {
       collapsed: false,
       selection: 0,
     };
+  },
+  methods: {
+    //路由内容切换
+    changeMenu(route) {
+      if (this.$route.path !== route) {
+        console.log(route);
+        this.$router.push(route);
+      }
+    },
   },
 };
 </script>
@@ -88,7 +102,7 @@ export default {
 }
 
 .top-left-buttons:hover {
-  color: #BB4444;
+  color: #bb4444;
 }
 
 #components-layout-demo-custom-trigger .trigger:hover {
@@ -99,7 +113,7 @@ export default {
   height: 48px;
   width: 48px;
   margin: 16px auto;
-  background-image: url('../../static/images/timg.jpg');
+  background-image: url("../../static/images/timg.jpg");
   -moz-background-size: 100% 100%;
   background-size: 100% 100%;
 }

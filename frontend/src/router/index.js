@@ -6,6 +6,7 @@ import Designer from '@/components/Designer'
 import Student from '@/components/Student'
 import CourseMain from '@/components/CourseMain'
 import DefineDependency from '@/components/DefineDependency'
+import Chart from '@/components/chart'
 
 Vue.use(Router)
 
@@ -49,6 +50,11 @@ export default new Router({
           name: 'definedependency',
           component: DefineDependency
         },
+        {
+          path: '/chart',
+          name: 'chart',
+          component: Chart
+        }
       ]
     },
     {
@@ -56,5 +62,6 @@ export default new Router({
       name: 'student',
       component: Student
     },
+    
   ]
 })

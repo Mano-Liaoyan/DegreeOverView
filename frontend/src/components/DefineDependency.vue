@@ -67,9 +67,9 @@ export default {
   name: "DefineDependency",
   data() {
     return {
-      // msg: 'Welcome to Your Vue.js App'
+      
     };
-  },
+  }
 };
 </script>
 
@@ -93,4 +93,13 @@ li {
 a {
   color: #42b983;
 }
+
+.definedependency{
+ height: 100%;
+    width: 100%;
+    margin: auto;
+  }
+
+
+
 </style>
