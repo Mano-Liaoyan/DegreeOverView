@@ -18,7 +18,7 @@
             <span>Modify a course</span>
           </a-menu-item>
           <a-menu-item key="3" @click="changeMenu('definedependency')">
-            <a-icon type="tool" />
+            <a-icon type="tool"/>
             <span>Define dependencies</span>
           </a-menu-item>
           <a-menu-item key="4" v-model="selection">
@@ -34,36 +34,28 @@
       <a-layout>
         <a-layout-header style="background: #fff; padding: 0">
           <a-row type="flex" justify="space-between" align="middle">
-            <a-icon
-              class="trigger"
-              :type="collapsed ? 'menu-unfold' : 'menu-fold'"
-              @click="() => (collapsed = !collapsed)"
-            />
             <!--     Right Notify Button       -->
-            <a-col></a-col>
+            <a-col :span="8">
+              <a-icon class="trigger" :type="collapsed ? 'menu-unfold' : 'menu-fold'" @click="() => (this.collapsed = !collapsed)"/>
+            </a-col>
             <!--     Center Search function       -->
-            <a-col>
+            <a-col :span="8">
               <Search></Search>
             </a-col>
             <!--Right top bar-->
-            <a-col>
-              <a-row>
+            <a-col :span="8">
+              <a-row type="flex" justify="end" align="middle">
                 <a-col>
                   <a-icon type="smile"></a-icon>
                   Welcome xxx!
                   <a style="margin-left: 20px"> Log out </a>
-                  <a-icon
-                    class="top-left-buttons"
-                    type="logout"
-                    style="color: #bb4444"
-                  />
+                  <a-icon class="top-left-buttons" type="logout" style="color: #bb4444"/>
                 </a-col>
               </a-row>
             </a-col>
           </a-row>
         </a-layout-header>
-        <a-layout-content
-          :style="{
+        <a-layout-content :style="{
             margin: '24px 16px',
             padding: '24px',
             background: '#fff',
@@ -102,6 +94,10 @@ export default {
 };
 </script>
 <style>
+#right-logo {
+  text-align: right;
+}
+
 #components-layout-demo-custom-trigger .trigger {
   font-size: 18px;
   line-height: 64px;

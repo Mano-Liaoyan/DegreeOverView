@@ -1,5 +1,5 @@
 <template>
-  <div class="global-search-wrapper" style="width: 450px">
+  <div class="global-search-wrapper">
     <a-auto-complete class="global-search" :size="size" style="width: 100%"
                      placeholder="input here" option-label-prop="title" @select="onSelect" @search="handleSearch">
       <template slot="dataSource">
@@ -8,10 +8,13 @@
           <span className="global-search-item-count">{{ item.count }} results</span>
         </a-select-option>
       </template>
+      <!--      <a-input>-->
+      <!--        <a-button slot="suffix" style="margin-right: -12px" class="search-btn" :size="size" type="primary">-->
+      <!--          <a-icon type="search"/>-->
+      <!--        </a-button>-->
+      <!--      </a-input>-->
       <a-input>
-        <a-button slot="suffix" style="margin-right: -12px" class="search-btn" :size="size" type="primary">
-          <a-icon type="search"/>
-        </a-button>
+        <a-icon slot="suffix" type="search" class="certain-category-icon"/>
       </a-input>
     </a-auto-complete>
   </div>
@@ -106,21 +109,23 @@ export default {
 
 <style>
 .global-search-wrapper {
-  padding-right: 50px;
+  /*padding-right: 50px;*/
+  margin: auto;
 }
 
 .global-search {
-  width: 100%;
+  /*width: 100%;*/
+  /*width: 50%;*/
 }
 
 .global-search.ant-select-auto-complete .ant-select-selection--single {
-  margin-right: -46px;
+  /*margin-right: -46px;*/
 }
 
 .global-search.ant-select-auto-complete,
 .ant-input-affix-wrapper,
 .ant-input:not(:last-child) {
-  padding-right: 62px;
+  /*padding-right: 62px;*/
 }
 
 .global-search.ant-select-auto-complete,
