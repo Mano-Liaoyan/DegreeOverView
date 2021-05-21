@@ -1,6 +1,6 @@
 <template>
   <div class="addcourse">
-    <template>
+    <div class="addcoursebox">
       <a-form :form="form" @submit="handleSubmit">
         <a-form-item>
           <a-input
@@ -17,22 +17,26 @@
                 ],
               },
             ]"
-            placeholder="input course name here"
+            placeholder="Please input course name"
           >
           </a-input>
         </a-form-item>
-        <a-form-item layout="inline">
+        <a-form-item>
           <a-space :size="large">
-            <!-- <a-button type="primary" html-type="submit" :disabled="hasErrors(form.getFieldsError())"> -->
-            <a-button type="primary" html-type="submit"> 
-              
-              <router-link to="coursemain"> Confirm </router-link>
+            <div style="float: left;" >
+              <a-button style="float: left;" type="primary" html-type="submit"> 
+                <router-link to="coursemain"> Confirm </router-link>
+                </a-button>
+            </div>
+            <div style="float: right;" >
+              <a-button> 
+                <router-link to="/designer"> Cancel </router-link>
               </a-button>
-            <a-button> Cancel </a-button>
+            </div>
           </a-space>
         </a-form-item>
       </a-form>
-    </template>
+  </div>
   </div>
 </template>
 
@@ -66,5 +70,20 @@ li {
 
 a {
   color: #42b983;
+}
+
+.addcourse{
+  height: 100%;
+  width: 100%;
+  margin: auto;
+}
+
+.addcoursebox{
+   height: 455px;
+    width: 28%;
+    margin: auto;
+    position: relative;
+    top: 20%;
+    text-align: center;
 }
 </style>
