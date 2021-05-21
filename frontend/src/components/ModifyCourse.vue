@@ -4,6 +4,7 @@
       <a-form-model-item ref="name" label="Course Name" prop="cname" validate-status="success">
         <a-input v-model="form.cname" @blur="() => {$refs.name.onFieldBlur();}"/>
       </a-form-model-item>
+      
       <a-form-model-item label="Academic Start Year" prop="startDate">
         <YearSelector v-model="form.startDate"></YearSelector>
       </a-form-model-item>
@@ -11,6 +12,7 @@
     <!--    <a-form-model-item ref="name" label="CILOs" prop="cilo">-->
     <!--      <a-input v-model="form.cilo" @blur="() => {$refs.name.onFieldBlur();}"/>-->
     <!--    </a-form-model-item>-->
+
     <a-form-model-item ref="name" label="Assessments & CILOs" prop="cilo">
       <aaa></aaa>
     </a-form-model-item>
@@ -25,17 +27,21 @@
       <a-input v-model="form.relation" @blur="() => {$refs.name.onFieldBlur();}"/>
     </a-form-model-item>
     <a-form-model-item label="Type" prop="type">
-      <a-checkbox-group v-model="form.type">
-        <a-checkbox value="1" name="type">
-          Online
-        </a-checkbox>
-        <a-checkbox value="2" name="type">
-          Promotion
-        </a-checkbox>
-        <a-checkbox value="3" name="type">
-          Offline
-        </a-checkbox>
-      </a-checkbox-group>
+      <a-radio-group v-model="form.type">
+        <a-radio value="1" name="type">
+          Major Required (MR)
+        </a-radio>
+        <a-radio value="2" name="type">
+          Major Election (ME)
+        </a-radio>
+        <br>
+        <a-radio value="3" name="type">
+          Gradual Election (GE)
+        </a-radio>
+        <a-radio value="4" name="type">
+          Free Election (FE)
+        </a-radio>
+      </a-radio-group>
     </a-form-model-item>
     <a-form-model-item :wrapper-col="{ span: 8, offset: 14 }">
       <a-button type="primary" @click="onSubmit">

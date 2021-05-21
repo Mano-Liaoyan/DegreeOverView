@@ -1,6 +1,9 @@
 <template>
-  <div class="addcourse">
+
+  <div class="addcourse"> 
     <div class="addcoursebox">
+      <h1 style="text-align: center; font-weight: bold; font-size: 20px;">Create a New Course</h1>
+      <br>
       <a-form :form="form" @submit="handleSubmit">
         <a-form-item>
           <a-input
@@ -19,10 +22,10 @@
             ]"
             placeholder="Please input course name"
           >
+          <a-icon slot="prefix" type="bulb" style="color:rgba(0,0,0,.25)"/>
           </a-input>
         </a-form-item>
         <a-form-item>
-          <a-space :size="large">
             <div style="float: left;" >
               <a-button style="float: left;" type="primary" html-type="submit"> 
                 <router-link to="coursemain"> Confirm </router-link>
@@ -33,10 +36,9 @@
                 <router-link to="/designer"> Cancel </router-link>
               </a-button>
             </div>
-          </a-space>
         </a-form-item>
       </a-form>
-  </div>
+      </div>
   </div>
 </template>
 
@@ -47,6 +49,11 @@ export default {
     return {
       // msg: 'Welcome to Your Vue.js App'
     };
+  },
+  methods: {
+    handleSubmit(){
+
+    },
   },
 };
 </script>
@@ -75,15 +82,18 @@ a {
 .addcourse{
   height: 100%;
   width: 100%;
-  margin: auto;
+  padding: 5%;
+  text-align: center;
 }
 
 .addcoursebox{
-   height: 455px;
-    width: 28%;
+    border: 1px solid lightskyblue;
+    padding: 5%;
     margin: auto;
     position: relative;
-    top: 20%;
-    text-align: center;
+    height: 300px;
+    width: 460px;
+
 }
+
 </style>
