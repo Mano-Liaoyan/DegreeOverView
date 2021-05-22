@@ -4,7 +4,7 @@
       <a-form-model-item ref="name" label="Course Name" prop="cname" validate-status="success">
         <a-input v-model="form.cname" @blur="() => {$refs.name.onFieldBlur();}"/>
       </a-form-model-item>
-      
+
       <a-form-model-item label="Academic Start Year" prop="startDate">
         <YearSelector v-model="form.startDate"></YearSelector>
       </a-form-model-item>
@@ -13,7 +13,7 @@
     <!--      <a-input v-model="form.cilo" @blur="() => {$refs.name.onFieldBlur();}"/>-->
     <!--    </a-form-model-item>-->
 
-    <a-form-model-item ref="name" label="Assessments & CILOs" prop="cilo">
+    <a-form-model-item ref="name" label="Assessments&CILOs" prop="cilo">
       <aaa></aaa>
     </a-form-model-item>
     <!--    <DynamicForm></DynamicForm>-->
