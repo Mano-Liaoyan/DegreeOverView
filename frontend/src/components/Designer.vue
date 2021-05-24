@@ -22,7 +22,7 @@
             <a-icon type="tool"/>
             <span>Define dependencies</span>
           </a-menu-item>
-          <a-menu-item key="4" @click="changeMenu('Chart')">
+          <a-menu-item key="4">
             <a-icon type="eye"/>
             <span>View dependencies</span>
           </a-menu-item>

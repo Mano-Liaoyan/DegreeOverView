@@ -18,17 +18,24 @@
         <a-button type="primary">
           Edit CILOs
         </a-button>
-        <a-button style="margin-left: 10px;">
-          Import CILOs
-        </a-button>
+        <a-upload
+          action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+          :file-list="fileList"
+         @change="handleChange"
+        >
+          <a-button style="margin-left: 10px;"> <a-icon type="upload" /> Import CILOs </a-button>
+        </a-upload>
       </a-form-model-item>
        <a-form-model-item ref="name" label="Assessments" prop="cilo">
         <a-button type="primary">
           Edit Assessment
         </a-button>
-        <a-button style="margin-left: 10px;">
-          Import Assessments
-        </a-button>
+        <a-upload
+          action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+          :default-file-list="defaultFileList"
+        >
+          <a-button style="margin-left: 10px;"> <a-icon type="upload" /> Import Assessment methods </a-button>
+        </a-upload>
       </a-form-model-item>
       <!--    <DynamicForm></DynamicForm>-->
       <a-form-model-item ref="name" label="Programme" prop="programme" style="margin-top: -10px">
@@ -97,6 +104,9 @@ export default {
         delivery: false,
         type: [],
       },
+      fileList: [
+        // files
+      ],
       rules: {
         cname: [
           {required: true, message: 'Please input the course name!', trigger: 'blur'},
@@ -138,6 +148,24 @@ export default {
         description:
           'Added the course xxx successfully!',
       });
+    },
+    handleChange(info) {
+      let fileList = [...info.fileList];
+
+      // 1. Limit the number of uploaded files
+      //    Only to show two recent uploaded files, and old ones will be replaced by the new
+      fileList = fileList.slice(-2);
+
+      // 2. read from response and show file link
+      fileList = fileList.map(file => {
+        if (file.response) {
+          // Component will show file.url as link
+          file.url = file.response.url;
+        }
+        return file;
+      });
+
+      this.fileList = fileList;
     },
   },
 };

@@ -64,11 +64,6 @@ export default new Router({
           component: DefineDependency
         },
         {
-          path: 'chart',
-          name: 'Chart',
-          component: Chart
-        },
-        {
           path: '/courseListModify',
           name: 'CourseListForModify',
           component: courseListModify
