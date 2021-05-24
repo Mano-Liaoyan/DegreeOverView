@@ -25,7 +25,7 @@ export default new Router({
       path: '/lecturer',
       name: 'lecturer',
       component: Lecturer,
-      children:[
+      children: [
         {
           path: 'analysislist',
           name: 'CourseListForAnalysis',
@@ -64,7 +64,7 @@ export default new Router({
           component: DefineDependency
         },
         {
-          path: '/courseListModify',
+          path: 'courseListModify',
           name: 'CourseListForModify',
           component: courseListModify
         },
@@ -75,7 +75,7 @@ export default new Router({
       name: 'student',
       component: Student
     },
-  
+
 
   ]
 })

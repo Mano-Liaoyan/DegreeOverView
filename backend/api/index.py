@@ -56,7 +56,7 @@ def add_course_to_data_base():
     course_code = "FS1001"
     academic_start_year = 2019
     program = "DST"
-    type = "i don't know"
+    type = "MR"
     cilos = Cilo.objects.get(cilo_id=1)
     assessment = Assessment.objects.get(assessment_id=1)
     pre_request_course_id = None

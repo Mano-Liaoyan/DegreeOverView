@@ -41,6 +41,8 @@ class Course(models.Model):
 class Cilo(models.Model):
     cilo_id = models.IntegerField(primary_key=True, auto_created=True)
     content = models.TextField()
+    parent_cilos = models.ManyToManyField("Cilo", related_name="parent")
+    child_cilos = models.ManyToManyField("Cilo", related_name="child")
 
     def get_clio(self):
         return self.content

@@ -110,6 +110,14 @@ class CourseViewSet(viewsets.ModelViewSet):
     serializer_class = CourseSerializer
 
 
+class CiloViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows Course to be viewed or edited.
+    """
+    queryset = Cilo.objects.all()
+    serializer_class = CiloSerializer
+
+
 class CourseSearchViewSet(ListAPIView):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
