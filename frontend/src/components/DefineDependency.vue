@@ -1,6 +1,5 @@
 <template>
   <div class="definedependency">
-    <template>
       <a-form :form="form" @submit="handleSubmit">
         <a-form-item label="CILO1">
           <a-select
@@ -58,7 +57,6 @@
           </a-space>
         </a-form-item>
       </a-form>
-    </template>
   </div>
 </template>
 
@@ -95,7 +93,7 @@ a {
 }
 
 .definedependency{
- height: 100%;
+    height: 100%;
     width: 100%;
     margin: auto;
   }

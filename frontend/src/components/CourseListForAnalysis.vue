@@ -1,5 +1,5 @@
 <template>
-  <div class="clfd">
+  <div class="courseListforAnalysis">
     <template>
       <a-table :columns="columns" :data-source="data">
         <a slot="name" slot-scope="text">{{ text }}</a>
@@ -19,12 +19,20 @@
             {{ tag.toUpperCase() }}
           </a-tag>
         </span>
-        <span slot="action" slot-scope="text, record">
-          <a>Invite 一 {{ record.name }}</a>
-          <a-divider type="vertical" />
-          <a>Select</a>
-          <a-divider type="vertical" />
-          <a class="ant-dropdown-link"> More actions <a-icon type="down" /> </a>
+        <span slot="type"> 
+          <a-dropdown>
+            <a-menu slot="overlay" @click="handleMenuClick">
+                <a-menu-item key="1"> <a-icon type="user" />1st menu item </a-menu-item>
+                <a-menu-item key="2"> <a-icon type="user" />2nd menu item </a-menu-item>
+                <a-menu-item key="3"> <a-icon type="user" />3rd item </a-menu-item>
+            </a-menu>
+            <a-button style="margin-left: 8px"> Select the analysis type <a-icon type="down" /> </a-button>
+           </a-dropdown>
+        </span>
+         <span slot="action">
+          <a-button> 
+            <router-link to="/lecturer/chart"> Show Analysis </router-link>
+           </a-button>
         </span>
       </a-table>
     </template>
@@ -44,6 +52,12 @@ const columns = [
     dataIndex: "tags",
     scopedSlots: { customRender: "tags" },
   },
+  
+  {
+    title: "Type",
+    key: "type",
+    scopedSlots: { customRender: "type" },
+  },
   {
     title: "Action",
     key: "action",
@@ -57,6 +71,21 @@ const data = [
     name: "Discrete Math",
     tags: ["CST"],
   },
+  {
+    key: "2",
+    name: "Computer Organization",
+    tags: ["CST"],
+  },
+  {
+    key: "3",
+    name: "Orienter-Object Programming",
+    tags: ["CST"],
+  },
+   {
+    key: "4",
+    name: "Structured Programming",
+    tags: ["CST"],
+  },
 ];
 
 export default {
@@ -67,6 +96,11 @@ export default {
       columns
     };
   },
+  methods:{
+    handleMenuClick(e) {
+      console.log('click', e);
+    },
+  }
 };
 </script>
 
@@ -89,5 +123,11 @@ li {
 
 a {
   color: #42b983;
+}
+
+.courseList{
+  height: 100%;
+  width: 100%;
+  text-align: center;
 }
 </style>
