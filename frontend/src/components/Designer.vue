@@ -33,7 +33,7 @@
         </a-menu>
       </a-layout-sider>
       <a-layout>
-        <a-layout-header style="background: #fff; padding: 0">
+        <a-layout-header style="background: #fff; padding: 0;">
           <a-row type="flex" justify="space-between" align="middle">
             <!--     Right Notify Button       -->
             <a-col :span="8">
@@ -56,26 +56,31 @@
             </a-col>
           </a-row>
         </a-layout-header>
+
         <a-layout-content :style="{
             margin: '24px 16px',
             padding: '24px',
             background: '#fff',
-            minHeight: '280px',
-          }"
-        >
-          <router-view/>
+            // minHeight: '100%',
+            // minHeight: '280px',
+          }">
+          <vuescroll style="height: 100%">
+            <router-view/>
+          </vuescroll>
         </a-layout-content>
+
       </a-layout>
     </a-layout>
   </div>
 </template>
 <script>
 import Search from "./Search";
+import vuescroll from "vuescroll";
 
 export default {
   name: "Designer",
   components: {
-    Search,
+    Search, vuescroll
   },
   data() {
     return {

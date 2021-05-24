@@ -20,7 +20,8 @@
         "fix-package-lock": "^1.0.1",
         "vue": "^2.5.2",
         "vue-echarts": "*",
-        "vue-router": "^3.0.1"
+        "vue-router": "^3.0.1",
+        "vuescroll": "^4.17.3"
     },
     "devDependencies": {
         "@vue/composition-api": "*",

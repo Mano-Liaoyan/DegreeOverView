@@ -127,33 +127,3 @@ class CiloSearchViewSet(ListAPIView):
     filter_backends = (SearchFilter, OrderingFilter,)
     search_fields = ('cilo_id', 'content')
     pass
-
-# class SearchViewSet(viewsets.ViewSet):
-#     queryset = Course.objects.all()
-#     serializer_class = CourseSerializer
-# 
-#     # permission_classes = [permissions.IsAuthenticated]
-#     @action(methods=['GET'], detail=False)
-#     def course(self, request):
-#         s = SearchSerializer(data=request.data)
-#         if s.is_valid():
-#             keywords = s['keywords'].value
-#             res = Course.objects.filter(Q(course_name__contains=keywords) | Q(course_code__contains=keywords))
-#             s_serializer = CourseSerializer(instance=res, many=True)
-#             final_res = {'results': s_serializer.data, 'count': res.count()}
-#             return Response(final_res)
-#         else:
-#             return Response(s.errors)
-# 
-#     @action(methods=['GET'], detail=True)
-#     def cilo(self, request, *args, **kwargs):
-#         s = SearchSerializer(data=request.data)
-#         print('args: ', args)
-#         if s.is_valid():
-#             keywords = s['keywords'].value
-#             res = Cilo.objects.filter(Q(cilo_id__contains=keywords) | Q(content__contains=keywords))
-#             s_serializer = CiloSerializer(instance=res, many=True)
-#             final_res = {'results': s_serializer.data, 'count': res.count()}
-#             return Response(final_res)
-#         else:
-#             return Response(s.errors)
