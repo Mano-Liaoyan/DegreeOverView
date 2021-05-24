@@ -9,11 +9,11 @@
             <a-icon type="home" />
             <span>Home</span>
           </a-menu-item>
-          <a-menu-item key="1" v-model="selection">
+          <a-menu-item key="1">
             <a-icon type="eye" />
             <span>View dependencies</span>
           </a-menu-item>
-          <a-menu-item key="2" v-model="selection">
+          <a-menu-item key="2" @click="changeMenu('CourseListForAnalysis')">
             <a-icon type="file" />
             <span>View analysis result</span>
           </a-menu-item>
@@ -78,7 +78,7 @@ export default {
     changeMenu(route) {
       if (this.$route.path !== route) {
         console.log(route);
-        this.$router.push(route);
+        this.$router.push({name: route});
       }
     },
   },

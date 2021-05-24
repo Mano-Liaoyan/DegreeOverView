@@ -7,6 +7,8 @@ import Student from '@/components/Student'
 import CourseMain from '@/components/CourseMain'
 import DefineDependency from '@/components/DefineDependency'
 import Chart from '@/components/chart'
+import courseListModify from '@/components/CourseListForModify'
+import CourseListForAnalysis from '@/components/CourseListForAnalysis'
 
 Vue.use(Router)
 
@@ -22,7 +24,19 @@ export default new Router({
     {
       path: '/lecturer',
       name: 'lecturer',
-      component: Lecturer
+      component: Lecturer,
+      children:[
+        {
+          path: 'analysislist',
+          name: 'CourseListForAnalysis',
+          component: CourseListForAnalysis
+        },
+        {
+          path: 'chart',
+          name: 'Chart',
+          component: Chart
+        },
+      ]
     },
     {
       path: '/designer',
@@ -53,7 +67,12 @@ export default new Router({
           path: 'chart',
           name: 'Chart',
           component: Chart
-        }
+        },
+        {
+          path: '/courseListModify',
+          name: 'CourseListForModify',
+          component: courseListModify
+        },
       ]
     },
     {
@@ -61,6 +80,7 @@ export default new Router({
       name: 'student',
       component: Student
     },
+  
 
   ]
 })
