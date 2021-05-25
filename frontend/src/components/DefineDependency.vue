@@ -1,6 +1,7 @@
 <template>
   <div class="definedependency">
-      <a-form :form="form" @submit="handleSubmit">
+    <div class="definedependencybox">
+      <a-form :form="form" @submit="handleSubmit" :label-col="labelCol" :wrapper-col="wrapperCol">
         <a-form-item label="CILO1">
           <a-select
             style="width: 360px"
@@ -57,6 +58,7 @@
           </a-space>
         </a-form-item>
       </a-form>
+    </div>
   </div>
 </template>
 
@@ -96,8 +98,14 @@ a {
     height: 100%;
     width: 100%;
     margin: auto;
-  }
+    position: relative;
+    text-align: center;
+}
 
+.definedependencybox{
+  height: 100%;
+   width: 100%;
+}
 
 
 </style>

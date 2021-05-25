@@ -18,12 +18,14 @@
         <a-button type="primary">
           Edit CILOs
         </a-button>
-        <a-upload
-          action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-          :file-list="fileList"
+        <a-upload 
+          :multiple="false"         
          @change="handleChange"
+         accept="application/vnd.ms-excel, 
+            application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" 
         >
-          <a-button style="margin-left: 10px;"> <a-icon type="upload" /> Import CILOs </a-button>
+          <a-button style="margin-left: 10px;"> <a-icon type="upload" 
+          /> Import CILOs </a-button>
         </a-upload>
       </a-form-model-item>
        <a-form-model-item ref="name" label="Assessments" prop="cilo">
@@ -33,6 +35,8 @@
         <a-upload
           action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
           :default-file-list="defaultFileList"
+          accept="application/vnd.ms-excel, 
+            application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" 
         >
           <a-button style="margin-left: 10px;"> <a-icon type="upload" /> Import Assessment methods </a-button>
         </a-upload>
@@ -166,6 +170,17 @@ export default {
       });
 
       this.fileList = fileList;
+    },
+    beforeUpload(file) {
+      const isXlsxOrXls = file.type === 'xlsx' || file.type === 'xls';
+      if (!isJpgOrPng) {
+        this.$message.error('You can only upload JPG file!');
+      }
+      const isLt2M = file.size / 1024 / 1024 < 2;
+      if (!isLt2M) {
+        this.$message.error('Image must smaller than 2MB!');
+      }
+      return isJpgOrPng && isLt2M;
     },
   },
 };
