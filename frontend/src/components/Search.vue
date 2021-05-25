@@ -37,9 +37,11 @@ export default {
       console.log("onSelect", value);
       if (value === "Course") {
         console.log(this.courseData);
+
       } else {
         console.log(this.ciloData);
       }
+      this.$router.push({name: 'SearchResult'})
     },
 
     async handleSearch(value) {
