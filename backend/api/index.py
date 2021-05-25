@@ -69,7 +69,7 @@ def add_course_to_data_base():
     course = Course.objects.get(course_id=1)
     course.cilos.add(*cilos)
     # course.cilos.set(pre_request_course_id)
-    # course.cilos.add(*cilos)
+    # course.pre_request_course_id.add(*cilos)
     # course.assessment.add(*assessment)
     # course.save()
     pass

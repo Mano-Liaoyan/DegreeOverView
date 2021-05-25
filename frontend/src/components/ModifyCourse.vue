@@ -4,7 +4,9 @@
       <a-form-model-item ref="name" label="Course Name" prop="cname" validate-status="success">
         <a-input v-model="form.cname" @blur="() => {$refs.name.onFieldBlur();}"/>
       </a-form-model-item>
-
+      <a-form-model-item ref="name" label="Course Code" prop="code" validate-status="success">
+        <a-input v-model="form.code" @blur="() => {$refs.name.onFieldBlur();}"/>
+      </a-form-model-item>
       <a-form-model-item label="Academic Start Year" prop="startDate">
         <YearSelector v-model="form.startDate"></YearSelector>
       </a-form-model-item>
@@ -12,10 +14,6 @@
     <!--    <a-form-model-item ref="name" label="CILOs" prop="cilo">-->
     <!--      <a-input v-model="form.cilo" @blur="() => {$refs.name.onFieldBlur();}"/>-->
     <!--    </a-form-model-item>-->
-
-    <a-form-model-item ref="name" label="Assessments&CILOs" prop="cilo">
-      <aaa></aaa>
-    </a-form-model-item>
     <!--    <DynamicForm></DynamicForm>-->
     <a-form-model-item ref="name" label="Programme" prop="programme" style="margin-top: -10px">
       <a-input v-model="form.programme" @blur="() => {$refs.name.onFieldBlur();}"/>
@@ -23,22 +21,22 @@
     <a-form-model-item ref="name" label="Prerequisites" prop="prerequisites">
       <a-input v-model="form.prerequisites" @blur="() => {$refs.name.onFieldBlur();}"/>
     </a-form-model-item>
-    <a-form-model-item ref="name" label="Relation" prop="relation">
-      <a-input v-model="form.relation" @blur="() => {$refs.name.onFieldBlur();}"/>
+    <a-form-model-item ref="name" label="Assessments&CILOs" prop="cilo">
+      <!--      <aaa></aaa>-->
     </a-form-model-item>
     <a-form-model-item label="Type" prop="type">
       <a-radio-group v-model="form.type">
-        <a-radio value="1" name="type">
+        <a-radio value="1">
           Major Required (MR)
         </a-radio>
-        <a-radio value="2" name="type">
+        <a-radio value="2">
           Major Election (ME)
         </a-radio>
         <br>
-        <a-radio value="3" name="type">
+        <a-radio value="3">
           Gradual Election (GE)
         </a-radio>
-        <a-radio value="4" name="type">
+        <a-radio value="4">
           Free Election (FE)
         </a-radio>
       </a-radio-group>
@@ -70,17 +68,21 @@ export default {
       wrapperCol: {span: 14},
       form: {
         cname: '',
+        code: '',
         cilo: '',
         programme: '',
         prerequisites: '',
         relation: '',
         startDate: undefined,
         delivery: false,
-        type: [],
+        type: '',
       },
       rules: {
         cname: [
           {required: true, message: 'Please input the course name!', trigger: 'blur'},
+        ],
+        code: [
+          {required: true, message: 'Please input the course code!', trigger: 'blur'},
         ],
         cilo: [
           {required: true, message: 'Please input the cilo name!', trigger: 'blur'},
@@ -89,13 +91,8 @@ export default {
           {required: true, message: 'Please input the programme name!', trigger: 'blur'},
         ],
         type: [
-          {
-            type: 'array',
-            required: true,
-            message: 'Please select at least one course type',
-            trigger: 'change',
-          },
-        ]
+          {required: true, message: 'Please select activity resource', trigger: 'change'},
+        ],
       },
     };
   },
