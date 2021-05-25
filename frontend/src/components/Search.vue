@@ -8,11 +8,6 @@
           <span className="global-search-item-count">{{ item.count }} results</span>
         </a-select-option>
       </template>
-      <!--      <a-input>-->
-      <!--        <a-button slot="suffix" style="margin-right: -12px" class="search-btn" :size="size" type="primary">-->
-      <!--          <a-icon type="search"/>-->
-      <!--        </a-button>-->
-      <!--      </a-input>-->
       <a-input>
         <a-icon slot="suffix" type="search" class="certain-category-icon"/>
       </a-input>
@@ -33,11 +28,18 @@ export default {
   data() {
     return {
       dataSource: [],
+      ciloData: undefined,
+      courseData: undefined
     };
   },
   methods: {
     onSelect(value) {
       console.log("onSelect", value);
+      if (value === "Course") {
+        console.log(this.courseData);
+      } else {
+        console.log(this.ciloData);
+      }
     },
 
     async handleSearch(value) {
@@ -91,8 +93,10 @@ export default {
 
     async searchResult(query) {
       let cilo_res, course_res;
-      cilo_res = await this.getCilo(query)
-      course_res = await this.getCourse(query)
+      cilo_res = await this.getCilo(query);
+      course_res = await this.getCourse(query);
+      this.ciloData = cilo_res;
+      this.courseData = course_res;
       let a;
       if (cilo_res.count > course_res.count) {
         a = [{'query': query, 'category': 'Cilo', 'count': cilo_res.count},

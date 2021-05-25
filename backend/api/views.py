@@ -112,7 +112,7 @@ class CourseViewSet(viewsets.ModelViewSet):
 
 class CiloViewSet(viewsets.ModelViewSet):
     """
-    API endpoint that allows Course to be viewed or edited.
+    API endpoint that allows Cilo to be viewed or edited.
     """
     queryset = Cilo.objects.all()
     serializer_class = CiloSerializer
@@ -124,7 +124,7 @@ class CourseSearchViewSet(ListAPIView):
     pagination_class = PageNumberPagination
     filter_backends = (SearchFilter, OrderingFilter,)
     search_fields = ('course_name', 'course_code', 'academic_start_year', 'program',
-                     'type', 'cilos_id__content', 'pre_request_course_id_id__course_name')
+                     'type', 'cilos__content', 'pre_request_course_id__course_name')
     pass
 
 
