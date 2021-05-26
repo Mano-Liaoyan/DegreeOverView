@@ -56,7 +56,14 @@ export default new Router({
         {
           path: 'coursemain',
           name: 'CourseMain',
-          component: CourseMain
+          component: CourseMain, 
+          childern: [
+            {
+              path: 'editassessment',
+              name: 'editassessment',
+              component: () => import('../components/aaa1.vue'),
+            }
+          ]
         },
         {
           path: 'definedependency',
@@ -75,7 +82,11 @@ export default new Router({
       name: 'student',
       component: Student
     },
-
+    {
+      path: '/modal',
+      name: 'modal',
+      component: () => import('../components/modal.vue'),
+    },
 
   ]
 })
