@@ -161,10 +161,10 @@ class CiloViewSet(viewsets.ModelViewSet):
 class CourseSearchViewSet(ListAPIView):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
-    pagination_class = PageNumberPagination
+    pagination_class = CustomPageNumberPagination
     filter_backends = (SearchFilter, OrderingFilter,)
     search_fields = ('course_name', 'course_code', 'academic_start_year', 'program',
-                     'type', 'cilos__content', 'pre_request_course_id__course_name')
+                     'type', 'cilos__content')
     pass
 
 

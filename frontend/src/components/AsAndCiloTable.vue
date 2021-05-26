@@ -9,9 +9,10 @@
         </a-tag>
       </span>
       <span slot="action" slot-scope="text, record">
-        <a @click="showModal">Modify</a>
+        <a @click="showModal(record.evam)">Modify</a>
         <a-divider type="vertical"/>
         <a @click="clickDelete(record.evam)">Delete</a>
+        <ModifyCiloModel :ev_name="record.evam" @update="updateRowData" :visible="record.visible" @changeVisibleToFalse="changeVisibleToFalse(record.evam)"/>
       </span>
     </a-table>
     <div style="text-align: end;margin-top: 20px;">
@@ -20,9 +21,8 @@
       </a-button>
     </div>
     <div>
-      <ModifyCiloModel :visible="visible" @changeVisibleToFalse="changeVisibleToFalse"/>
-    </div>
 
+    </div>
   </div>
 </template>
 <script>
@@ -68,21 +68,25 @@ let data = [
     evam: 'Assignments/Quizzes',
     percentage: '15%',
     tags: ['nice', 'developer'],
+    visible: false
   },
   {
     evam: 'Labs',
     percentage: '25%',
     tags: ['loser'],
+    visible: false
   },
   {
     evam: 'Projects',
     percentage: '10%',
     tags: ['cool', 'teacher'],
+    visible: false
   },
   {
     evam: 'Examination',
     percentage: '50%',
     tags: ['cool', 'teacher'],
+    visible: false
   },
 ];
 
@@ -100,11 +104,26 @@ export default {
     };
   },
   methods: {
-    changeVisibleToFalse() {
-      this.visible = false;
+    updateRowData(name, info) {
+      for (let i = 0; i < this.data.length; i++) {
+        if (this.data[i].evam === name) {
+          this.data[i].evam = info.evam;
+          this.data[i].percentage = info.percentage;
+        }
+      }
     },
-    showModal() {
-      this.visible = true;
+    changeVisibleToFalse(key) {
+      // this.visible = false;
+      for (let i = 0; i < this.data.length; i++) {
+        if (this.data[i].evam === key)
+          this.data[i].visible = false;
+      }
+    },
+    showModal(key) {
+      for (let i = 0; i < this.data.length; i++) {
+        if (this.data[i].evam === key)
+          this.data[i].visible = true;
+      }
     },
     clickAdd() {
       this.data.push({

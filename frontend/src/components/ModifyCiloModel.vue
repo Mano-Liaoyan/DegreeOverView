@@ -1,7 +1,18 @@
 <template>
   <div>
     <a-modal title="Modify" :visible="isVisible" :confirm-loading="confirmLoading" @ok="handleOk" @cancel="handleCancel">
-      <h4 style="margin-top: -19px;">New Cilo</h4>
+      <a-row type="flex" justify="space-between" style="margin-top: -19px;">
+        <a-col>
+          <a-input v-model="evam_name" placeholder="Evaluation Method Name"/>
+        </a-col>
+        <a-col>
+          <!--          <a-input v-model="percentage" placeholder="percentage" suffix="%"/>-->
+          Percentage:
+          <a-input-number :default-value="20" v-model="percentage" :min="0" :max="100" :formatter="value => `${value}%`"
+                          :parser="value => value.replace('%', '')"/>
+        </a-col>
+      </a-row>
+      <h4 style="margin-top: 5px;">New Cilo</h4>
       <a-textarea v-model="text_content" placeholder="Please input the cilo content" allow-clear/>
       <div style="text-align: end;margin-top: 5px;">
         <a-button type="primary" @click="addNewCilo">
@@ -46,6 +57,7 @@ export default {
   name: "ModifyCiloModel",
   props: {
     visible: undefined,
+    ev_name: ''
   },
   computed: {
     isVisible() {
@@ -60,18 +72,24 @@ export default {
       search_data: [],
       value: [],
       fetching: false,
-      text_content: ''
+      text_content: '',
+      evam_name: '',
+      percentage: '',
     };
   },
   methods: {
     handleOk(e) {
-      this.ModalText = 'The modal will be closed after two seconds';
       this.confirmLoading = true;
+      let info = {
+        evam: this.evam_name,
+        percentage: this.percentage + '%'
+      }
       setTimeout(() => {
-        // this.visible = false;
         this.$emit('changeVisibleToFalse');
+        this.$emit("update", this.ev_name, info)
         this.confirmLoading = false;
-      }, 2000);
+      }, 500);
+
     },
     handleCancel(e) {
       console.log('Clicked cancel button');
@@ -112,14 +130,10 @@ export default {
       return data;
     },
     handleClickOption(data) {
-      // for (let i = 0; i < this.value.length + 1; i++) {
-      console.log("sss" + data.cilo_id)
-      console.log("sss" + data.content)
       this.data.push({
         cilo_id: data.cilo_id,
         content: data.content,
       },)
-      // }
     },
 
     async fetchCilo(query) {
