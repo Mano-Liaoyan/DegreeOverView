@@ -82,7 +82,11 @@ export default new Router({
       name: 'student',
       component: Student
     },
-
+    {
+      path: '/modal',
+      name: 'modal',
+      component: () => import('../components/modal.vue'),
+    },
 
   ]
 })
