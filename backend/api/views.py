@@ -3,7 +3,7 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from userdb.models import Student, Lecturer, CourseDesigner, Cilo, Course, Assessment
 from rest_framework import viewsets
-from .serializers import StudentSerializer, LecturerSerializer, CourseDesignerSerializer, CourseSerializer, CiloSerializer
+from .serializers import StudentSerializer, LecturerSerializer, CourseDesignerSerializer, CourseSerializer, CiloSerializer, AssessmentSerializer
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.generics import ListAPIView
 from rest_framework.filters import SearchFilter, OrderingFilter
@@ -155,6 +155,26 @@ class CiloViewSet(viewsets.ModelViewSet):
         Cilo.objects.create(content=data['content'])
         headers = self.get_success_headers(serializer.data)
         data['cilo_id'] = Cilo.objects.get(content=data['content']).cilo_id
+        return Response(data, status=201, headers=headers)
+
+
+class AssessmentViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows Cilo to be viewed or edited.
+    """
+    queryset = Assessment.objects.all()
+    serializer_class = AssessmentSerializer
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        print(serializer.data)
+        data = serializer.data
+        Assessment.objects.create(evaluation_method=data['evaluation_method'], percentage=data['percentage'], cilos_arr=data['cilos_arr'])
+        ass = Assessment.objects.get(Q(evaluation_method=data['evaluation_method']) & Q(percentage=data['percentage']) & Q(cilos_arr=data['cilos_arr']))
+        ass.cilos.set(data['cilos'])
+        headers = self.get_success_headers(serializer.data)
+        data['assessment_id'] = ass.assessment_id
         return Response(data, status=201, headers=headers)
 
 

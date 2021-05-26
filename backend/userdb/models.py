@@ -53,6 +53,7 @@ class Assessment(models.Model):
     evaluation_method = models.TextField()
     percentage = models.TextField()
     cilos = models.ManyToManyField("Cilo")
+    cilos_arr = models.TextField(default='')
 
 
 class GradeReport(models.Model):

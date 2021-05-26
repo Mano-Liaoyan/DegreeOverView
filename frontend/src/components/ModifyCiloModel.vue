@@ -82,7 +82,11 @@ export default {
       this.confirmLoading = true;
       let info = {
         evam: this.evam_name,
-        percentage: this.percentage + '%'
+        percentage: this.percentage + '%',
+        tags: [],
+      }
+      for (let i = 0; i < this.value.length; i++) {
+        info.tags.push(this.value[i].toString());
       }
       setTimeout(() => {
         this.$emit('changeVisibleToFalse');
