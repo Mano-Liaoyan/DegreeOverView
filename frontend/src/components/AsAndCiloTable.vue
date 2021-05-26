@@ -9,11 +9,9 @@
         </a-tag>
       </span>
       <span slot="action" slot-scope="text, record">
-        <a>Modify</a>
+        <a @click="showModal">Modify</a>
         <a-divider type="vertical"/>
         <a @click="clickDelete(record.evam)">Delete</a>
-        <a-divider type="vertical"/>
-        <a>Add CILO</a>
       </span>
     </a-table>
     <div style="text-align: end;margin-top: 20px;">
@@ -21,10 +19,15 @@
         Add
       </a-button>
     </div>
+    <div>
+      <ModifyCiloModel :visible="visible" @changeVisibleToFalse="changeVisibleToFalse"/>
+    </div>
+
   </div>
 </template>
-
 <script>
+import ModifyCiloModel from "./ModifyCiloModel";
+
 const columns = [
   /*  {
       dataIndex: 'name',
@@ -85,14 +88,24 @@ let data = [
 
 export default {
   name: "AsAndCiloTable",
+  components: {
+    ModifyCiloModel
+  },
   data() {
     return {
       data,
       columns,
-      counter: 1
+      counter: 1,
+      visible: false,
     };
   },
   methods: {
+    changeVisibleToFalse() {
+      this.visible = false;
+    },
+    showModal() {
+      this.visible = true;
+    },
     clickAdd() {
       this.data.push({
         percentage: '',

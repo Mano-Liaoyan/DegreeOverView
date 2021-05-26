@@ -30,6 +30,10 @@ class CourseSerializer(serializers.ModelSerializer):
 
 
 class CiloSerializer(serializers.ModelSerializer):
+    cilo_id = serializers.IntegerField(required=False)
+    parent_cilos = serializers.CharField(required=False)
+    child_cilos = serializers.CharField(required=False)
+
     class Meta:
         model = Cilo
         fields = '__all__'

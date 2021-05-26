@@ -9,6 +9,10 @@ from rest_framework.generics import ListAPIView
 from rest_framework.filters import SearchFilter, OrderingFilter
 
 
+class CustomPageNumberPagination(PageNumberPagination):
+    page_size_query_param = 'size'  # items per page
+
+
 class StudentViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows Students to be viewed or edited.
@@ -143,6 +147,16 @@ class CiloViewSet(viewsets.ModelViewSet):
     queryset = Cilo.objects.all()
     serializer_class = CiloSerializer
 
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        print(serializer.data)
+        data = serializer.data
+        Cilo.objects.create(content=data['content'])
+        headers = self.get_success_headers(serializer.data)
+        data['cilo_id'] = Cilo.objects.get(content=data['content']).cilo_id
+        return Response(data, status=201, headers=headers)
+
 
 class CourseSearchViewSet(ListAPIView):
     queryset = Course.objects.all()
@@ -157,7 +171,7 @@ class CourseSearchViewSet(ListAPIView):
 class CiloSearchViewSet(ListAPIView):
     queryset = Cilo.objects.all()
     serializer_class = CiloSerializer
-    pagination_class = PageNumberPagination
+    pagination_class = CustomPageNumberPagination
     filter_backends = (SearchFilter, OrderingFilter,)
     search_fields = ('cilo_id', 'content')
     pass
