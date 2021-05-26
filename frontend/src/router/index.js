@@ -44,6 +44,11 @@ export default new Router({
       component: Designer,
       children: [
         {
+          path: 'search-result',
+          name: 'SearchResult',
+          component: () => import('../components/SearchResult.vue'),
+        },
+        {
           path: 'modify',
           name: 'ModifyCourse',
           component: () => import('../components/ModifyCourse.vue'),

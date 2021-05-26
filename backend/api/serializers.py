@@ -22,6 +22,8 @@ class CourseDesignerSerializer(serializers.ModelSerializer):
 
 
 class CourseSerializer(serializers.ModelSerializer):
+    course_id = serializers.IntegerField(required=False)
+
     class Meta:
         model = Course
         fields = '__all__'
