@@ -18,7 +18,7 @@
             <a-icon type="edit"/>
             <span>Modify a course</span>
           </a-menu-item>
-          <a-menu-item key="3" @click="changeMenu('DefineDependency')">
+          <a-menu-item key="3" @click="changeMenu('CourseListForDependency')">
             <a-icon type="tool"/>
             <span>Define dependencies</span>
           </a-menu-item>

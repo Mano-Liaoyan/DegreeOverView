@@ -10,6 +10,7 @@ import Chart from '@/components/chart'
 import courseListModify from '@/components/CourseListForModify'
 import CourseListForAnalysis from '@/components/CourseListForAnalysis'
 import CreateNewCourse from "../components/CreateNewCourse";
+import CourseListForDependency from "../components/CourseListForDependency";
 
 Vue.use(Router)
 
@@ -62,13 +63,18 @@ export default new Router({
         {
           path: 'coursemain',
           name: 'CourseMain',
-          // component: CourseMain
           component: CreateNewCourse
         },
+
         {
           path: 'definedependency',
           name: 'DefineDependency',
           component: DefineDependency
+        },
+        {
+          path: 'courseListDefinedependency',
+          name: 'CourseListForDependency',
+          component: CourseListForDependency
         },
         {
           path: 'courseListModify',
