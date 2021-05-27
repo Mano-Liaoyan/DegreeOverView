@@ -1,12 +1,16 @@
 from django.db.models import Q, Count
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from userdb.models import Student, Lecturer, CourseDesigner, Cilo, Course
+from userdb.models import Student, Lecturer, CourseDesigner, Cilo, Course, Assessment
 from rest_framework import viewsets
-from .serializers import StudentSerializer, LecturerSerializer, CourseDesignerSerializer, CourseSerializer, CiloSerializer
+from .serializers import StudentSerializer, LecturerSerializer, CourseDesignerSerializer, CourseSerializer, CiloSerializer, AssessmentSerializer
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.generics import ListAPIView
 from rest_framework.filters import SearchFilter, OrderingFilter
+
+
+class CustomPageNumberPagination(PageNumberPagination):
+    page_size_query_param = 'size'  # items per page
 
 
 class StudentViewSet(viewsets.ModelViewSet):
@@ -109,21 +113,85 @@ class CourseViewSet(viewsets.ModelViewSet):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
 
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        print(serializer.data)
+        data = serializer.data
+        assessment = Assessment.objects.get(assessment_id=data['assessment'])
+        Course.objects.create(course_name=data['course_name'], course_code=data['course_code'], academic_start_year=data['academic_start_year'],
+                              program=data['program'], type=data['type'], assessment=assessment)
+        course = Course.objects.get(course_name=data['course_name'])
+        course.cilos.set(data['cilos'])
+        course.pre_request_course_id.set(data['pre_request_course_id'])
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=201, headers=headers)
+
+    @action(methods=['GET'], detail=False)
+    def get_all_program(self, request):
+        courses = Course.objects.all()
+        programs = courses.values('program').distinct().order_by('program')
+        program_list = []
+        for program in programs:
+            program_list.append(program['program'])
+        res_json = {
+            'programs': program_list
+        }
+        return Response(res_json)
+
+
+class CiloViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows Cilo to be viewed or edited.
+    """
+    queryset = Cilo.objects.all()
+    serializer_class = CiloSerializer
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        print(serializer.data)
+        data = serializer.data
+        Cilo.objects.create(content=data['content'])
+        headers = self.get_success_headers(serializer.data)
+        data['cilo_id'] = Cilo.objects.get(content=data['content']).cilo_id
+        return Response(data, status=201, headers=headers)
+
+
+class AssessmentViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows Cilo to be viewed or edited.
+    """
+    queryset = Assessment.objects.all()
+    serializer_class = AssessmentSerializer
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        print(serializer.data)
+        data = serializer.data
+        Assessment.objects.create(evaluation_method=data['evaluation_method'], percentage=data['percentage'], cilos_arr=data['cilos_arr'])
+        ass = Assessment.objects.get(Q(evaluation_method=data['evaluation_method']) & Q(percentage=data['percentage']) & Q(cilos_arr=data['cilos_arr']))
+        ass.cilos.set(data['cilos'])
+        headers = self.get_success_headers(serializer.data)
+        data['assessment_id'] = ass.assessment_id
+        return Response(data, status=201, headers=headers)
+
 
 class CourseSearchViewSet(ListAPIView):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
-    pagination_class = PageNumberPagination
+    pagination_class = CustomPageNumberPagination
     filter_backends = (SearchFilter, OrderingFilter,)
     search_fields = ('course_name', 'course_code', 'academic_start_year', 'program',
-                     'type', 'cilos_id__content', 'pre_request_course_id_id__course_name')
+                     'type', 'cilos__content')
     pass
 
 
 class CiloSearchViewSet(ListAPIView):
     queryset = Cilo.objects.all()
     serializer_class = CiloSerializer
-    pagination_class = PageNumberPagination
+    pagination_class = CustomPageNumberPagination
     filter_backends = (SearchFilter, OrderingFilter,)
     search_fields = ('cilo_id', 'content')
     pass

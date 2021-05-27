@@ -33,14 +33,16 @@ class Course(models.Model):
     academic_start_year = models.IntegerField()
     program = models.CharField(max_length=10)
     type = models.CharField(max_length=10)
-    cilos = models.ForeignKey("Cilo", on_delete=models.CASCADE)
-    assessment = models.OneToOneField("Assessment", on_delete=models.SET_NULL, null=True)
-    pre_request_course_id = models.ForeignKey("self", on_delete=models.DO_NOTHING, null=True)
+    cilos = models.ManyToManyField("Cilo")
+    assessment = models.ForeignKey("Assessment", on_delete=models.SET_NULL, null=True)
+    pre_request_course_id = models.ManyToManyField("self")
 
 
 class Cilo(models.Model):
     cilo_id = models.IntegerField(primary_key=True, auto_created=True)
     content = models.TextField()
+    parent_cilos = models.ManyToManyField("Cilo", related_name="parent")
+    child_cilos = models.ManyToManyField("Cilo", related_name="child")
 
     def get_clio(self):
         return self.content
@@ -51,3 +53,8 @@ class Assessment(models.Model):
     evaluation_method = models.TextField()
     percentage = models.TextField()
     cilos = models.ManyToManyField("Cilo")
+    cilos_arr = models.TextField(default='')
+
+
+class GradeReport(models.Model):
+    pass

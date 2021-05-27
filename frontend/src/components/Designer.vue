@@ -1,10 +1,10 @@
 <template>
   <div id="designer">
     <a-layout id="components-layout-demo-custom-trigger">
-      <a-layout-sider v-model="collapsed" :trigger="null" collapsible>
+      <a-layout-sider class="ant-layout-sider-light" v-model="collapsed" :trigger="null" collapsible>
         <div v-if="collapsed" id="logo-collapsed"></div>
-        <div v-else id="logo">DegreeOverview</div>
-        <a-menu theme="dark" mode="inline" :default-selected-keys="['0']">
+        <div v-else id="logo" style="color: grey; font-weight: bold;">DegreeOverview</div>
+        <a-menu theme="light" mode="inline" :default-selected-keys="['0']">
           <a-menu-item key="0" @click="changeMenu('Designer')">
             <a-icon type="home"/>
             <span>Home</span>
@@ -17,7 +17,7 @@
             <a-icon type="edit"/>
             <span>Modify a course</span>
           </a-menu-item>
-          <a-menu-item key="3" @click="changeMenu('DefineDependency')">
+          <a-menu-item key="3" @click="changeMenu('CourseListForDependency')">
             <a-icon type="tool"/>
             <span>Define dependencies</span>
           </a-menu-item>
@@ -25,14 +25,14 @@
             <a-icon type="eye"/>
             <span>View dependencies</span>
           </a-menu-item>
-          <a-menu-item key="5" v-model="selection">
+          <a-menu-item key="5" @click="changeMenu('CourseListForRelationship')">
             <a-icon type="link"/>
             <span>Define relationships</span>
           </a-menu-item>
         </a-menu>
       </a-layout-sider>
       <a-layout>
-        <a-layout-header style="background: #fff; padding: 0">
+        <a-layout-header style="background: white; padding: 0;">
           <a-row type="flex" justify="space-between" align="middle">
             <!--     Right Notify Button       -->
             <a-col :span="8">
@@ -59,10 +59,13 @@
             margin: '24px 16px',
             padding: '24px',
             background: '#fff',
-            minHeight: '280px',
-          }"
-        >
-          <router-view/>
+            
+            // minHeight: '100%',
+            // minHeight: '280px',
+          }">
+          <vuescroll style="height: 100%">
+            <router-view/>
+          </vuescroll>
         </a-layout-content>
       </a-layout>
     </a-layout>
@@ -126,7 +129,7 @@ export default {
   height: 48px;
   width: 48px;
   margin: 16px auto;
-  background-image: url("../../static/images/timg.jpg");
+  background-image: url("../../static/images/logo.jpeg");
   -moz-background-size: 100% 100%;
   background-size: 100% 100%;
 }
@@ -139,7 +142,6 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  /*background-color: rgba(185, 104, 66, 0.26);*/
   -moz-background-size: 100%;
   background-size: 100%;
 }

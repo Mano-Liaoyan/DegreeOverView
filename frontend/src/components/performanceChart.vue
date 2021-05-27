@@ -1,5 +1,7 @@
 <template>
-  <div id="chart" style="width: 600px;height:400px;"></div>
+  <div id="chart" style="width: 600px;height:400px;">
+      
+  </div>
 </template>
 
 <script>
@@ -14,7 +16,7 @@
       let option = {
         color: [ '#67F9D8', '#FFE434', '#56A3F1', '#FF917C'],
     title: {
-        text: '自定义雷达图'
+        text: 'Performance'
     },
     legend: {
         data: ['Data A', 'Data B', 'Data C', 'Data D']

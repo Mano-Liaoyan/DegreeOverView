@@ -6,9 +6,14 @@ import Designer from '@/components/Designer'
 import Student from '@/components/Student'
 import CourseMain from '@/components/CourseMain'
 import DefineDependency from '@/components/DefineDependency'
-import Chart from '@/components/chart'
+import PerformanceChart from '@/components/performanceChart'
 import courseListModify from '@/components/CourseListForModify'
 import CourseListForAnalysis from '@/components/CourseListForAnalysis'
+import CreateNewCourse from "../components/CreateNewCourse";
+import CourseListForDependency from "../components/CourseListForDependency";
+import CourseListForRelationship from "../components/CourseListForRelationship";
+import CourseListForPerformance from "../components/CourseListForPerformance";
+import AsAndCiloTable from  "../components/AsAndCiloTable";
 
 Vue.use(Router)
 
@@ -23,18 +28,13 @@ export default new Router({
     },
     {
       path: '/lecturer',
-      name: 'lecturer',
+      name: 'Lecturer',
       component: Lecturer,
-      children:[
+      children: [
         {
           path: 'analysislist',
           name: 'CourseListForAnalysis',
           component: CourseListForAnalysis
-        },
-        {
-          path: 'chart',
-          name: 'Chart',
-          component: Chart
         },
       ]
     },
@@ -43,6 +43,11 @@ export default new Router({
       name: 'Designer',
       component: Designer,
       children: [
+        {
+          path: 'search-result',
+          name: 'SearchResult',
+          component: () => import('../components/SearchResult.vue'),
+        },
         {
           path: 'modify',
           name: 'ModifyCourse',
@@ -56,26 +61,61 @@ export default new Router({
         {
           path: 'coursemain',
           name: 'CourseMain',
-          component: CourseMain
+          component: CreateNewCourse
         },
+
         {
           path: 'definedependency',
           name: 'DefineDependency',
           component: DefineDependency
         },
         {
-          path: '/courseListModify',
+          path: 'courseListDefinedependency',
+          name: 'CourseListForDependency',
+          component: CourseListForDependency
+        },
+        {
+          path: 'courseListModify',
           name: 'CourseListForModify',
           component: courseListModify
+        },
+        {
+          path: 'courseLisRelationship',
+          name: 'CourseListForRelationship',
+          component: CourseListForRelationship
+        },
+        {
+          path: 'ascilotable',
+          name: 'AsAndCiloTable',
+          component: AsAndCiloTable
         },
       ]
     },
     {
       path: '/student',
-      name: 'student',
-      component: Student
+      name: 'Student',
+      component: Student,
+      children: [
+        {
+          path: 'performanceChart',
+          name: 'PerformanceChart',
+          component: PerformanceChart
+        },
+        {
+          path: 'courseListPerformance',
+          name: 'CourseListForPerformance',
+          component: CourseListForPerformance,
+          children: [
+            
+          ]
+        }
+      ]
     },
-  
+    {
+      path: '/modal',
+      name: 'modal',
+      component: () => import('../components/modal.vue'),
+    },
 
   ]
 })

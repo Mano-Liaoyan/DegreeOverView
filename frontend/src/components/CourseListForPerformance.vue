@@ -1,5 +1,5 @@
 <template>
-  <div class="courseListforAnalysis">
+  <div class="courseListforPerformance">
     <template>
       <a-table :columns="columns" :data-source="data">
         <a slot="name" slot-scope="text">{{ text }}</a>
@@ -19,26 +19,10 @@
             {{ tag.toUpperCase() }}
           </a-tag>
         </span>
-        <span slot="action">
-          <a-dropdown>
-            <a-menu slot="overlay" @click="handleMenuClick">
-              <a-menu-item key="1">
-                <a-icon type="user" />1st menu item
-              </a-menu-item>
-              <a-menu-item key="2">
-                <a-icon type="user" />2nd menu item
-              </a-menu-item>
-              <a-menu-item key="3">
-                <a-icon type="user" />3rd item
-              </a-menu-item>
-            </a-menu>
-            <a-button style="margin-left: 8px">
-              Select the analysis type <a-icon type="down" />
-            </a-button>
-          </a-dropdown>
-          <a-button>
-            <router-link to="/lecturer/chart"> Show Analysis </router-link>
-          </a-button>
+         <span slot="action">
+          <a-button> 
+            <router-link to="/student/performanceChart"> Show Performance </router-link>
+           </a-button>
         </span>
       </a-table>
     </template>
@@ -81,7 +65,7 @@ const data = [
     name: "Orienter-Object Programming",
     tags: ["CST"],
   },
-  {
+   {
     key: "4",
     name: "Structured Programming",
     tags: ["CST"],
@@ -93,14 +77,14 @@ export default {
   data() {
     return {
       data,
-      columns,
+      columns
     };
   },
-  methods: {
+  methods:{
     handleMenuClick(e) {
-      console.log("click", e);
+      console.log('click', e);
     },
-  },
+  }
 };
 </script>
 
@@ -125,7 +109,7 @@ a {
   color: #42b983;
 }
 
-.courseList {
+.courseListforPerformance{
   height: 100%;
   width: 100%;
   text-align: center;

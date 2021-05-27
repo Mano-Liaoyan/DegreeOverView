@@ -1,5 +1,5 @@
 <template>
-<div class="modify">
+  <div class="createNew">
   <a-form-model ref="ruleForm" :model="form" :rules="rules" layout="vertical">
     <!--    :label-col="labelCol" :wrapper-col="wrapperCol"-->
     <a-row type="flex" justify="space-between">
@@ -54,16 +54,16 @@
       <a-col class="horizTwo" :span="22">
         <a-form-model-item label="Type" prop="type">
           <a-radio-group v-model="form.type">
-            <a-radio value="1">
+            <a-radio value="MR">
               Major Required (MR)
             </a-radio>
-            <a-radio value="2">
+            <a-radio value="ME">
               Major Election (ME)
             </a-radio>
-            <a-radio value="3">
+            <a-radio value="GE">
               Gradual Election (GE)
             </a-radio>
-            <a-radio value="4">
+            <a-radio value="FE">
               Free Election (FE)
             </a-radio>
           </a-radio-group>
@@ -83,7 +83,7 @@
       </a-col>
     </a-row>
   </a-form-model>
-</div>
+  </div>
 </template>
 <script>
 import YearSelector from "./YearSelector";
@@ -107,7 +107,20 @@ export default {
       labelCol: {span: 24},
       wrapperCol: {span: 12},
       program_data: undefined,
-      post_form: {},
+      post_form: {
+        course_name: '',
+        course_code: '',
+        academic_start_year: 2013,
+        program: '',
+        type: '',
+        assessment: 3,
+        cilos: [],
+        pre_request_course_id: []
+      },
+      as_form: {
+        evaluation_method: [],
+        percentage: [],
+      },
       form: {
         cname: '',
         code: '',
@@ -167,7 +180,19 @@ export default {
       });
       return data;
     },
-    onSubmit() {
+    async onSubmit() {
+      // http://127.0.0.1:8000/api/assessment/
+      this.post_form.course_name = this.form.cname
+      this.post_form.course_code = this.form.code
+      this.post_form.program = this.form.program
+      this.post_form.type = this.form.type
+
+      // this.as_form.evaluation_method =
+
+      for (let i = 0; i < this.value.length; i++) {
+        this.post_form.pre_request_course_id.push(this.value[i].key)
+      }
+      console.log('post form: ' + JSON.stringify(this.post_form))
       this.$refs.ruleForm.validate(valid => {
         if (valid) {
           alert('submit!');
@@ -207,7 +232,8 @@ export default {
 .horizTwo {
   margin: auto
 }
-.modify {
+
+.createNew {
   height: 100%;
   width: 100%;
   position: relative;
