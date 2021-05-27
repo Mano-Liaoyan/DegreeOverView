@@ -14,7 +14,7 @@ export default {
     let myChart = echarts.init(chartDom);
     let option = {
       title: {
-        text: "Graph 简单示例",
+        text: "Dependency",
       },
       tooltip: {},
       animationDurationUpdate: 1500,
@@ -35,27 +35,26 @@ export default {
           },
           data: [
             {
-              name: "节点1",
+              name: "CILO1",
               x: 300,
               y: 300,
             },
             {
-              name: "节点2",
+              name: "CILO2",
               x: 800,
               y: 300,
             },
             {
-              name: "节点3",
+              name: "CILO3",
               x: 550,
               y: 100,
             },
             {
-              name: "节点4",
+              name: "CILO4",
               x: 550,
               y: 500,
             },
           ],
-          // links: [],
           links: [
             {
               source: 0,
@@ -69,31 +68,22 @@ export default {
                 curveness: 0.2,
               },
             },
+            
             {
-              source: "节点2",
-              target: "节点1",
-              label: {
-                show: true,
-              },
-              lineStyle: {
-                curveness: 0.2,
-              },
+              source: "CILO1",
+              target: "CILO3",
             },
             {
-              source: "节点1",
-              target: "节点3",
+              source: "CILO2",
+              target: "CILO3",
             },
             {
-              source: "节点2",
-              target: "节点3",
+              source: "CILO2",
+              target: "CILO4",
             },
             {
-              source: "节点2",
-              target: "节点4",
-            },
-            {
-              source: "节点1",
-              target: "节点4",
+              source: "CILO1",
+              target: "CILO4",
             },
           ],
           lineStyle: {
