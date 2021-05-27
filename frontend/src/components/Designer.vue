@@ -5,7 +5,7 @@
         <div v-if="collapsed" id="logo-collapsed"></div>
         <div v-else id="logo" style="color: grey; font-weight: bold;">DegreeOverview</div>
         <a-menu theme="light" mode="inline" :default-selected-keys="['0']">
-          <a-menu-item key="0" @click="changeMenu('Designer')">
+          <a-menu-item key="0" @click="changeMenu('designerhome')">
             <a-icon type="home"/>
             <span>Home</span>
           </a-menu-item>
@@ -21,7 +21,7 @@
             <a-icon type="tool"/>
             <span>Define dependencies</span>
           </a-menu-item>
-          <a-menu-item key="4" @click="changeMenu('Chart')">
+          <a-menu-item key="4" @click="changeMenu('dependencyDesigner')">
             <a-icon type="eye"/>
             <span>View dependencies</span>
           </a-menu-item>

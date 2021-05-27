@@ -36,6 +36,16 @@ export default new Router({
           name: 'CourseListForAnalysis',
           component: CourseListForAnalysis
         },
+        {
+          path: '/dependencyLecturer',
+          name: 'dependencyLecturer',
+          component: () => import('../components/ViewDependency.vue'),
+        },
+        {
+          path: '/lecturerhome',
+          name: 'lecturerhome',
+          component: () => import('../components/Homepage.vue'),
+        },
       ]
     },
     {
@@ -43,6 +53,11 @@ export default new Router({
       name: 'Designer',
       component: Designer,
       children: [
+        {
+          path: '/designerhome',
+          name: 'designerhome',
+          component: () => import('../components/Homepage.vue'),
+        },
         {
           path: 'search-result',
           name: 'SearchResult',
@@ -89,6 +104,11 @@ export default new Router({
           name: 'AsAndCiloTable',
           component: AsAndCiloTable
         },
+        {
+          path: '/dependencyDesigner',
+          name: 'dependencyDesigner',
+          component: () => import('../components/ViewDependency.vue'),
+        },
       ]
     },
     {
@@ -96,6 +116,11 @@ export default new Router({
       name: 'Student',
       component: Student,
       children: [
+        {
+          path: '/studenthome',
+          name: 'studenthome',
+          component: () => import('../components/Homepage.vue'),
+        },
         {
           path: 'performanceChart',
           name: 'PerformanceChart',
@@ -108,7 +133,12 @@ export default new Router({
           children: [
             
           ]
-        }
+        },
+        {
+          path: '/dependencyStudent',
+          name: 'dependencyStudent',
+          component: () => import('../components/ViewDependency.vue'),
+        },
       ]
     },
     {
@@ -116,7 +146,11 @@ export default new Router({
       name: 'modal',
       component: () => import('../components/modal.vue'),
     },
-
+    {
+      path: '/dependencychart',
+      name: 'dependencychart',
+      component: () => import('../components/ViewDependency.vue'),
+    },
   ]
 })
 

@@ -10,7 +10,7 @@ export default {
   },
   mounted() {
     let this_ = this;
-    let chartDom = document.getElementById("main");
+    let chartDom = document.getElementById("chart");
     let myChart = echarts.init(chartDom);
     let option = {
       title: {

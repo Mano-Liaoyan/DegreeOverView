@@ -5,11 +5,11 @@
         <div v-if="collapsed" id="logo-collapsed"></div>
         <div v-else id="logo" style="color: grey; font-weight: bold;">DegreeOverview</div>
         <a-menu theme="light" mode="inline" :default-selected-keys="['0']" >
-          <a-menu-item key="0" @click="changeMenu('Student')"> 
+          <a-menu-item key="0" @click="changeMenu('studenthome')"> 
             <a-icon type="home"/>
             <span>Home</span>
           </a-menu-item>
-          <a-menu-item key="4" v-model="selection">
+          <a-menu-item key="4" @click="changeMenu('dependencyStudent')">
             <a-icon type="eye"/>
             <span>View dependencies</span>
           </a-menu-item>
