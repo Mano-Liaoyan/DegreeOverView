@@ -1,11 +1,11 @@
 <template>
   <div id="lecturer">
     <a-layout id="components-layout-demo-custom-trigger">
-      <a-layout-sider v-model="collapsed" :trigger="null" collapsible>
+      <a-layout-sider class="ant-layout-sider-light" v-model="collapsed" :trigger="null" collapsible>
         <div v-if="collapsed" id="logo-collapsed"></div>
-        <div v-else id="logo">DegreeOverview</div>
-        <a-menu theme="dark" mode="inline" :default-selected-keys="['0']">
-          <a-menu-item key="0" @click="changeMenu('/lecturer')">
+        <div v-else id="logo" style="color: grey; font-weight: bold;">DegreeOverview</div>
+        <a-menu theme="light" mode="inline" :default-selected-keys="['0']">
+          <a-menu-item key="0" @click="changeMenu('Lecturer')">
             <a-icon type="home" />
             <span>Home</span>
           </a-menu-item>
@@ -20,10 +20,12 @@
         </a-menu>
       </a-layout-sider>
       <a-layout>
-        <a-layout-header style="background: #fff; padding: 0">
+        <a-layout-header style="background: white; padding: 0;">
           <a-row type="flex" justify="space-between" align="middle">
             <!--     Right Notify Button       -->
-            <a-col> </a-col>
+            <a-col :span="8">
+              <a-icon class="trigger" :type="collapsed ? 'menu-unfold' : 'menu-fold'" @click="() => (this.collapsed = !collapsed)"/>
+            </a-col>
             <!--     Center Search function       -->
             <a-col>
               <Search></Search>
@@ -113,7 +115,7 @@ export default {
   height: 48px;
   width: 48px;
   margin: 16px auto;
-  background-image: url("../../static/images/timg.jpg");
+  background-image: url("../../static/images/logo.jpeg");
   -moz-background-size: 100% 100%;
   background-size: 100% 100%;
 }

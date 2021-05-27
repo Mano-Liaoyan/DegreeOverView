@@ -1,4 +1,5 @@
 <template>
+<div class="modify">
   <a-form-model ref="ruleForm" :model="form" :rules="rules" layout="vertical">
     <!--    :label-col="labelCol" :wrapper-col="wrapperCol"-->
     <a-row type="flex" justify="space-between">
@@ -82,6 +83,7 @@
       </a-col>
     </a-row>
   </a-form-model>
+</div>
 </template>
 <script>
 import YearSelector from "./YearSelector";
@@ -204,5 +206,10 @@ export default {
 <style scoped>
 .horizTwo {
   margin: auto
+}
+.modify {
+  height: 100%;
+  width: 100%;
+  position: relative;
 }
 </style>
