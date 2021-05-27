@@ -1,4 +1,3 @@
-/* eslint-disable vue/valid-template-root */
 <template>
   <div id="designer">
     <a-layout id="components-layout-demo-custom-trigger">
@@ -6,7 +5,7 @@
         <div v-if="collapsed" id="logo-collapsed"></div>
         <div v-else id="logo" style="color: grey; font-weight: bold;">DegreeOverview</div>
         <a-menu theme="light" mode="inline" :default-selected-keys="['0']">
-          <a-menu-item key="0" @click="changeMenu('Designer')">
+          <a-menu-item key="0" @click="changeMenu('designerhome')">
             <a-icon type="home"/>
             <span>Home</span>
           </a-menu-item>
@@ -14,7 +13,7 @@
             <a-icon type="plus"/>
             <span>Create a new course</span>
           </a-menu-item>
-          <a-menu-item key="2" @click="changeMenu('CourseListForModify')">
+          <a-menu-item key="2" @click="changeMenu('ModifyCourse')">
             <a-icon type="edit"/>
             <span>Modify a course</span>
           </a-menu-item>
@@ -22,7 +21,7 @@
             <a-icon type="tool"/>
             <span>Define dependencies</span>
           </a-menu-item>
-          <a-menu-item key="4">
+          <a-menu-item key="4" @click="changeMenu('dependencyDesigner')">
             <a-icon type="eye"/>
             <span>View dependencies</span>
           </a-menu-item>
@@ -56,7 +55,6 @@
             </a-col>
           </a-row>
         </a-layout-header>
-
         <a-layout-content :style="{
             margin: '24px 16px',
             padding: '24px',
@@ -69,19 +67,17 @@
             <router-view/>
           </vuescroll>
         </a-layout-content>
-
       </a-layout>
     </a-layout>
   </div>
 </template>
 <script>
 import Search from "./Search";
-import vuescroll from "vuescroll";
 
 export default {
   name: "Designer",
   components: {
-    Search, vuescroll
+    Search,
   },
   data() {
     return {

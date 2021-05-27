@@ -65,7 +65,7 @@ const data = [
     name: "Orienter-Object Programming",
     tags: ["CST"],
   },
-   {
+  {
     key: "4",
     name: "Structured Programming",
     tags: ["CST"],
@@ -77,14 +77,14 @@ export default {
   data() {
     return {
       data,
-      columns
+      columns,
     };
   },
-  methods:{
+  methods: {
     handleMenuClick(e) {
-      console.log('click', e);
+      console.log("click", e);
     },
-  }
+  },
 };
 </script>
 
@@ -109,7 +109,7 @@ a {
   color: #42b983;
 }
 
-.courseList{
+.courseList {
   height: 100%;
   width: 100%;
   text-align: center;
