@@ -19,19 +19,9 @@
             {{ tag.toUpperCase() }}
           </a-tag>
         </span>
-        <span slot="type"> 
-          <a-dropdown>
-            <a-menu slot="overlay" @click="handleMenuClick">
-                <a-menu-item key="1"> <a-icon type="user" />1st menu item </a-menu-item>
-                <a-menu-item key="2"> <a-icon type="user" />2nd menu item </a-menu-item>
-                <a-menu-item key="3"> <a-icon type="user" />3rd item </a-menu-item>
-            </a-menu>
-            <a-button style="margin-left: 8px"> Select the analysis type <a-icon type="down" /> </a-button>
-           </a-dropdown>
-        </span>
          <span slot="action">
           <a-button> 
-            <router-link to="/lecturer/chart"> Show Analysis </router-link>
+            <router-link to="/analysisResult"> Show Analysis </router-link>
            </a-button>
         </span>
       </a-table>
@@ -51,12 +41,6 @@ const columns = [
     key: "tags",
     dataIndex: "tags",
     scopedSlots: { customRender: "tags" },
-  },
-  
-  {
-    title: "Type",
-    key: "type",
-    scopedSlots: { customRender: "type" },
   },
   {
     title: "Action",

@@ -36,6 +36,12 @@ export default new Router({
           name: 'CourseListForAnalysis',
           component: CourseListForAnalysis
         },
+        {
+          path: '/analysisResult',
+          name: 'AnalysisResult',
+          component: () => import('../components/Analysis.vue'),
+        },
+    
       ]
     },
     {
@@ -116,7 +122,6 @@ export default new Router({
       name: 'modal',
       component: () => import('../components/modal.vue'),
     },
-
   ]
 })
 
