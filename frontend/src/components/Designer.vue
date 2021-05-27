@@ -1,4 +1,3 @@
-/* eslint-disable vue/valid-template-root */
 <template>
   <div id="designer">
     <a-layout id="components-layout-demo-custom-trigger">
@@ -14,7 +13,7 @@
             <a-icon type="plus"/>
             <span>Create a new course</span>
           </a-menu-item>
-          <a-menu-item key="2" @click="changeMenu('CourseListForModify')">
+          <a-menu-item key="2" @click="changeMenu('ModifyCourse')">
             <a-icon type="edit"/>
             <span>Modify a course</span>
           </a-menu-item>
@@ -22,7 +21,7 @@
             <a-icon type="tool"/>
             <span>Define dependencies</span>
           </a-menu-item>
-          <a-menu-item key="4">
+          <a-menu-item key="4" @click="changeMenu('Chart')">
             <a-icon type="eye"/>
             <span>View dependencies</span>
           </a-menu-item>
@@ -33,7 +32,7 @@
         </a-menu>
       </a-layout-sider>
       <a-layout>
-        <a-layout-header style="background: #fff; padding: 0;">
+        <a-layout-header style="background: #fff; padding: 0">
           <a-row type="flex" justify="space-between" align="middle">
             <!--     Right Notify Button       -->
             <a-col :span="8">
@@ -56,31 +55,26 @@
             </a-col>
           </a-row>
         </a-layout-header>
-
         <a-layout-content :style="{
             margin: '24px 16px',
             padding: '24px',
             background: '#fff',
-            // minHeight: '100%',
-            // minHeight: '280px',
-          }">
-          <vuescroll style="height: 100%">
-            <router-view/>
-          </vuescroll>
+            minHeight: '280px',
+          }"
+        >
+          <router-view/>
         </a-layout-content>
-
       </a-layout>
     </a-layout>
   </div>
 </template>
 <script>
 import Search from "./Search";
-import vuescroll from "vuescroll";
 
 export default {
   name: "Designer",
   components: {
-    Search, vuescroll
+    Search,
   },
   data() {
     return {
