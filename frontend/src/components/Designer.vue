@@ -13,7 +13,7 @@
             <a-icon type="plus"/>
             <span>Create a new course</span>
           </a-menu-item>
-          <a-menu-item key="2" @click="changeMenu('ModifyCourse')">
+          <a-menu-item key="2" @click="changeMenu('CourseListForModify')">
             <a-icon type="edit"/>
             <span>Modify a course</span>
           </a-menu-item>

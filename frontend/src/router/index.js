@@ -114,6 +114,16 @@ export default new Router({
           name: 'dependencyDesigner',
           component: () => import('../components/ViewDependency.vue'),
         },
+        {
+          path: 'searchResultDesigner',
+          name: 'searchResultDesigner',
+          component: () => import('../components/SearchResult.vue'),
+        },
+        {
+          path: 'courseInfo',
+          name: 'courseInfo',
+          component: () => import('../components/CourseInfo.vue'),
+        },
       ]
     },
     {
