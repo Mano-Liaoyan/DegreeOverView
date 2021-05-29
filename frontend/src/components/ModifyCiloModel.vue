@@ -1,6 +1,6 @@
 <template>
   <div>
-    <a-modal title="Modify" :visible="isVisible" :confirm-loading="confirmLoading" @ok="handleOk" @cancel="handleCancel">
+    <a-modal title="Modify" :visible="isVisible" :confirm-loading="confirmLoading" @ok="handleOk" @cancel="handleCancel" centered>
       <a-row type="flex" justify="space-between" style="margin-top: -19px;">
         <a-col>
           <a-input v-model="evam_name" placeholder="Evaluation Method Name"/>
@@ -59,10 +59,16 @@ export default {
     visible: undefined,
     ev_name: ''
   },
+  mounted() {
+    this.value_length = this.valueLength;
+  },
   computed: {
     isVisible() {
-      return this.visible
+      return this.visible;
     },
+    valueLength() {
+      return this.value.length;
+    }
   },
   data() {
     return {
@@ -75,6 +81,7 @@ export default {
       text_content: '',
       evam_name: '',
       percentage: '',
+      value_length: 0,
     };
   },
   methods: {
@@ -89,8 +96,8 @@ export default {
         info.tags.push(this.value[i].toString());
       }
       setTimeout(() => {
-        this.$emit('changeVisibleToFalse');
         this.$emit("update", this.ev_name, info)
+        this.$emit('changeVisibleToFalse');
         this.confirmLoading = false;
       }, 500);
 
@@ -106,7 +113,20 @@ export default {
         search_data: [],
         fetching: false,
       });
+      if (this.valueLength < this.value_length) {
+        console.log("cilo values ", value)
+        console.log('before removed: ', this.data)
+        for (let i = 0; i < this.data.length; i++) {
+          console.log(!value.includes(this.data[i].cilo_id))
+          if (!value.includes(this.data[i].cilo_id)) {
+            this.data.splice(i, 1);
+          }
+        }
+        console.log('after removed: ', this.data)
+      }
+      this.value_length = this.valueLength;
     },
+
     async addNewCilo() {
       let url = "http://127.0.0.1:8000/api/cilo/";
       let params = {
@@ -118,10 +138,18 @@ export default {
         if (res.data.content === params.content) { // If success then
           console.log(res.data);
           res_data = res.data;
+          this.value.push(res_data.cilo_id)
+          Object.assign(this, {
+            value: this.value,
+            search_data: [],
+            fetching: false,
+          });
+          this.value_length = this.valueLength // Update the length cache
           this.data.push({
             cilo_id: res_data.cilo_id,
             content: res_data.content,
           },)
+          this.text_content = "";// Empty the text area
         } else {// If not then
           // console.log(res.data);
           this.search_data = []
@@ -133,6 +161,7 @@ export default {
       });
       return data;
     },
+
     handleClickOption(data) {
       this.data.push({
         cilo_id: data.cilo_id,
