@@ -25,11 +25,13 @@
           Add
         </a-button>
         <a-upload 
-              :multiple="false"         
-            @change="handleChange"
-            accept="application/vnd.ms-excel, 
-                application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" 
-            >
+            name="file"
+            :multiple="false"
+            :action='clAction'
+            @change="uploadFilecl"
+            :file-list="fileListcl"
+            :before-upload="beforeUploadcl" 
+        >
             <a-button style="margin-right: 10px;"> <a-icon type="upload" 
               /> Import CILOs </a-button>
         </a-upload>
@@ -138,8 +140,56 @@ export default {
     },
     clickDelete(key) {
       const dataSource = [...this.data];
+      this.counter--;
       this.data = dataSource.filter(item => item.evam !== key);
-    }
+    },
+
+    beforeUploadcl(file){
+      const isXlsx = file.type === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
+      if (!isXlsx) {
+        this.$message.error('Please upload a .xlsx file!');
+        this.fileListcl = []
+      }
+      return isXlsx;
+    },
+    uploadFilecl(info){
+      this.importfile(info.file)  
+    },
+    importfile (obj) {
+     const _this = this
+     const reader = new FileReader()
+     _this.data = []
+     _this.columns = []
+     reader.readAsArrayBuffer(obj.originFileObj)
+     reader.onload = function () {
+       const buffer = reader.result
+       const bytes = new Uint8Array(buffer)
+       const length = bytes.byteLength
+       let binary = ''
+       for (let i = 0; i < length; i++) {
+         binary += String.fromCharCode(bytes[i])
+       }
+        const XLSX = require('xlsx')
+        const wb = XLSX.read(binary, {
+          type: 'binary'
+        })
+        const outdata = XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]])
+        //console.log(outdata)
+        let tableheader = outdata[0]
+        for(let val in tableheader){
+          _this.columns.push({
+            title: val,
+            dataIndex: val,
+            key: val,
+          })
+          this.counter++;
+        }
+        outdata.forEach((v,i)=>{
+          v={...v,"key":i}
+        })
+        _this.data = outdata        
+      }
+    },
   }
 }
 </script>
