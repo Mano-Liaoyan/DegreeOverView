@@ -4,9 +4,9 @@
     <div class="addcoursebox">
       <h1 style="text-align: center; font-weight: bold; font-size: 20px;">Create a New Course</h1>
       <br>
-      <a-form :form="form" @submit="handleSubmit">
+      <a-form :form="form" model="name" ref="name">
         <a-form-item>
-          <a-input
+          <a-input 
             style="width: 360px"
             v-decorator="[
               'coursename',
@@ -21,15 +21,21 @@
               },
             ]"
             placeholder="Please input course name"
+            v-model="name.input"
           >
           <a-icon slot="prefix" type="bulb" style="color:rgba(0,0,0,.25)"/>
           </a-input>
         </a-form-item>
         <a-form-item>
             <div style="float: left;" >
-              <a-button style="float: left;" type="primary" html-type="submit"> 
-                <router-link to="coursemain"> Confirm </router-link>
+
+              <router-link :to="{name:'CourseMain',params: {coursename: name.input}}">
+
+              <a-button style="float: left;" type="primary"> 
+                
+                 Confirm
                 </a-button>
+              </router-link>
             </div>
             <div style="float: right;" >
               <a-button> 
@@ -47,12 +53,19 @@ export default {
   name: "AddCourse",
   data() {
     return {
-      // msg: 'Welcome to Your Vue.js App'
+      name:{
+        input: ''
+      }
     };
   },
   methods: {
-    handleSubmit(){
-
+    sendParams(name){
+        this.$router.push({
+            path: 'coursemain', 
+            query: {
+                cname: this.name, 
+            }
+        })
     },
   },
 };

@@ -1,11 +1,12 @@
 <template>
+<vue-scroll style="height: 100%">
   <div class="createNew">
     <a-form-model ref="ruleForm" :model="form" :rules="rules" layout="vertical">
       <!--    :label-col="labelCol" :wrapper-col="wrapperCol"-->
       <a-row type="flex" justify="space-between">
         <a-col class="horizTwo" :span="10">
           <a-form-model-item ref="name" label="Course Name" prop="cname" validate-status="success">
-            <a-input v-model="form.cname" @blur="() => {$refs.name.onFieldBlur();}"/>
+            <a-input disabled="disabled" v-model="form.cname" @blur="() => {$refs.name.onFieldBlur();}"/>
           </a-form-model-item>
         </a-col>
         <a-col class="horizTwo" :span="10">
@@ -78,6 +79,7 @@
       </a-row>
     </a-form-model>
   </div>
+</vue-scroll>
 </template>
 <script>
 import YearSelector from "./YearSelector";
@@ -107,7 +109,7 @@ export default {
         percentage: [],
       },
       form: {
-        cname: '',
+        cname: this.$route.params.coursename,
         code: '',
         cilo: '',
         assessments: '',

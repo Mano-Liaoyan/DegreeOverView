@@ -32,6 +32,11 @@ export default new Router({
       component: Lecturer,
       children: [
         {
+          path: 'lecturerhome',
+          name: 'lecturerhome',
+          component: () => import('../components/Homepage.vue'),
+        },
+        {
           path: 'analysislist',
           name: 'CourseListForAnalysis',
           component: CourseListForAnalysis
@@ -46,11 +51,7 @@ export default new Router({
           name: 'dependencyLecturer',
           component: () => import('../components/ViewDependency.vue'),
         },
-        {
-          path: '/lecturerhome',
-          name: 'lecturerhome',
-          component: () => import('../components/Homepage.vue'),
-        },
+       
       ]
     },
     {
@@ -59,7 +60,7 @@ export default new Router({
       component: Designer,
       children: [
         {
-          path: '/designerhome',
+          path: 'designerhome',
           name: 'designerhome',
           component: () => import('../components/Homepage.vue'),
         },
@@ -136,11 +137,7 @@ export default new Router({
       name: 'Student',
       component: Student,
       children: [
-        {
-          path: '/studenthome',
-          name: 'studenthome',
-          component: () => import('../components/Homepage.vue'),
-        },
+       
         {
           path: 'performanceChart',
           name: 'PerformanceChart',
@@ -156,6 +153,11 @@ export default new Router({
           path: '/dependencyStudent',
           name: 'dependencyStudent',
           component: () => import('../components/ViewDependency.vue'),
+        },
+        {
+          path: 'studenthome',
+          name: 'studenthome',
+          component: () => import('../components/Homepage.vue'),
         },
       ]
     },

@@ -1,4 +1,5 @@
 <template>
+<vue-scroll style="height: 100%">
   <div class="modify">
     <a-form-model ref="ruleForm" :model="form" :rules="rules" layout="vertical">
       <!--    :label-col="labelCol" :wrapper-col="wrapperCol"-->
@@ -84,6 +85,7 @@
       </a-row>
     </a-form-model>
   </div>
+</vue-scroll>
 </template>
 <script>
 import YearSelector from "./YearSelector";

@@ -59,12 +59,10 @@
             margin: '24px 16px',
             paddingTop: '12px',
             background: '#fff',
-            // minHeight: '100%',
-            // minHeight: '280px',
           }">
-          <vue-scroll style="height: 100%">
+          
             <router-view/>
-          </vue-scroll>
+          
         </a-layout-content>
       </a-layout>
     </a-layout>
