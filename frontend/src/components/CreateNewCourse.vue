@@ -67,13 +67,19 @@
       </a-row>
       <a-row type="flex" justify="end">
         <a-col :span="12">
-          <a-form-model-item :wrapper-col="{ span: 8, offset: 14 }">
-            <a-button type="primary" @click="onSubmit">
-              Modify
-            </a-button>
-            <a-button style="margin-left: 10px;" @click="resetForm">
-              Reset
-            </a-button>
+          <a-form-model-item :wrapper-col="{ span: 14, offset: 10 }">
+             
+              <a-button type="primary" style="margin-right: 15px;" @click="onSubmit">
+                Confirm
+              </a-button>
+              <a-button style="margin-right: 15px;" @click="resetForm">
+                Reset
+              </a-button> 
+              <a-button style="margin-right: 15px;"> 
+                <router-link to="/designer/designerhome"> Cancel </router-link>
+              </a-button>
+             
+            
           </a-form-model-item>
         </a-col>
       </a-row>
