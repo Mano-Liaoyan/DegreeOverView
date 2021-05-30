@@ -174,7 +174,6 @@ export default {
             course_code: this.form.code,
             program: this.form.program,
             type: this.form.type,
-            cilos: this.$store.state.new_cilos
           })
           console.log("create course form: ", this.$store.state.create_course_form)
           // alert('submit!');

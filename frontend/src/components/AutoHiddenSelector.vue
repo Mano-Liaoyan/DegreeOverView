@@ -9,6 +9,9 @@
 <script>
 export default {
   name: "AutoHiddenSelector",
+  props: {
+    ids: 0
+  },
   data() {
     return {
       selectedItems: [],
@@ -23,6 +26,8 @@ export default {
   methods: {
     handleChange(selectedItems) {
       this.selectedItems = selectedItems;
+      console.log('select items', this.selectedItems)
+      this.$emit("update", this.selectedItems, this.ids);
     },
   },
 };

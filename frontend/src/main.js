@@ -46,6 +46,9 @@ const store = new Vuex.Store({
       state.search_result = data;
     },
     setCilos(state, data) {
+      state.create_course_form.cilos = data
+    },
+    setAs(state, data) {
       /*      if (!state.new_cilos.includes(data))
               state.new_cilos.push(data);*/
       state.new_cilos = data
