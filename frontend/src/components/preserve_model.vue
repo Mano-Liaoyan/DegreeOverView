@@ -1,24 +1,34 @@
 <template>
   <div>
     <a-modal title="Modify" :visible="isVisible" :confirm-loading="confirmLoading" @ok="handleOk" @cancel="handleCancel" centered>
-      <h4 style="margin-top: -19px;">New Cilo</h4>
+      <a-row type="flex" justify="space-between" style="margin-top: -19px;">
+        <a-col>
+          <a-input v-model="evam_name" placeholder="Evaluation Method Name"/>
+        </a-col>
+        <a-col>
+          <!--          <a-input v-model="percentage" placeholder="percentage" suffix="%"/>-->
+          Percentage:
+          <a-input-number :default-value="20" v-model="percentage" :min="0" :max="100" :formatter="value => `${value}%`"
+                          :parser="value => value.replace('%', '')"/>
+        </a-col>
+      </a-row>
+      <h4 style="margin-top: 5px;">New Cilo</h4>
       <a-textarea v-model="text_content" placeholder="Please input the cilo content" allow-clear/>
-      <h4 style="margin-top: 5px;">Related Cilos</h4>
+      <div style="text-align: end;margin-top: 5px;">
+        <a-button type="primary" @click="addNewCilo">
+          Add new CILO
+        </a-button>
+      </div>
+      <h4 style="margin-top: -19px;">Existing Cilo</h4>
       <a-select mode="multiple" :value="value" placeholder="Select Cilos"
                 style="width: 100%" :filter-option="false" :not-found-content="fetching ? undefined : null"
-                @change="handleChange" @search="fetchCilo">
+                @change="handleChange"><!--                @search="fetchCilo"-->
         <a-spin v-if="fetching" slot="notFoundContent" size="small"/>
         <a-select-option v-for="data in filteredOptions" :key="data.cilo_id" @click="handleClickOption(data)">
           {{ data.cilo_id }} {{ data.content }}
         </a-select-option>
       </a-select>
-      <a-table :columns="columns" :data-source="data" :pagination="false" bordered rowKey="cilo_id" style="margin-top: 10px;">
-        <span slot="tags" slot-scope="tags">
-          <a-tag v-for="tag in tags" :key="tag" :color="tag === 'loser' ? 'volcano' : tag.length > 5 ? 'geekblue' : 'green'">
-            {{ tag.toUpperCase() }}
-          </a-tag>
-      </span>
-      </a-table>
+      <a-table :columns="columns" :data-source="data" :pagination="false" bordered rowKey="cilo_id" style="margin-top: 10px;"/>
     </a-modal>
   </div>
 </template>
@@ -28,7 +38,7 @@ import axios from "axios";
 
 const columns = [
   {
-    title: 'RELATED_ID',
+    title: 'CILO_ID',
     key: 'cilo_id',
     dataIndex: 'cilo_id',
     align: 'center'
@@ -76,48 +86,26 @@ export default {
     };
   },
   methods: {
-    async handleOk(e) {
+    handleOk(e) {
       this.confirmLoading = true;
       let info = {
         evam: this.evam_name,
-        percentage: this.text_content,
+        percentage: this.percentage + '%',
         tags: [],
       }
       for (let i = 0; i < this.value.length; i++) {
         info.tags.push(this.value[i].toString());
       }
-
-      if (this.text_content === "") {
-        this.$message.error("Can not create empty CILO!");
-        return;
-      }
-      let url = "http://127.0.0.1:8000/api/cilo/";
-      let params = info.tags ? {
-        content: this.text_content,
-        parent_cilos: info.tags
-      } : {
-        content: this.text_content
-      };
-
-      await axios.post(url, params).then((res) => {
-        console.log(res.data)
-        if (res.data.cilo_id) { // If success then
-          this.$emit("update", this.ev_name, info)
-          this.$emit('changeVisibleToFalse');
-          this.confirmLoading = false;
-        } else {
-          this.$message.error("Wrong Post!")
-          this.confirmLoading = false;
-        }
-      }).catch((e) => {
-        // If some error occurs
-        this.$message.error(e);
+      setTimeout(() => {
+        this.$emit("update", this.ev_name, info)
+        this.$emit('changeVisibleToFalse');
         this.confirmLoading = false;
-        console.log(e);
-      });
+      }, 500);
+
     },
     handleCancel(e) {
       console.log('Clicked cancel button');
+      // this.visible = false;
       this.$emit('changeVisibleToFalse');
     },
     handleChange(value) {
@@ -139,11 +127,8 @@ export default {
       }
       this.value_length = this.valueLength;
     },
+
     async addNewCilo() {
-      if (this.text_content === "") {
-        this.$message.error("Can not create empty CILO!");
-        return;
-      }
       let url = "http://127.0.0.1:8000/api/cilo/";
       let params = {
         content: this.text_content

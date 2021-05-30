@@ -37,57 +37,33 @@ const columns = [
       align: 'center'
     },*/
   {
-    title: 'Evaluation Method',
+    title: 'CILO',
     key: 'evam',
     dataIndex: 'evam',
-    align: 'center'
+    align: 'center',
+    width: '180px'
   },
   {
-    title: 'Percentage',
+    title: 'Content',
     dataIndex: 'percentage',
     key: 'percentage',
-    align: 'center'
+    align: 'center',
   },
   {
-    title: 'CILOs',
+    title: 'Dependenced CILOs',
     key: 'tags',
     dataIndex: 'tags',
     scopedSlots: {customRender: 'tags'},
-    align: 'center'
+    align: 'center',
+    width: '240px'
   },
   {
     title: 'Action',
     key: 'action',
     scopedSlots: {customRender: 'action'},
-    align: 'center'
+    align: 'center',
+    width: '180px'
   },
-];
-
-let data = [
-  // {
-  //   evam: 'Assignments/Quizzes',
-  //   percentage: '15%',
-  //   tags: [],
-  //   visible: false
-  // },
-  /*  {
-      evam: 'Labs',
-      percentage: '25%',
-      tags: [],
-      visible: false
-    },
-    {
-      evam: 'Projects',
-      percentage: '10%',
-      tags: [],
-      visible: false
-    },
-    {
-      evam: 'Examination',
-      percentage: '50%',
-      tags: [],
-      visible: false
-    },*/
 ];
 
 export default {
@@ -95,20 +71,30 @@ export default {
   components: {
     ModifyCiloModel
   },
+  deactivated() {
+    this.data = [];
+    this.counter = 1;
+    this.visible = false;
+  },
   data() {
     return {
-      data,
+      data: [],
       columns,
       counter: 1,
       visible: false,
     };
   },
+  mounted() {
+    this.clickAdd()
+  },
   methods: {
     updateRowData(name, info) {
+      let cilo_list = []
       for (let i = 0; i < this.data.length; i++) {
         if (this.data[i].evam === name) {
           this.data[i].evam = info.evam === "" ? this.data[i].evam : info.evam;
-          this.data[i].percentage = info.percentage === "%" ? this.data[i].percentage : info.percentage;
+          this.$store.commit("pushCilos", this.data[i].evam)
+          this.data[i].percentage = info.percentage === "" ? this.data[i].percentage : info.percentage;
           this.data[i].tags = info.tags === [] ? this.data[i].tags : info.tags;
         }
       }
@@ -131,7 +117,7 @@ export default {
         index: this.counter,
         percentage: '',
         tags: [],
-        evam: 'New Method' + this.counter,
+        evam: 'CILO ' + this.counter,
         visible: false
       })
       this.counter++;

@@ -30,19 +30,6 @@
           </a-form-model-item>
         </a-col>
       </a-row>
-      <!--      <a-row type="flex" justify="space-between">
-              <a-col class="horizTwo" :span="22">
-                <a-form-model-item ref="name" label="Prerequisites" prop="prerequisites">
-                  <a-select mode="multiple" label-in-value :value="value" placeholder="Select Pre RequestCourse"
-                            style="width: 100%" :filter-option="false" @search="fetchCourse" @change="handleChange">
-                    <a-select-option v-for="data in search_data" :key="data.course_id">
-                      {{ data.course_id }} {{ data.course_name }}
-                    </a-select-option>
-                  </a-select>
-                  &lt;!&ndash;          <a-input v-model="form.prerequisites" @blur="() => {$refs.name.onFieldBlur();}"/>&ndash;&gt;
-                </a-form-model-item>
-              </a-col>
-            </a-row>-->
       <a-row type="flex" justify="space-between">
         <a-col class="horizTwo" :span="22">
           <a-form-model-item ref="name" label="CILOs" prop="cilo" style="margin-bottom: 0;">
@@ -115,16 +102,6 @@ export default {
       labelCol: {span: 24},
       wrapperCol: {span: 12},
       program_data: undefined,
-      post_form: {
-        course_name: '',
-        course_code: '',
-        academic_start_year: 2013,
-        program: '',
-        type: '',
-        assessment: 3,
-        cilos: [],
-        pre_request_course_id: []
-      },
       as_form: {
         evaluation_method: [],
         percentage: [],
@@ -135,10 +112,7 @@ export default {
         cilo: '',
         assessments: '',
         program: '',
-        prerequisites: '',
-        relation: '',
         startDate: undefined,
-        delivery: false,
         type: '',
       },
       rules: {
@@ -149,10 +123,10 @@ export default {
           {required: true, message: 'Please input the course code!', trigger: 'blur'},
         ],
         cilo: [
-          {required: true, message: 'Please input the cilo name!', trigger: 'blur'},
+          {required: false, message: 'Please input the cilo name!', trigger: 'blur'},
         ],
         assessments: [
-          {required: true, message: 'Please input the assessments name!', trigger: 'blur'},
+          {required: false, message: 'Please input the assessments name!', trigger: 'blur'},
         ],
         program: [
           {required: true, message: 'Please input the programme name!', trigger: 'blur'},
@@ -193,21 +167,16 @@ export default {
       return data;
     },
     async onSubmit() {
-      // http://127.0.0.1:8000/api/assessment/
-      this.post_form.course_name = this.form.cname
-      this.post_form.course_code = this.form.code
-      this.post_form.program = this.form.program
-      this.post_form.type = this.form.type
-
-      // this.as_form.evaluation_method =
-
-      for (let i = 0; i < this.value.length; i++) {
-        this.post_form.pre_request_course_id.push(this.value[i].key)
-      }
-      console.log('post form: ' + JSON.stringify(this.post_form))
       this.$refs.ruleForm.validate(valid => {
         if (valid) {
-          alert('submit!');
+          this.$store.commit("set_course_form", {
+            course_name: this.form.cname,
+            course_code: this.form.code,
+            program: this.form.program,
+            type: this.form.type,
+          })
+          console.log("create course form: ", this.$store.state.create_course_form)
+          // alert('submit!');
         } else {
           console.log('error submit!!');
           return false;

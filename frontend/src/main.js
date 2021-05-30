@@ -24,7 +24,18 @@ Vue.prototype.$vuescrollConfig = {
 const store = new Vuex.Store({
   state: {
     count: 0,
-    search_result: undefined
+    search_result: undefined,
+    new_cilos: [],
+    cilo_finished: false,
+    as_finished: false,
+    create_course_form: {
+      course_name: '',
+      academic_start_year: '',
+      program: '',
+      cilos: [],
+      assessments: [],
+      type: ''
+    }
   },
   mutations: {
     increment(state) {
@@ -32,6 +43,25 @@ const store = new Vuex.Store({
     },
     setResult(state, data) {
       state.search_result = data;
+    },
+    pushCilos(state, data) {
+      state.new_cilos.push(data);
+    },
+    set_course_form(state, payload) {
+      if (payload.course_name)
+        state.create_course_form.course_name = payload.course_name;
+      if (payload.course_code)
+        state.create_course_form.course_code = payload.course_code;
+      if (payload.academic_start_year)
+        state.create_course_form.academic_start_year = payload.academic_start_year;
+      if (payload.program)
+        state.create_course_form.program = payload.program;
+      if (payload.cilos)
+        state.create_course_form.cilos = payload.cilos;
+      if (payload.assessments)
+        state.create_course_form.assessments = payload.assessments;
+      if (payload.type)
+        state.create_course_form.type = payload.type;
     }
   }
 })

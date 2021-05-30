@@ -30,7 +30,7 @@ class Course(models.Model):
     course_id = models.IntegerField(primary_key=True, auto_created=True)
     course_name = models.CharField(max_length=40, unique=True)
     course_code = models.CharField(max_length=10, unique=True)
-    academic_start_year = models.IntegerField()
+    academic_start_year = models.CharField(max_length=10)
     program = models.CharField(max_length=10)
     type = models.CharField(max_length=10)
     cilos = models.ManyToManyField("Cilo")
@@ -43,9 +43,6 @@ class Cilo(models.Model):
     content = models.TextField()
     parent_cilos = models.ManyToManyField("Cilo", related_name="parent")
     child_cilos = models.ManyToManyField("Cilo", related_name="child")
-
-    def get_clio(self):
-        return self.content
 
 
 class Assessment(models.Model):

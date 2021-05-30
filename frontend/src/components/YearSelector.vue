@@ -21,7 +21,10 @@ export default {
   },
   methods: {
     onChange(value) {
-      console.log(value);
+      console.log(value[0]);
+      this.$store.commit("set_course_form", {
+        academic_start_year: value[0]
+      })
     },
     createTimeOptions() {
       let times = [{

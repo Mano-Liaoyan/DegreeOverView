@@ -3,7 +3,8 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from userdb.models import Student, Lecturer, CourseDesigner, Cilo, Course, Assessment
 from rest_framework import viewsets
-from .serializers import StudentSerializer, LecturerSerializer, CourseDesignerSerializer, CourseSerializer, CiloSerializer, AssessmentSerializer
+from .serializers import StudentSerializer, LecturerSerializer, CourseDesignerSerializer, CourseSerializer, CiloSerializer, AssessmentSerializer, \
+    CiloSearchSerializer
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.generics import ListAPIView
 from rest_framework.filters import SearchFilter, OrderingFilter
@@ -153,8 +154,11 @@ class CiloViewSet(viewsets.ModelViewSet):
         print(serializer.data)
         data = serializer.data
         Cilo.objects.create(content=data['content'])
+        cilo = Cilo.objects.get(content=data['content'])
+        if data['parent_cilos']:
+            cilo.parent_cilos.set(data['parent_cilos'])
         headers = self.get_success_headers(serializer.data)
-        data['cilo_id'] = Cilo.objects.get(content=data['content']).cilo_id
+        data['cilo_id'] = cilo.cilo_id
         return Response(data, status=201, headers=headers)
 
 
@@ -190,7 +194,7 @@ class CourseSearchViewSet(ListAPIView):
 
 class CiloSearchViewSet(ListAPIView):
     queryset = Cilo.objects.all()
-    serializer_class = CiloSerializer
+    serializer_class = CiloSearchSerializer
     pagination_class = CustomPageNumberPagination
     filter_backends = (SearchFilter, OrderingFilter,)
     search_fields = ('cilo_id', 'content')
