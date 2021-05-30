@@ -29,12 +29,18 @@ const store = new Vuex.Store({
     new_related_cilos: [],
     cilo_finished: false,
     as_finished: false,
+    as_form: {
+      evaluation_method: [],
+      percentage: [],
+      cilos_arr: [],
+      cilos: []
+    },
     create_course_form: {
       course_name: '',
       academic_start_year: '',
       program: '',
       cilos: [],
-      assessments: [],
+      assessments: {},
       type: ''
     }
   },
@@ -48,10 +54,15 @@ const store = new Vuex.Store({
     setCilos(state, data) {
       state.create_course_form.cilos = data
     },
-    setAs(state, data) {
-      /*      if (!state.new_cilos.includes(data))
-              state.new_cilos.push(data);*/
-      state.new_cilos = data
+    setAs(state, payload) {
+      if (payload.evaluation_method)
+        state.as_form.evaluation_method = payload.evaluation_method
+      if (payload.percentage)
+        state.as_form.percentage = payload.percentage
+      if (payload.cilos_arr)
+        state.as_form.cilos_arr = payload.cilos_arr
+      if (payload.cilos)
+        state.as_form.cilos = payload.cilos
     },
     pushCilos(state, data) {
       if (!state.new_related_cilos.includes(data))

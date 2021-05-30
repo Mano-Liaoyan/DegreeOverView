@@ -80,11 +80,15 @@ export default {
   methods: {
     onEvamChange(e, index) {
       this.evam[index] = e.target.value
-      console.log('evam: ', this.evam)
+      this.$store.commit("setAs", {
+        evaluation_method: this.evam.filter(o => o)
+      })
     },
     onPercentChange(value, index) {
       this.percentage[index] = value
-      console.log('percentage: ', this.percentage)
+      this.$store.commit("setAs", {
+        percentage: this.percentage.filter(o => o)
+      })
     },
     /*    onCiloChange(value, index) {
           for (let i = 0; i < value.length; i++) {
@@ -102,22 +106,11 @@ export default {
         },*/
     onCiloChange(e, index) {
       this.selected_cilos[index] = e.target.value
-      console.log('evam: ', this.selected_cilos)
-    },
-    updateRowData(name, info) {
-      let as_list = [];
-      for (let i = 0; i < this.data.length; i++) {
-        if (this.data[i].evam === name) {
-          this.data[i].evam = info.evam === "" ? this.data[i].evam : info.evam;
-          this.data[i].percentage = info.percentage === "%" ? this.data[i].percentage : info.percentage;
-          this.data[i].tags = info.tags === [] ? this.data[i].tags : info.tags;
-        }
-        as_list.push(this.data[i])
-      }
-      this.$store.commit("set_course_form", {
-        assessments: as_list
+      this.$store.commit("setAs", {
+        cilos_arr: this.selected_cilos.filter(o => o)
       })
     },
+
     clickAdd() {
       this.data.push({
         index: this.counter,

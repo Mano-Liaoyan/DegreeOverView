@@ -66,12 +66,9 @@
       </a-row>
       <a-row type="flex" justify="end">
         <a-col :span="12">
-          <a-form-model-item :wrapper-col="{ span: 8, offset: 14 }">
+          <a-form-model-item :wrapper-col="{ span: 8, offset: 19 }">
             <a-button type="primary" @click="onSubmit">
               Modify
-            </a-button>
-            <a-button style="margin-left: 10px;" @click="resetForm">
-              Reset
             </a-button>
           </a-form-model-item>
         </a-col>
@@ -102,10 +99,6 @@ export default {
       labelCol: {span: 24},
       wrapperCol: {span: 12},
       program_data: undefined,
-      as_form: {
-        evaluation_method: [],
-        percentage: [],
-      },
       form: {
         cname: '',
         code: '',
@@ -169,13 +162,23 @@ export default {
     async onSubmit() {
       this.$refs.ruleForm.validate(valid => {
         if (valid) {
+          let percentage_sum = 0;
+          for (let i = 0; i < this.$store.state.as_form.percentage.length; i++) {
+            percentage_sum += this.$store.state.as_form.percentage[i]
+          }
+          if (percentage_sum !== 100) {
+            this.$message.error("The sum of the percentage must equals to 100%!")
+            return;
+          }
           this.$store.commit("set_course_form", {
             course_name: this.form.cname,
             course_code: this.form.code,
             program: this.form.program,
             type: this.form.type,
+            assessments: this.$store.state.as_form
           })
           console.log("create course form: ", this.$store.state.create_course_form)
+          // console.log("as_form: ", this.$store.state.as_form)
           // alert('submit!');
         } else {
           console.log('error submit!!');
