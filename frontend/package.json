@@ -18,7 +18,7 @@
         "axios": "^0.21.1",
         "echarts": "^5.1.1",
         "fix-package-lock": "^1.0.1",
-        "relation-graph": "^1.1.0",
+        "relation-graph": "file:relation-graph",
         "vue": "^2.5.2",
         "vue-echarts": "*",
         "vue-router": "^3.0.1",
