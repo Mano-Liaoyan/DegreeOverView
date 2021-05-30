@@ -16,8 +16,8 @@ export default {
   },
   computed: {
     filteredOptions() {
-      console.log('state: ', this.$store.state.new_cilos)
-      return this.$store.state.new_cilos.filter(o => !this.selectedItems.includes(o));
+      console.log('state: ', this.$store.state.new_related_cilos)
+      return this.$store.state.new_related_cilos.filter(o => !this.selectedItems.includes(o));
     },
   },
   methods: {

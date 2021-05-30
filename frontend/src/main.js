@@ -26,6 +26,7 @@ const store = new Vuex.Store({
     count: 0,
     search_result: undefined,
     new_cilos: [],
+    new_related_cilos: [],
     cilo_finished: false,
     as_finished: false,
     create_course_form: {
@@ -44,8 +45,18 @@ const store = new Vuex.Store({
     setResult(state, data) {
       state.search_result = data;
     },
+    setCilos(state, data) {
+      /*      if (!state.new_cilos.includes(data))
+              state.new_cilos.push(data);*/
+      state.new_cilos = data
+    },
     pushCilos(state, data) {
-      state.new_cilos.push(data);
+      if (!state.new_related_cilos.includes(data))
+        state.new_related_cilos.push(data)
+    },
+    filterCilo(state, data) {
+      if (state.new_cilos.includes(data))
+        state.new_cilos = state.new_cilos.filter(o => o !== data);
     },
     set_course_form(state, payload) {
       if (payload.course_name)
@@ -62,6 +73,12 @@ const store = new Vuex.Store({
         state.create_course_form.assessments = payload.assessments;
       if (payload.type)
         state.create_course_form.type = payload.type;
+    },
+    change_cilo_finished(state) {
+      state.cilo_finished = !state.cilo_finished
+    },
+    change_as_finished(state) {
+      state.as_finished = !state.as_finished
     }
   }
 })
