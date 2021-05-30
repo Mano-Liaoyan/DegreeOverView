@@ -51,7 +51,16 @@ export default new Router({
           name: 'dependencyLecturer',
           component: () => import('../components/ViewDependency.vue'),
         },
-       
+        {
+          path: 'inputProgrammeLecturer',
+          name: 'inputProgrammeLecturer',
+          component: () => import('../components/inputProgrammeLecturer.vue'),
+        },
+        {
+          path: 'dependencyLecturer',
+          name: 'dependencyLecturer',
+          component: () => import('../components/ViewDependency.vue'),
+        },
       ]
     },
     {
@@ -137,7 +146,11 @@ export default new Router({
       name: 'Student',
       component: Student,
       children: [
-       
+        {
+          path: 'inputProgrammeStudent',
+          name: 'inputProgrammeStudent',
+          component: () => import('../components/inputProgrammeStudent.vue'),
+        },
         {
           path: 'performanceChart',
           name: 'PerformanceChart',

@@ -9,7 +9,7 @@
             <a-icon type="home"/>
             <span>Home</span>
           </a-menu-item>
-          <a-menu-item key="4" @click="changeMenu('dependencyStudent')">
+          <a-menu-item key="4" @click="changeMenu('inputProgrammeStudent')">
             <a-icon type="eye"/>
             <span>View dependencies</span>
           </a-menu-item>

@@ -1,12 +1,18 @@
 <template>
-  <div id="chart" style="width: 600px; height: 400px"></div>
+<div>
+  <div id="chart" style="width: 600px; height: 400px">
+
+  </div>
+  </div>
 </template>
 
 <script>
 import * as echarts from "echarts";
 export default {
   data() {
-    return {};
+    return {
+     
+    };
   },
   mounted() {
     let this_ = this;
@@ -14,7 +20,7 @@ export default {
     let myChart = echarts.init(chartDom);
     let option = {
       title: {
-        text: "Dependency",
+        text: this.$route.params.programme,
       },
       tooltip: {},
       animationDurationUpdate: 1500,

@@ -28,20 +28,18 @@
         </a-form-item>
         <a-form-item>
             <div style="float: left;" >
-
               <router-link :to="{name:'CourseMain',params: {coursename: name.input}}">
-
               <a-button style="float: left;" type="primary"> 
-                
                  Confirm
                 </a-button>
               </router-link>
             </div>
             <div style="float: right;" >
               <a-button> 
-                <router-link to="/designer"> Cancel </router-link>
+                <router-link to="/designer/designerhome"> Cancel </router-link>
               </a-button>
             </div>
+            
         </a-form-item>
       </a-form>
       </div>

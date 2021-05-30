@@ -86,7 +86,6 @@ export default {
       for (let i = 0; i < this.value.length; i++) {
         info.tags.push(this.value[i].toString());
       }
-
       if (this.text_content === "") {
         this.$message.error("Can not create empty CILO!");
         return;
@@ -102,6 +101,7 @@ export default {
       await axios.post(url, params).then((res) => {
         console.log(res.data)
         if (res.data.cilo_id) { // If success then
+          info.cilo_id = res.data.cilo_id
           this.$emit("update", this.ev_name, info)
           this.$emit('changeVisibleToFalse');
           this.confirmLoading = false;
@@ -116,10 +116,12 @@ export default {
         console.log(e);
       });
     },
+
     handleCancel(e) {
       console.log('Clicked cancel button');
       this.$emit('changeVisibleToFalse');
     },
+
     handleChange(value) {
       Object.assign(this, {
         value,
@@ -139,6 +141,7 @@ export default {
       }
       this.value_length = this.valueLength;
     },
+
     async addNewCilo() {
       if (this.text_content === "") {
         this.$message.error("Can not create empty CILO!");

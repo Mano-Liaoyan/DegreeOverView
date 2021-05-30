@@ -17,18 +17,12 @@
             <a-icon type="edit"/>
             <span>Modify a course</span>
           </a-menu-item>
-          <a-menu-item key="3" @click="changeMenu('CourseListForDependency')">
-            <a-icon type="tool"/>
-            <span>Define dependencies</span>
-          </a-menu-item>
+         
           <a-menu-item key="4" @click="changeMenu('inputProgramme')">
             <a-icon type="eye"/>
             <span>View dependencies</span>
           </a-menu-item>
-          <a-menu-item key="5" @click="changeMenu('CourseListForRelationship')">
-            <a-icon type="link"/>
-            <span>Define relationships</span>
-          </a-menu-item>
+          
         </a-menu>
       </a-layout-sider>
       <a-layout>

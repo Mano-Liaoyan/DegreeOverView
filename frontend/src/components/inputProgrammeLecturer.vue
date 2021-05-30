@@ -28,13 +28,13 @@
         </a-form-item>
         <a-form-item>
             <div style="float: left;" >
-              <router-link :to="{name: 'dependencyDesigner',params: {programme: programme.input}}"> 
+              <router-link :to="{name: 'dependencyLecturer',params: {programme: programme.input}}"> 
               <a-button style="float: left;" type="primary"
               > 
                   Confirm 
                 </a-button></router-link>
             </div>
-            <div style="float: right;" ><router-link to="/designer/designerhome">
+            <div style="float: right;" ><router-link to="/lecturer/lecturerhome">
               <a-button> 
                  Cancel 
               </a-button></router-link>
@@ -47,7 +47,7 @@
 
 <script>
 export default {
-  name: "inputProgramme",
+  name: "inputProgrammeLecturer",
   data() {
     return {
      programme:{
@@ -100,3 +100,4 @@ a {
 }
 
 </style>
+

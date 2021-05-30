@@ -26,14 +26,21 @@ const store = new Vuex.Store({
     count: 0,
     search_result: undefined,
     new_cilos: [],
+    new_related_cilos: [],
     cilo_finished: false,
     as_finished: false,
+    as_form: {
+      evaluation_method: [],
+      percentage: [],
+      cilos_arr: [],
+      cilos: []
+    },
     create_course_form: {
       course_name: '',
       academic_start_year: '',
       program: '',
       cilos: [],
-      assessments: [],
+      assessments: {},
       type: ''
     }
   },
@@ -44,8 +51,26 @@ const store = new Vuex.Store({
     setResult(state, data) {
       state.search_result = data;
     },
+    setCilos(state, data) {
+      state.create_course_form.cilos = data
+    },
+    setAs(state, payload) {
+      if (payload.evaluation_method)
+        state.as_form.evaluation_method = payload.evaluation_method
+      if (payload.percentage)
+        state.as_form.percentage = payload.percentage
+      if (payload.cilos_arr)
+        state.as_form.cilos_arr = payload.cilos_arr
+      if (payload.cilos)
+        state.as_form.cilos = payload.cilos
+    },
     pushCilos(state, data) {
-      state.new_cilos.push(data);
+      if (!state.new_related_cilos.includes(data))
+        state.new_related_cilos.push(data)
+    },
+    filterCilo(state, data) {
+      if (state.new_cilos.includes(data))
+        state.new_cilos = state.new_cilos.filter(o => o !== data);
     },
     set_course_form(state, payload) {
       if (payload.course_name)
@@ -62,6 +87,12 @@ const store = new Vuex.Store({
         state.create_course_form.assessments = payload.assessments;
       if (payload.type)
         state.create_course_form.type = payload.type;
+    },
+    change_cilo_finished(state) {
+      state.cilo_finished = !state.cilo_finished
+    },
+    change_as_finished(state) {
+      state.as_finished = !state.as_finished
     }
   }
 })

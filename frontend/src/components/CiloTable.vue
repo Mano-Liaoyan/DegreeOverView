@@ -108,11 +108,14 @@ export default {
       for (let i = 0; i < this.data.length; i++) {
         if (this.data[i].evam === name) {
           this.data[i].evam = info.evam === "" ? this.data[i].evam : info.evam;
-          this.$store.commit("pushCilos", this.data[i].evam)
+          this.$store.commit("pushCilos", this.data[i].evam);
           this.data[i].percentage = info.percentage === "" ? this.data[i].percentage : info.percentage;
           this.data[i].tags = info.tags === [] ? this.data[i].tags : info.tags;
+          this.data[i].cilo_id = info.cilo_id;
         }
+        cilo_list.push(this.data[i].cilo_id)
       }
+      this.$store.commit("setCilos", cilo_list)
     },
     changeVisibleToFalse(key) {
       // this.visible = false;
