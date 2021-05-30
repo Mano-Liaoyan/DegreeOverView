@@ -1,10 +1,11 @@
 <template>
   <div>
-    <a-table :columns="columns" :data-source="data" :pagination="false" bordered rowKey="evam">
+    <a-table :columns="columns" :data-source="data" :pagination="false" bordered rowKey="index">
       <!--    <a slot="name" slot-scope="text">{{ text }}</a>-->
       <!--    <span slot="customTitle"><a-icon type="smile-o"/> Name</span>-->
       <span slot="tags" slot-scope="tags">
-        <a-tag :closable="true" v-for="tag in tags" :key="tag" :color="tag === 'loser' ? 'volcano' : tag.length > 5 ? 'geekblue' : 'green'">
+        <a-tag v-for="tag in tags" :key="tag"
+               :color="tag === 'loser' ? 'volcano' : tag.length > 5 ? 'geekblue' : 'green'">
           {{ tag.toUpperCase() }}
         </a-tag>
       </span>
@@ -12,7 +13,8 @@
         <a @click="showModal(record.evam)">Modify</a>
         <a-divider type="vertical"/>
         <a @click="clickDelete(record.evam)">Delete</a>
-        <ModifyCiloModel :ev_name="record.evam" @update="updateRowData" :visible="record.visible" @changeVisibleToFalse="changeVisibleToFalse(record.evam)"/>
+        <ModifyCiloModel :ev_name="record.evam" @update="updateRowData" :visible="record.visible"
+                         @changeVisibleToFalse="changeVisibleToFalse(record.evam)"/>
       </span>
     </a-table>
     <div style="text-align: end;margin-top: 20px;">
@@ -22,9 +24,6 @@
       <a-button class="editable-add-btn" @click="clickPost()">
         Post Assessment
       </a-button>
-    </div>
-    <div>
-
     </div>
   </div>
 </template>
@@ -95,7 +94,7 @@ let data = [
 ];
 
 export default {
-  name: "AsAndCiloTable",
+  name: "AssessmentTable",
   components: {
     ModifyCiloModel
   },
@@ -109,7 +108,7 @@ export default {
   },
   methods: {
     async clickPost() {
-      let url = "http://127.0.0.1:8000/api/assessment/";
+      /*let url = "http://127.0.0.1:8000/api/assessment/";
       let params = {
         evaluation_method: [],
         percentage: [],
@@ -142,7 +141,7 @@ export default {
           this.$message.error('cilos:' + JSON.stringify(e.response.data.cilos[0]))
 
       });
-      return data;
+      return data;*/
     },
     updateRowData(name, info) {
       for (let i = 0; i < this.data.length; i++) {
@@ -168,6 +167,7 @@ export default {
     },
     clickAdd() {
       this.data.push({
+        index: this.counter,
         percentage: '',
         tags: [],
         evam: 'New Method' + this.counter,

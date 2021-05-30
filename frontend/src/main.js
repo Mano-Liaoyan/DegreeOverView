@@ -9,7 +9,6 @@ import less from 'less'
 import 'ant-design-vue/dist/antd.css'
 import vuescroll from 'vuescroll';
 
-
 Vue.config.productionTip = false
 
 Vue.use(Antd)

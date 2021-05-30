@@ -57,15 +57,14 @@
         </a-layout-header>
         <a-layout-content :style="{
             margin: '24px 16px',
-            padding: '24px',
+            paddingTop: '12px',
             background: '#fff',
-            
             // minHeight: '100%',
             // minHeight: '280px',
           }">
-          <vuescroll style="height: 100%">
+          <vue-scroll style="height: 100%">
             <router-view/>
-          </vuescroll>
+          </vue-scroll>
         </a-layout-content>
       </a-layout>
     </a-layout>

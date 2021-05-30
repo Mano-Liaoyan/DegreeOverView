@@ -13,7 +13,7 @@ import CreateNewCourse from "../components/CreateNewCourse";
 import CourseListForDependency from "../components/CourseListForDependency";
 import CourseListForRelationship from "../components/CourseListForRelationship";
 import CourseListForPerformance from "../components/CourseListForPerformance";
-import AsAndCiloTable from  "../components/AsAndCiloTable";
+import AsAndCiloTable from "../components/AssessmentTable";
 
 Vue.use(Router)
 
@@ -155,9 +155,7 @@ export default new Router({
           path: 'courseListPerformance',
           name: 'CourseListForPerformance',
           component: CourseListForPerformance,
-          children: [
-            
-          ]
+          children: []
         },
         {
           path: '/dependencyStudent',
