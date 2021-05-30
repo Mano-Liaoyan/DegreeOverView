@@ -1,4 +1,5 @@
 <template>
+<vue-scroll style="height: 100%">
   <a-descriptions title="Course Info" bordered>
     <a-descriptions-item label="Course Name">
       Discrete Math
@@ -52,6 +53,7 @@
       <br />
     </a-descriptions-item>
   </a-descriptions>
+</vue-scroll>
   
 </template>
 

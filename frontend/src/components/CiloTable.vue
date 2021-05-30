@@ -17,10 +17,23 @@
                          @changeVisibleToFalse="changeVisibleToFalse(record.evam)"/>
       </span>
     </a-table>
-    <div style="text-align: end;margin-top: 20px;">
-      <a-button class="editable-add-btn" @click="clickAdd()">
-        Add
-      </a-button>
+    <div style="margin-top: 20px;">
+  
+      <div style="text-align: end;">
+
+        <a-button class="editable-add-btn" @click="clickAdd()">
+          Add
+        </a-button>
+        <a-upload 
+              :multiple="false"         
+            @change="handleChange"
+            accept="application/vnd.ms-excel, 
+                application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" 
+            >
+            <a-button style="margin-right: 10px;"> <a-icon type="upload" 
+              /> Import CILOs </a-button>
+        </a-upload>
+      </div>
     </div>
   </div>
 </template>

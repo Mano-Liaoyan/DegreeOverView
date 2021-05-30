@@ -23,6 +23,15 @@
       <a-button class="editable-add-btn" @click="clickAdd()">
         Add
       </a-button>
+      <a-upload 
+              :multiple="false"         
+            @change="handleChange"
+            accept="application/vnd.ms-excel, 
+                application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" 
+            >
+            <a-button style="margin-right: 10px;"> <a-icon type="upload" 
+              /> Import Assessments </a-button>
+        </a-upload>
     </div>
   </div>
 </template>
