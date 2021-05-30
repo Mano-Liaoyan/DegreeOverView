@@ -9,6 +9,9 @@
 <script>
 export default {
   name: "AutoHiddenSelector",
+  props: {
+    ids: 0
+  },
   data() {
     return {
       selectedItems: [],
@@ -16,13 +19,15 @@ export default {
   },
   computed: {
     filteredOptions() {
-      console.log('state: ', this.$store.state.new_cilos)
-      return this.$store.state.new_cilos.filter(o => !this.selectedItems.includes(o));
+      console.log('state: ', this.$store.state.new_related_cilos)
+      return this.$store.state.new_related_cilos.filter(o => !this.selectedItems.includes(o));
     },
   },
   methods: {
     handleChange(selectedItems) {
       this.selectedItems = selectedItems;
+      console.log('select items', this.selectedItems)
+      this.$emit("update", this.selectedItems, this.ids);
     },
   },
 };

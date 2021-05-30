@@ -18,6 +18,9 @@ export default {
   },
   mounted() {
     this.createTimeOptions();
+    this.$store.commit("set_course_form", {
+      academic_start_year: this.thisYear
+    })
   },
   methods: {
     onChange(value) {
