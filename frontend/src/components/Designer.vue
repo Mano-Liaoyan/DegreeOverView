@@ -21,7 +21,7 @@
             <a-icon type="tool"/>
             <span>Define dependencies</span>
           </a-menu-item>
-          <a-menu-item key="4" @click="changeMenu('dependencyDesigner')">
+          <a-menu-item key="4" @click="changeMenu('inputProgramme')">
             <a-icon type="eye"/>
             <span>View dependencies</span>
           </a-menu-item>

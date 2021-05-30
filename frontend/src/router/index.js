@@ -110,7 +110,7 @@ export default new Router({
           component: AsAndCiloTable
         },
         {
-          path: '/dependencyDesigner',
+          path: 'dependencyDesigner',
           name: 'dependencyDesigner',
           component: () => import('../components/ViewDependency.vue'),
         },
@@ -123,6 +123,11 @@ export default new Router({
           path: 'courseInfo',
           name: 'courseInfo',
           component: () => import('../components/CourseInfo.vue'),
+        },
+        {
+          path: 'inputProgramme',
+          name: 'inputProgramme',
+          component: () => import('../components/inputProgramme.vue'),
         },
       ]
     },
