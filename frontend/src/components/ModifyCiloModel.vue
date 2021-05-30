@@ -22,7 +22,7 @@
       <h4 style="margin-top: -19px;">Existing Cilo</h4>
       <a-select mode="multiple" :value="value" placeholder="Select Cilos"
                 style="width: 100%" :filter-option="false" :not-found-content="fetching ? undefined : null"
-                @search="fetchCilo" @change="handleChange">
+                @change="handleChange"><!--                @search="fetchCilo"-->
         <a-spin v-if="fetching" slot="notFoundContent" size="small"/>
         <a-select-option v-for="data in filteredOptions" :key="data.cilo_id" @click="handleClickOption(data)">
           {{ data.cilo_id }} {{ data.content }}

@@ -94,7 +94,7 @@ let data = [
 ];
 
 export default {
-  name: "AsAndCiloTable",
+  name: "AssessmentTable",
   components: {
     ModifyCiloModel
   },
