@@ -86,7 +86,7 @@ export default {
               this.$router.push('/Designer/designerhome');
               break;
             case "lecturer":
-              this.$router.push('/Lecturer/lecturehome');
+              this.$router.push('/Lecturer/lecturerhome');
               break;
           }
           // console.log(res.data);

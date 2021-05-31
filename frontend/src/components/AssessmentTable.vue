@@ -79,6 +79,8 @@ export default {
   name: "AssessmentTable",
   data() {
     return {
+      clAction: '',
+      fileListcl: [],
       data: [],
       columns,
       evam: [],

@@ -61,6 +61,7 @@ export default {
           { id: '5', text: 'CILO-2', data: { course: 'Data Algorithms', content: 'asdwcfege'} },
           { id: '6', text: 'CILO-2', data: { course: 'Operation System', content: 'asdwcfege'} },
           { id: '7', text: 'CILO-1', data: { course: 'Computer Organization', content: 'asdwcfege'} },
+          { id: '8', text: 'CILO-1', data: { course: 'IT', content: 'asdwcfege'} },
           
         ],
         links: [
@@ -72,6 +73,7 @@ export default {
           { from: '1', to: '4', text: 'dependence on' },
           { from: '5', to: '3', text: 'dependence on' },
           { from: '3', to: '2', text: 'dependence on' },
+          { from: '2', to: '8', text: 'dependence on' },
         ]
       }
       this.$refs.seeksRelationGraph.setJsonData(__graph_json_data, (seeksRGGraph) => {

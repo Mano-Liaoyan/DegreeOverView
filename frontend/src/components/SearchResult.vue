@@ -43,21 +43,6 @@ const columns = [
 const data = [
   {
     key: "1",
-    name: "Discrete Math",
-    tags: ["CST"],
-  },
-  {
-    key: "2",
-    name: "Computer Organization",
-    tags: ["CST"],
-  },
-  {
-    key: "3",
-    name: "Orienter-Object Programming",
-    tags: ["CST"],
-  },
-  {
-    key: "4",
     name: "Structured Programming",
     tags: ["CST"],
   },

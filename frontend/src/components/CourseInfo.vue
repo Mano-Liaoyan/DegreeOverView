@@ -2,7 +2,7 @@
 <vue-scroll style="height: 100%">
   <a-descriptions title="Course Info" bordered>
     <a-descriptions-item label="Course Name">
-      Discrete Math
+      Structured Programming
     </a-descriptions-item>
     <a-descriptions-item label="Course Code">
       123456
@@ -14,14 +14,14 @@
       2020/Summer semester
     </a-descriptions-item>
     <a-descriptions-item label="Pre-requisite" :span="3">
-      Calculus I, Statistic
+      IT
     </a-descriptions-item>
     
     <a-descriptions-item label="Assessment Methods:" :span="3">
       <a-table :columns="columns" :data-source="data" :pagination="false">
         <a slot="name" slot-scope="text">{{ text }}</a>
         <span slot="method">Name</span>
-        <span slot="CILOs" slot-scope="tags">
+        <span slot="s" slot-scope="tags">
           <a-tag
             v-for="tag in tags"
             :key="tag"
@@ -45,7 +45,7 @@
     <a-descriptions-item label="CILOs:">
       <a-table :columns="cilocolumns" :data-source="cilodata" :pagination="false">
         <a slot="name" slot-scope="text">{{ text }}</a>
-        <span slot="CILO">Name</span>
+        <span slot="">Name</span>
          <span slot="Details">
              Percentage
         </span>
@@ -81,32 +81,32 @@ const data = [
   {
     key: "1",
     name: "Assignments/Quizes",
-    tags: ["CILO1"],
+    tags: ["1"],
     percentage: "15%"
   },
   {
     key: "2",
     name: "Labs",
-    tags: ["CILO2"],
+    tags: ["2"],
     percentage: "25%"
   },
   {
     key: "3",
     name: "Projects",
-    tags: ["CILO1", "CILO2"],
+    tags: ["1-", "2"],
     percentage: "10%"
   },
   {
     key: "4",
     name: "Examination",
-    tags: ["CILO1", "CILO2"],
+    tags: ["1-", "2"],
     percentage: "50%"
   },
 ];
 
 const cilocolumns = [
  {
-    title: "CILO ID",
+    title: " ID",
     dataIndex: "id",
     key: "id",
   },
@@ -121,12 +121,12 @@ const cilodata = [
  {
     key: "1",
     id: "1",
-    detail: "xxxxxx",
+    detail: "jasfadio afsdiah",
   },
   {
     key: "2",
     id: "2",
-    detail: "xxxxxx",
+    detail: "fhdalf asdhfulaho",
   },
 ];
 
@@ -134,10 +134,10 @@ export default {
   name: "CourseInfo",
   data() {
     return {
+      cilocolumns,
+      cilodata,
       data,
       columns,
-      cilodata,
-      cilocolumns,
     };
   },
   methods:{

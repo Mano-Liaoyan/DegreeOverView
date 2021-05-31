@@ -93,6 +93,8 @@ export default {
   },
   data() {
     return {
+      clAction: '',
+      fileListcl: [],
       data: [],
       columns,
       counter: 1,
