@@ -16,7 +16,7 @@
       let option = {
         color: [ '#67F9D8', '#FFE434', '#56A3F1', '#FF917C'],
     title: {
-        text: 'Performance'
+        text: this.$route.params.coursename,
     },
     legend: {
         data: ['Data A', 'Data B', 'Data C', 'Data D']

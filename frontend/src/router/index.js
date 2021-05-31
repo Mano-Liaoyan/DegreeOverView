@@ -147,6 +147,11 @@ export default new Router({
       component: Student,
       children: [
         {
+          path: 'inputCourse',
+          name: 'inputCourse',
+          component: () => import('../components/inputCourse.vue'),
+        },
+        {
           path: 'inputProgrammeStudent',
           name: 'inputProgrammeStudent',
           component: () => import('../components/inputProgrammeStudent.vue'),
