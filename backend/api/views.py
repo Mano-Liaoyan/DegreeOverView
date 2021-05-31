@@ -124,7 +124,7 @@ class CourseViewSet(viewsets.ModelViewSet):
                               program=data['program'], type=data['type'], assessment=assessment)
         course = Course.objects.get(course_name=data['course_name'])
         course.cilos.set(data['cilos'])
-        course.pre_request_course_id.set(data['pre_request_course_id'])
+        # course.pre_request_course_id.set(data['pre_request_course_id'])
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=201, headers=headers)
 
@@ -176,7 +176,7 @@ class AssessmentViewSet(viewsets.ModelViewSet):
         data = serializer.data
         Assessment.objects.create(evaluation_method=data['evaluation_method'], percentage=data['percentage'], cilos_arr=data['cilos_arr'])
         ass = Assessment.objects.get(Q(evaluation_method=data['evaluation_method']) & Q(percentage=data['percentage']) & Q(cilos_arr=data['cilos_arr']))
-        ass.cilos.set(data['cilos'])
+        # ass.cilos.set(data['cilos'])
         headers = self.get_success_headers(serializer.data)
         data['assessment_id'] = ass.assessment_id
         return Response(data, status=201, headers=headers)

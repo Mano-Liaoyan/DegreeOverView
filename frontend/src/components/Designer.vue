@@ -17,12 +17,12 @@
             <a-icon type="edit"/>
             <span>Modify a course</span>
           </a-menu-item>
-         
+
           <a-menu-item key="4" @click="changeMenu('inputProgramme')">
             <a-icon type="eye"/>
             <span>View dependencies</span>
           </a-menu-item>
-          
+
         </a-menu>
       </a-layout-sider>
       <a-layout>
@@ -41,7 +41,7 @@
               <a-row type="flex" justify="end" align="middle">
                 <a-col>
                   <a-icon type="smile"></a-icon>
-                  Welcome xxx!
+                  Welcome {{ this.$store.state.username }}!
                   <a style="margin-left: 20px"> Log out </a>
                   <a-icon class="top-left-buttons" type="logout" style="color: #bb4444"/>
                 </a-col>
@@ -54,9 +54,9 @@
             paddingTop: '12px',
             background: '#fff',
           }">
-          
-            <router-view/>
-          
+
+          <router-view/>
+
         </a-layout-content>
       </a-layout>
     </a-layout>

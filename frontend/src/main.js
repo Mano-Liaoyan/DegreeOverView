@@ -24,6 +24,7 @@ Vue.prototype.$vuescrollConfig = {
 const store = new Vuex.Store({
   state: {
     count: 0,
+    username: '',
     search_result: undefined,
     new_cilos: [],
     new_related_cilos: [],
@@ -33,18 +34,19 @@ const store = new Vuex.Store({
       evaluation_method: [],
       percentage: [],
       cilos_arr: [],
-      cilos: []
     },
     create_course_form: {
       course_name: '',
       academic_start_year: '',
       program: '',
-      cilos: [],
-      assessments: {},
+      assessment: undefined,
       type: ''
     }
   },
   mutations: {
+    setUserName(state, name) {
+      state.username = name;
+    },
     increment(state) {
       state.count++;
     },
@@ -62,7 +64,7 @@ const store = new Vuex.Store({
       if (payload.cilos_arr)
         state.as_form.cilos_arr = payload.cilos_arr
       if (payload.cilos)
-        state.as_form.cilos = payload.cilos
+        state.as_form.cilos = JSON.stringify(payload.cilos)
     },
     pushCilos(state, data) {
       if (!state.new_related_cilos.includes(data))
@@ -82,9 +84,9 @@ const store = new Vuex.Store({
       if (payload.program)
         state.create_course_form.program = payload.program;
       if (payload.cilos)
-        state.create_course_form.cilos = payload.cilos;
-      if (payload.assessments)
-        state.create_course_form.assessments = payload.assessments;
+        state.create_course_form.cilos = JSON.stringify(payload.cilos);
+      if (payload.assessment)
+        state.create_course_form.assessment = payload.assessment;
       if (payload.type)
         state.create_course_form.type = payload.type;
     },
