@@ -64,7 +64,7 @@ export default new Router({
         {
           path: 'dependencyLecturer',
           name: 'dependencyLecturer',
-          component: () => import('../components/ViewDependency.vue'),
+          component: () => import('../components/relationgraph.vue'),
         },
       ]
     },
@@ -127,7 +127,7 @@ export default new Router({
         {
           path: 'dependencyDesigner',
           name: 'dependencyDesigner',
-          component: () => import('../components/ViewDependency.vue'),
+          component: () => import('../components/relationgraph.vue'),
         },
         {
           path: 'searchResultDesigner',
@@ -175,7 +175,7 @@ export default new Router({
         {
           path: '/dependencyStudent',
           name: 'dependencyStudent',
-          component: () => import('../components/ViewDependency.vue'),
+          component: () => import('../components/relationgraph.vue'),
         },
         {
           path: 'studenthome',
