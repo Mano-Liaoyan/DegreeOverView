@@ -27,6 +27,11 @@ export default new Router({
       component: LogIn
     },
     {
+      path: '/relation',
+      name: 'Relation',
+      component: () => import('../components/relationgraph.vue'),
+    },
+    {
       path: '/lecturer',
       name: 'Lecturer',
       component: Lecturer,
@@ -146,6 +151,11 @@ export default new Router({
       name: 'Student',
       component: Student,
       children: [
+        {
+          path: 'inputCourse',
+          name: 'inputCourse',
+          component: () => import('../components/inputCourse.vue'),
+        },
         {
           path: 'inputProgrammeStudent',
           name: 'inputProgrammeStudent',

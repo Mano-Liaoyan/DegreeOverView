@@ -13,7 +13,7 @@
             <a-icon type="eye"/>
             <span>View dependencies</span>
           </a-menu-item>
-          <a-menu-item key="5" @click="changeMenu('CourseListForPerformance')">
+          <a-menu-item key="5" @click="changeMenu('inputCourse')">
             <a-icon type="link"/>
             <span>View Performance</span>
           </a-menu-item>
