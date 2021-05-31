@@ -54,7 +54,7 @@ export default new Router({
         {
           path: '/dependencyLecturer',
           name: 'dependencyLecturer',
-          component: () => import('../components/ViewDependency.vue'),
+          component: () => import('../components/relationgraph.vue'),
         },
         {
           path: 'inputProgrammeLecturer',
