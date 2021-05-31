@@ -6,15 +6,15 @@
         <div v-else id="logo" style="color: grey; font-weight: bold;">DegreeOverview</div>
         <a-menu theme="light" mode="inline" :default-selected-keys="['0']">
           <a-menu-item key="0" @click="changeMenu('lecturerhome')">
-            <a-icon type="home" />
+            <a-icon type="home"/>
             <span>Home</span>
           </a-menu-item>
-          <a-menu-item key="1"  @click="changeMenu('inputProgrammeLecturer')">
-            <a-icon type="eye" />
+          <a-menu-item key="1" @click="changeMenu('inputProgrammeLecturer')">
+            <a-icon type="eye"/>
             <span>View dependencies</span>
           </a-menu-item>
           <a-menu-item key="2" @click="changeMenu('CourseListForAnalysis')">
-            <a-icon type="file" />
+            <a-icon type="file"/>
             <span>View analysis result</span>
           </a-menu-item>
         </a-menu>
@@ -35,7 +35,7 @@
               <a-row>
                 <a-col>
                   <a-icon type="smile"></a-icon>
-                  Welcome xxx!
+                  Welcome {{ this.$store.state.username }}!
                   <a style="margin-left: 20px"> Log out </a>
                   <a-icon
                     class="top-left-buttons"
@@ -55,8 +55,8 @@
             minHeight: '280px',
           }"
         >
-          
-          <router-view />
+
+          <router-view/>
         </a-layout-content>
       </a-layout>
     </a-layout>

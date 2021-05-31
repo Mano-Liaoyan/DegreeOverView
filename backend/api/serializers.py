@@ -23,6 +23,8 @@ class CourseDesignerSerializer(serializers.ModelSerializer):
 
 class CourseSerializer(serializers.ModelSerializer):
     course_id = serializers.IntegerField(required=False)
+    pre_request_course_id = serializers.IntegerField(required=False)
+    cilos = serializers.IntegerField(required=False)
 
     class Meta:
         model = Course
@@ -51,7 +53,7 @@ class CiloSearchSerializer(serializers.ModelSerializer):
 
 class AssessmentSerializer(serializers.ModelSerializer):
     assessment_id = serializers.IntegerField(required=False)
-    # cilos = serializers.CharField(required=False)
+    cilos = serializers.CharField(required=False)
     evaluation_method = serializers.JSONField()
     percentage = serializers.JSONField()
     cilos_arr = serializers.JSONField()

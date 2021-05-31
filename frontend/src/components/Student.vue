@@ -4,8 +4,8 @@
       <a-layout-sider class="ant-layout-sider-light" v-model="collapsed" :trigger="null" collapsible>
         <div v-if="collapsed" id="logo-collapsed"></div>
         <div v-else id="logo" style="color: grey; font-weight: bold;">DegreeOverview</div>
-        <a-menu theme="light" mode="inline" :default-selected-keys="['0']" >
-          <a-menu-item key="0" @click="changeMenu('studenthome')"> 
+        <a-menu theme="light" mode="inline" :default-selected-keys="['0']">
+          <a-menu-item key="0" @click="changeMenu('studenthome')">
             <a-icon type="home"/>
             <span>Home</span>
           </a-menu-item>
@@ -23,7 +23,7 @@
         <a-layout-header style="background: white; padding: 0">
           <a-row type="flex" justify="space-between" align="middle">
             <!--     Right Notify Button       -->
-          <a-col :span="8">
+            <a-col :span="8">
               <a-icon class="trigger" :type="collapsed ? 'menu-unfold' : 'menu-fold'" @click="() => (this.collapsed = !collapsed)"/>
             </a-col>
             <!--     Center Search function       -->
@@ -35,15 +35,15 @@
               <a-row>
                 <a-col>
                   <a-icon type="smile"></a-icon>
-                  Welcome xxx!   
-                  <a style="margin-left: 20px;">     Log out   </a>
+                  Welcome {{ this.$store.state.username }}!
+                  <a style="margin-left: 20px;"> Log out </a>
                   <a-icon class="top-left-buttons" type="logout" style="color: #BB4444"/>
                 </a-col>
               </a-row>
             </a-col>
           </a-row>
         </a-layout-header>
-         <a-layout-content
+        <a-layout-content
           :style="{
             margin: '24px 16px',
             padding: '24px',
@@ -51,7 +51,7 @@
             minHeight: '280px',
           }"
         >
-          <router-view />
+          <router-view/>
         </a-layout-content>
       </a-layout>
     </a-layout>
