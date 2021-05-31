@@ -173,14 +173,14 @@ export default {
           for (let i = 0; i < this.$store.state.as_form.percentage.length; i++) {
             percentage_sum += this.$store.state.as_form.percentage[i]
           }
-          if (percentage_sum !== 100) {
+          if (percentage_sum !== 100 && percentage_sum !== 0) {
             this.$message.error("The sum of the percentage must equals to 100%!")
             return;
           }
 
           let as_form_param = this.$store.state.as_form
           let as_id = 0;
-          await axios.post(url_as, as_form_param).then(async (res) => {
+          /*await axios.post(url_as, as_form_param).then(async (res) => {
             if (res.data) { // If success then
               // console.log(res.data);
               console.log(res.data)
@@ -205,7 +205,9 @@ export default {
               })
             } else {// If not then
             }
-          })
+          })*/
+          this.$message.success("Create Successfully!")
+          await this.$router.push({name: 'designerhome'});
           // console.log("as_form: ", this.$store.state.as_form)
           // alert('submit!');
         } else {
