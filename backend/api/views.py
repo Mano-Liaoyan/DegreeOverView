@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from userdb.models import Student, Lecturer, CourseDesigner, Cilo, Course, Assessment
 from rest_framework import viewsets
 from .serializers import StudentSerializer, LecturerSerializer, CourseDesignerSerializer, CourseSerializer, CiloSerializer, AssessmentSerializer, \
-    CiloSearchSerializer
+    CiloSearchSerializer, CourseSearchSerializer
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.generics import ListAPIView
 from rest_framework.filters import SearchFilter, OrderingFilter
@@ -184,11 +184,10 @@ class AssessmentViewSet(viewsets.ModelViewSet):
 
 class CourseSearchViewSet(ListAPIView):
     queryset = Course.objects.all()
-    serializer_class = CourseSerializer
+    serializer_class = CourseSearchSerializer
     pagination_class = CustomPageNumberPagination
     filter_backends = (SearchFilter, OrderingFilter,)
-    search_fields = ('course_name', 'course_code', 'academic_start_year', 'program',
-                     'type', 'cilos__content')
+    search_fields = ('course_id', 'course_name', 'course_code', 'academic_start_year', 'program', 'type')
     pass
 
 

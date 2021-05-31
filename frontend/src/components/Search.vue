@@ -79,7 +79,7 @@ export default {
       let data;
       //异步访问course search api以获取数据
       await axios.get(url).then((res) => {
-        // console.log(res.data);
+        console.log(res.data);
         if (res.data.count !== 0) { // If success then
           data = res.data;
         } else {// If not then

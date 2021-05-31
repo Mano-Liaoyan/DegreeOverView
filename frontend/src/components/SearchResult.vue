@@ -3,24 +3,15 @@
     <template>
       <a-table :columns="columns" :data-source="data">
         <a slot="name" slot-scope="text">{{ text }}</a>
-        <span slot="customTitle"><a-icon type="smile-o" /> Name</span>
+        <span slot="customTitle"><a-icon type="smile-o"/> Name</span>
         <span slot="tags" slot-scope="tags">
-          <a-tag
-            v-for="tag in tags"
-            :key="tag"
-            :color="
-              tag === 'loser'
-                ? 'volcano'
-                : tag.length > 5
-                ? 'geekblue'
-                : 'green'
-            "
-          >
+          <a-tag v-for="tag in tags" :key="tag" :color="tag === 'loser' ? 'volcano' : tag.length > 5
+                ? 'geekblue' : 'green'">
             {{ tag.toUpperCase() }}
           </a-tag>
         </span>
-         <span slot="action">
-          <a-button> 
+        <span slot="action">
+          <a-button>
             <router-link to="/designer/courseInfo"> View Details </router-link>
            </a-button>
         </span>
@@ -40,12 +31,12 @@ const columns = [
     title: "Major",
     key: "tags",
     dataIndex: "tags",
-    scopedSlots: { customRender: "tags" },
+    scopedSlots: {customRender: "tags"},
   },
   {
     title: "Action",
     key: "action",
-    scopedSlots: { customRender: "action" },
+    scopedSlots: {customRender: "action"},
   },
 ];
 
