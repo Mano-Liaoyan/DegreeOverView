@@ -80,13 +80,13 @@ export default {
           this.$store.commit("setUserName", this.infos.username)
           switch (role) {
             case "student":
-              this.$router.push('/Student');
+              this.$router.push('/Student/studenthome');
               break;
             case "course-designer":
-              this.$router.push('/Designer');
+              this.$router.push('/Designer/designerhome');
               break;
             case "lecturer":
-              this.$router.push('/Lecturer');
+              this.$router.push('/Lecturer/lecturehome');
               break;
           }
           // console.log(res.data);
