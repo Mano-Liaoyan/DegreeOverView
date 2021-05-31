@@ -27,6 +27,11 @@ export default new Router({
       component: LogIn
     },
     {
+      path: '/relation',
+      name: 'Relation',
+      component: () => import('../components/relationgraph.vue'),
+    },
+    {
       path: '/lecturer',
       name: 'Lecturer',
       component: Lecturer,
