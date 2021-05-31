@@ -42,7 +42,7 @@
                 <a-col>
                   <a-icon type="smile"></a-icon>
                   Welcome {{ this.$store.state.username }}!
-                  <a style="margin-left: 20px"> Log out </a>
+                  <a style="margin-left: 20px" @click="changeMenu('LogIn')"> Log out </a>
                   <a-icon class="top-left-buttons" type="logout" style="color: #bb4444"/>
                 </a-col>
               </a-row>
@@ -83,7 +83,7 @@ export default {
         console.log(route);
         this.$router.push({name: route});
       }
-    },
+    }
   },
 };
 </script>
