@@ -54,19 +54,24 @@ export default {
         rootId: '2',
         nodes: [
           // 注意：在节点配置信息中，你的自定义属性需要像下面这样放到data标签中，否则数据会丢失
-          { id: '1', text: 'CILO-1', data: { course: 'discrete structure', content: 'dfcjsldvsdnv'} },
-          { id: '2', text: 'CILO-2', data: { course: 'java', content: 'dfcesfcesfesfv'} },
-          { id: '3', text: 'CILO-3', data: { course: 'oop', content: 'fcrvgdr'} },
-          { id: '4', text: 'CILO-4', data: { course: 'c programming', content: 'efcefcadcaccdc'} },
+          { id: '1', text: 'CILO-1', data: { course: 'Database Management System', content: 'dfcjsldvsdnv'} },
+          { id: '2', text: 'CILO-2', data: { course: 'Structured Programming', content: 'dfcesfcesfesfv'} },
+          { id: '3', text: 'CILO-1', data: { course: 'Object-Oriented Programming', content: 'fcrvgdr'} },
+          { id: '4', text: 'CILO-1', data: { course: 'Data Structures', content: 'efcefcadcaccdc'} },
+          { id: '5', text: 'CILO-2', data: { course: 'Data Algorithms', content: 'asdwcfege'} },
+          { id: '6', text: 'CILO-2', data: { course: 'Operation System', content: 'asdwcfege'} },
+          { id: '7', text: 'CILO-1', data: { course: 'Computer Organization', content: 'asdwcfege'} },
           
         ],
         links: [
-          { from: '1', to: '2', text: 'dependence on' },
-          { from: '2', to: '3', text: 'dependence on' },
-          { from: '3', to: '4', text: 'dependence on' },
-          { from: '1', to: '3', text: 'dependence on' },
-          { from: '2', to: '4', text: 'dependence on' },
-          
+          { from: '4', to: '2', text: 'dependence on' },
+          { from: '5', to: '4', text: 'dependence on' },
+          { from: '4', to: '3', text: 'dependence on' },
+          { from: '6', to: '2', text: 'dependence on' },
+          { from: '6', to: '7', text: 'dependence on' },
+          { from: '1', to: '4', text: 'dependence on' },
+          { from: '5', to: '3', text: 'dependence on' },
+          { from: '3', to: '2', text: 'dependence on' },
         ]
       }
       this.$refs.seeksRelationGraph.setJsonData(__graph_json_data, (seeksRGGraph) => {

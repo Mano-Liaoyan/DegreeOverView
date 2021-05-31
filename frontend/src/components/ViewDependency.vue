@@ -41,55 +41,47 @@ export default {
           },
           data: [
             {
-              name: "CILO1",
+              name: "Data Structure",
               x: 300,
               y: 300,
             },
             {
-              name: "CILO2",
+              name: "Data Algorithms",
               x: 800,
               y: 300,
             },
             {
-              name: "CILO3",
+              name: "Structured Programming",
               x: 550,
               y: 100,
             },
             {
-              name: "CILO4",
+              name: "Object-Oriented Programming",
               x: 550,
               y: 500,
             },
           ],
           links: [
             {
-              source: 0,
-              target: 1,
-              symbolSize: [5, 20],
-              label: {
-                show: true,
-              },
-              lineStyle: {
-                width: 5,
-                curveness: 0.2,
-              },
+            //   source: 0,
+            //   target: 1,
+            //   symbolSize: [5, 20],
+            //   label: {
+            //     show: true,
+            //   },
+            //   lineStyle: {
+            //     width: 5,
+            //     curveness: 0.2,
+            //   },
             },
             
             {
-              source: "CILO1",
-              target: "CILO3",
+              source: "Structured Programming",
+              target: "Data Structure",
             },
             {
-              source: "CILO2",
-              target: "CILO3",
-            },
-            {
-              source: "CILO2",
-              target: "CILO4",
-            },
-            {
-              source: "CILO1",
-              target: "CILO4",
+              source: "Data Structure",
+              target: "Data Algorithms",
             },
           ],
           lineStyle: {
