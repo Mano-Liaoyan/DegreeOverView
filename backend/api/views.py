@@ -115,14 +115,15 @@ class CourseViewSet(viewsets.ModelViewSet):
     serializer_class = CourseSerializer
 
     def create(self, request, *args, **kwargs):
+        print('daaaaaaaaaa', request.data)
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        print(serializer.data)
         data = serializer.data
         assessment = Assessment.objects.get(assessment_id=data['assessment'])
         Course.objects.create(course_name=data['course_name'], course_code=data['course_code'], academic_start_year=data['academic_start_year'],
                               program=data['program'], type=data['type'], assessment=assessment)
-        course = Course.objects.get(course_name=data['course_name'])
+        course = Course.objects.filter(course_name=data['course_name']).first()
+        print('sssssss', data['cilos'])
         course.cilos.set(data['cilos'])
         # course.pre_request_course_id.set(data['pre_request_course_id'])
         headers = self.get_success_headers(serializer.data)

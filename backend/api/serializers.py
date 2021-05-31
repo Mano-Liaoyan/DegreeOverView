@@ -23,8 +23,8 @@ class CourseDesignerSerializer(serializers.ModelSerializer):
 
 class CourseSerializer(serializers.ModelSerializer):
     course_id = serializers.IntegerField(required=False)
-    pre_request_course_id = serializers.PrimaryKeyRelatedField(required=False, read_only=True, many=True)
-    cilos = serializers.PrimaryKeyRelatedField(required=False, many=True, read_only=True)
+    pre_request_course_id = serializers.PrimaryKeyRelatedField(required=False, read_only=True)
+    cilos = serializers.PrimaryKeyRelatedField(required=False, read_only=True)
 
     class Meta:
         model = Course
@@ -43,8 +43,8 @@ class CourseSearchSerializer(serializers.ModelSerializer):
 
 class CiloSerializer(serializers.ModelSerializer):
     cilo_id = serializers.IntegerField(required=False)
-    parent_cilos = serializers.CharField(required=False)
-    child_cilos = serializers.CharField(required=False)
+    parent_cilos = serializers.JSONField(required=False)
+    child_cilos = serializers.JSONField(required=False)
 
     class Meta:
         model = Cilo
